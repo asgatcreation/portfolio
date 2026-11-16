@@ -1,0 +1,43 @@
+{
+  "title": "naija-pay",
+  "color": "#3ddc97",
+  "status": "pre",
+  "statusLabel": "Pre-release · 5 of 11",
+  "progress": [5, 11],
+  "year": "2026",
+  "tagline": "One typed interface to Nigerian payment providers.",
+  "summary": "Write your payment code once and switch providers without rewriting it. Money is always whole kobo, never decimals.",
+  "categories": ["Fintech", "Open source"],
+  "languages": ["TypeScript", "Python"],
+  "stack": ["TypeScript", "Python", "Webhooks"],
+  "facts": [
+    ["5/11", "milestones done"],
+    ["1", "adapter sandbox-verified"]
+  ],
+  "code": "https://github.com/asgatcreation/naija-pay",
+  "problem": "Every Nigerian payment provider has a different API, and floating-point money quietly loses kobo.",
+  "note": "Pre-release. The Paystack adapter is sandbox-verified; a Flutterwave sandbox harness is being added.",
+  "art": ["naira(5_000)", "ONE API · MANY PROVIDERS"],
+  "features": [
+    "Integer kobo everywhere: naira(5_000) is 500000 kobo",
+    "Paystack adapter verified against the sandbox",
+    "Flutterwave next"
+  ],
+  "shots": [],
+  "industry": "Fintech · Developer tools",
+  "why": "Every Nigerian payment provider has a different API, and floating-point money quietly loses kobo. naija-pay gives one typed interface for collections, virtual accounts, split payments, payouts and webhooks.",
+  "hard": [
+    ["Whole kobo only", "naira(5_000) is 500000 kobo: integers everywhere, never floats."],
+    ["Webhook signature checks", "Every provider’s webhook is verified before it is trusted."],
+    ["Sandbox-verified", "The Paystack adapter passes against the real sandbox; Flutterwave is next."]
+  ],
+  "radar": [3, 1, 5, 4, 5, 1],
+  "arch": {
+    "Users & devices": ["Your app (TypeScript or Python)"],
+    "Application": ["naija-pay typed interface", "Webhook verification"],
+    "Data": [],
+    "Services": ["Paystack", "Flutterwave", "More providers"]
+  },
+  "order": 8,
+  "draft": false
+}

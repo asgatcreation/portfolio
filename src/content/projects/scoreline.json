@@ -1,0 +1,31 @@
+{
+  "title": "Scoreline",
+  "color": "#5fd4ff",
+  "status": "dev",
+  "statusLabel": "In development",
+  "year": "2026",
+  "industry": "Sports · Real-time",
+  "tagline": "Real-time football live scores.",
+  "summary": "Match timelines, line-ups and league tables pushed to fans the moment they change, over WebSockets.",
+  "categories": ["Real-time", "Sports"],
+  "languages": ["TypeScript"],
+  "stack": ["Next.js 16", "NestJS", "Socket.IO", "Prisma", "PostgreSQL"],
+  "facts": [],
+  "code": "https://github.com/asgatcreation/scoreline",
+  "problem": "Fans want the goal on their screen the second it happens, not after a refresh.",
+  "why": "To build a live, push-first product where many viewers watch the same changing data at once.",
+  "note": "In development; the demo is coming.",
+  "art": ["2 – 1", "LIVE SCORES"],
+  "features": ["Live match timelines", "Line-ups and tables", "Updates pushed over WebSockets"],
+  "shots": [],
+  "hard": [["Fan-out", "One goal event must reach every viewer instantly."]],
+  "radar": [3, 5, 1, 2, 3, 3],
+  "arch": {
+    "Users & devices": ["Fans (Next.js 16)"],
+    "Application": ["NestJS API", "Socket.IO"],
+    "Data": ["Prisma + PostgreSQL"],
+    "Services": []
+  },
+  "order": 11,
+  "draft": false
+}

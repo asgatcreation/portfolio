@@ -1,0 +1,72 @@
+<button class="totop" type="button" aria-label="Back to top" data-totop>
+  <svg class="ringp" viewBox="0 0 50 50" aria-hidden="true">
+    <circle
+      cx="25"
+      cy="25"
+      r="24"
+      fill="none"
+      stroke="var(--gold)"
+      stroke-width="2"
+      stroke-dasharray="150.8"
+      stroke-dashoffset="150.8"
+      data-totop-ring
+    />
+  </svg>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 19V5M6 11l6-6 6 6" />
+  </svg>
+</button>
+
+<!-- Lightbox -->
+<div class="lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button class="icon-btn lb-close" type="button" data-lb-close aria-label="Close screenshot">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.2"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      <path d="M6 6l12 12M18 6 6 18" />
+    </svg>
+  </button>
+  <button class="icon-btn lb-prev" type="button" data-lb-prev aria-label="Previous screenshot">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.2"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      <path d="m15 6-6 6 6 6" />
+    </svg>
+  </button>
+  <figure>
+    <img data-lb-img alt="" />
+    <figcaption data-lb-cap></figcaption>
+  </figure>
+  <button class="icon-btn lb-next" type="button" data-lb-next aria-label="Next screenshot">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.2"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      <path d="m9 6 6 6-6 6" />
+    </svg>
+  </button>
+</div>
+
+<div class="toast" data-toast role="status" aria-live="polite"></div>

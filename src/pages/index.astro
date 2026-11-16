@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/home/Hero.astro';
+import About from '../components/home/About.astro';
+import Stats from '../components/home/Stats.astro';
+import Services from '../components/home/Services.astro';
+import Featured from '../components/home/Featured.astro';
+import Explorer from '../components/home/Explorer.astro';
+import NowBuilding from '../components/home/NowBuilding.astro';
+import Skills from '../components/home/Skills.astro';
+import Process from '../components/home/Process.astro';
+import Journey from '../components/home/Journey.astro';
+import OpenSource from '../components/home/OpenSource.astro';
+import Articles from '../components/home/Articles.astro';
+import Faq from '../components/home/Faq.astro';
+import Contact from '../components/home/Contact.astro';
+import Overlays from '../components/home/Overlays.astro';
+import { getCollection } from 'astro:content';
+import { publishedProjects } from '../data/projects';
+import { radarAxes, cvs, contact } from '../data/site';
+
+const projects = await publishedProjects();
+const articles = (await getCollection('articles')).map((a) => a.data);
+// Embedded for the home-page script; "<" is escaped so the JSON can never close the script tag.
+const data = JSON.stringify({ projects, articles, radarAxes, cvs, contact }).replace(/</g, '\u003c');
+---
+
+<Base loader home>
+  <main id="main">
+    <Hero />
+    <div class="wrap">
+      <About />
+      <Stats />
+      <Services />
+      <Featured />
+      <Explorer />
+      <noscript>
+        <p class="art-note">
+          All projects are listed on <a href="/work/">the work page</a>.
+        </p>
+      </noscript>
+      <NowBuilding />
+      <Skills />
+      <Process />
+      <Journey />
+      <OpenSource />
+      <Articles />
+      <Faq />
+      <Contact />
+    </div>
+  </main>
+  <Overlays slot="overlays" />
+  <script type="application/json" id="portfolio-data" set:html={data} />
+  <script src="../scripts/app.js"></script>
+</Base>

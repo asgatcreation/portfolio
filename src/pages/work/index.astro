@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import InnerOverlays from '../../components/InnerOverlays.astro';
+import { publishedProjects } from '../../data/projects';
+
+const projects = await publishedProjects();
+const langColor: Record<string, string> = {
+  Python: '#3572A5',
+  JavaScript: '#f1e05a',
+  TypeScript: '#3178c6',
+  PHP: '#4F5D95',
+  Go: '#00ADD8',
+  R: '#198CE7',
+};
+---
+
+<Base
+  title="Work"
+  description="Every project by Akanji Oluwaseun Gabriel, with its true status: live products, open source, data research and work in progress."
+>
+  <main id="main" class="page">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a> / <span aria-current="page">work</span>
+      </nav>
+      <header class="page-head">
+        <span class="eyebrow">Portfolio</span>
+        <h1>All projects</h1>
+        <p>
+          {projects.length} projects across fintech, e-commerce, health, education, sports and public data. Every card
+          shows its true status.
+        </p>
+      </header>
+      <div class="ex-grid">
+        {projects.map((p) => (
+          <a class="xcard" href={`/work/${p.id}/`}>
+            <div class="cover">
+              <span class={`st ${p.status}`}>{p.statusLabel}</span>
+              {p.cover ? (
+                <img src={p.cover} alt="" loading="lazy" decoding="async" />
+              ) : (
+                p.art && (
+                  <div class="art" style={`--c:${p.color}`}>
+                    <span>
+                      {p.art[0]}
+                      <small>{p.art[1]}</small>
+                    </span>
+                  </div>
+                )
+              )}
+            </div>
+            <div class="xbody">
+              <span class="kind">{p.categories.join(' · ')}</span>
+              <h2 class="h4">{p.title}</h2>
+              <p>{p.tagline}</p>
+              <div class="xmeta">
+                {p.languages.map((l) => (
+                  <span class="lang" style={`--lc:${langColor[l] ?? 'var(--dim)'}`}>
+                    <i />
+                    {l}
+                  </span>
+                ))}
+                {p.demo && <span>● Live demo</span>}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../../scripts/site.js"></script>
+</Base>

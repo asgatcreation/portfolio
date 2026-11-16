@@ -1,0 +1,53 @@
+{
+  "title": "TaskFlow",
+  "color": "#8ab4ff",
+  "status": "live",
+  "statusLabel": "Live",
+  "year": "2026",
+  "tagline": "Manage your day, one task at a time.",
+  "summary": "A task manager with per-user accounts, priorities, deadlines with times, overdue detection and a clean dark interface, deployed with PostgreSQL.",
+  "categories": ["Productivity"],
+  "languages": ["Python"],
+  "stack": ["Django 5.0", "Python 3.12", "PostgreSQL", "Gunicorn", "Whitenoise", "Render"],
+  "facts": [
+    ["3", "priority levels"],
+    ["4", "search filters"],
+    ["1", "click deploy (render.yaml)"]
+  ],
+  "demo": "https://django-todo-app-8dio.onrender.com",
+  "code": "https://github.com/asgatcreation/taskflow-app",
+  "problem": "A simple product done properly: user isolation, deadlines, priorities and a real production deployment.",
+  "note": "Free hosting: the first load can take about 30 seconds.",
+  "cover": "/img/taskflow/dashboard.jpg",
+  "features": [
+    "Register, log in and only ever see your own tasks",
+    "Low, medium and high priorities with badges",
+    "Deadlines with an exact time, and overdue highlighting",
+    "Search and filter by keyword, status, priority and overdue",
+    "A live dashboard with clickable stat cards",
+    "A time trail: created, updated and completed"
+  ],
+  "shots": [
+    ["taskflow/landing.jpg", "Landing page"],
+    ["taskflow/dashboard.jpg", "Dashboard"],
+    ["taskflow/tasks.jpg", "Task list with filters"],
+    ["taskflow/task-form.jpg", "Task form"],
+    ["taskflow/admin.jpg", "Admin dashboard"]
+  ],
+  "industry": "Productivity",
+  "why": "A simple product done properly. TaskFlow shows a complete, production-ready Django workflow, from local development to a live deployment with PostgreSQL, user isolation, deadlines and priorities.",
+  "hard": [
+    ["Per-user isolation", "Every task belongs to one account and every query is scoped to it."],
+    ["Production setup", "Gunicorn, Whitenoise, HSTS and a one-file Render blueprint."]
+  ],
+  "radar": [2, 1, 1, 2, 1, 3],
+  "arch": {
+    "Users & devices": ["Browser"],
+    "Application": ["Django 5", "Gunicorn + Whitenoise"],
+    "Data": ["PostgreSQL"],
+    "Services": ["Render"]
+  },
+  "flow": ["Register", "Add tasks", "Set priority & deadline", "Track overdue", "Complete"],
+  "order": 5,
+  "draft": false
+}

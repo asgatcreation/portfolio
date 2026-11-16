@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  note?: string | undefined;
+  rows: [string, number][];
+  unit?: string | undefined;
+  max?: number | undefined;
+  log?: boolean | undefined;
+}
+const { title, note, rows, unit = '', max, log } = Astro.props;
+const top = max ?? Math.max(...rows.map((r) => r[1]));
+const fmt = new Intl.NumberFormat('en-GB');
+const width = (v: number) => Math.max(2, (log ? Math.log10(v) / Math.log10(top) : v / top) * 100).toFixed(1);
+---
+
+<figure class="bars">
+  <figcaption>
+    <b>{title}</b>
+    {note && <small>{note}</small>}
+  </figcaption>
+  <div class="bar-list">
+    {rows.map(([name, v], i) => (
+      <div class="brow">
+        <span>{name}</span>
+        <div class="btrack" aria-hidden="true">
+          <i style={`--w:${width(v)}%;--d:${i * 120}ms`} />
+        </div>
+        <b>
+          {fmt.format(v)}
+          {unit}
+        </b>
+      </div>
+    ))}
+  </div>
+</figure>

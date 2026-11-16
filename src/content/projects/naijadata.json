@@ -1,0 +1,66 @@
+{
+  "title": "naija-data",
+  "color": "#e6b450",
+  "featured": true,
+  "status": "live",
+  "statusLabel": "v1.0.0 released",
+  "year": "2026",
+  "tagline": "Sourced Nigerian reference data, in three languages.",
+  "summary": "States, LGAs, 8,809 wards, banks and phone-number rules for Python, JavaScript and Go, plus a free REST API. Every record has a source, and every language gives the same answer.",
+  "categories": ["Open source", "Data"],
+  "languages": ["Python", "TypeScript", "Go"],
+  "stack": ["Python", "TypeScript", "Go", "Cloudflare Workers", "django-naija"],
+  "facts": [
+    ["13,392", "shared test cases"],
+    ["8,809", "wards"],
+    ["4", "published packages"],
+    ["532", "npm downloads, 12 Oct–10 Nov"]
+  ],
+  "demo": "https://naija-data.asgatcreation.workers.dev",
+  "code": "https://github.com/asgatcreation/naija-data",
+  "demoLabel": "Website",
+  "problem": "Nigerian developers copy state and LGA lists from random blog posts, with no source and plenty of mistakes.",
+  "note": "MIT for the code, CC BY 4.0 for the data.",
+  "art": ["naija-data", "PYPI · NPM · GO"],
+  "features": [
+    "Published on PyPI, npm and Go, plus django-naija for Django",
+    "13,392 shared test cases run in every language",
+    "A source for every record",
+    "A free REST API on Cloudflare Workers"
+  ],
+  "shots": [],
+  "industry": "Developer tools · Public data",
+  "why": "Nigerian apps need states, LGAs, wards, banks and phone rules, and most lists online have no source. As a statistician I wanted reference data with a source for every record, giving the same answer in every language.",
+  "hard": [
+    [
+      "One truth, three languages",
+      "13,392 shared test cases run in CI against Python, JavaScript and Go, so every package returns identical results."
+    ],
+    ["8,809 wards", "The finest level of Nigerian geography, each record with a source."],
+    [
+      "Four packages, one release",
+      "PyPI, npm, Go modules and django-naija, plus a free REST API on Cloudflare Workers."
+    ]
+  ],
+  "radar": [4, 1, 1, 2, 5, 2],
+  "arch": {
+    "Users & devices": ["Python apps", "JavaScript / TS apps", "Go services", "Django forms & models"],
+    "Application": ["Shared dataset", "13,392 shared tests"],
+    "Data": ["Sourced records"],
+    "Services": ["PyPI", "npm", "Go modules", "REST API on Workers"]
+  },
+  "chart": {
+    "type": "bars",
+    "title": "What’s inside",
+    "note": "Records per level (log scale)",
+    "log": true,
+    "rows": [
+      ["States + FCT", 37],
+      ["LGAs", 774],
+      ["Wards", 8809],
+      ["Shared tests", 13392]
+    ]
+  },
+  "order": 4,
+  "draft": false
+}

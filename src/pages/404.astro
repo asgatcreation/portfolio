@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import InnerOverlays from '../components/InnerOverlays.astro';
+---
+
+<Base title="Page not found" description="This page doesn’t exist.">
+  <main id="main" class="page">
+    <div class="wrap">
+      <header class="page-head">
+        <span class="eyebrow">404</span>
+        <h1>This page doesn’t exist.</h1>
+        <p>The link may be old, or the address has a typo.</p>
+      </header>
+      <div class="v-ctas">
+        <a class="btn gold" href="/">
+          Go home
+        </a>
+        <a class="btn" href="/work/">
+          See all projects
+        </a>
+      </div>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../scripts/site.js"></script>
+</Base>

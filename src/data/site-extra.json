@@ -1,0 +1,17 @@
+{
+  "radarAxes": ["Data model", "Real-time", "Money & payments", "Security", "Integrations", "UX & offline"],
+  "cvs": [
+    ["General CV", "Everything in two pages", "Akanji_Oluwaseun_CV_General.pdf"],
+    ["General CV (full)", "The complete record", "Akanji_Oluwaseun_CV_General_Full.pdf"],
+    ["Software Engineer CV", "Full-stack, APIs, payments", "Akanji_Oluwaseun_CV_Software_Engineer.pdf"],
+    ["Data Scientist CV", "Analysis, ML, research", "Akanji_Oluwaseun_CV_Data_Scientist.pdf"],
+    ["Statistician CV", "Surveys, official statistics", "Akanji_Oluwaseun_CV_Statistician.pdf"]
+  ],
+  "contact": {
+    "email": "asgatcreation@gmail.com",
+    "whatsapp": "2348160948723",
+    "phone": "+234 816 094 8723",
+    "slots": ["10:00", "12:00", "14:00", "16:00"],
+    "days": 14
+  }
+}

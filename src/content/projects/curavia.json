@@ -1,0 +1,48 @@
+{
+  "title": "Curavia",
+  "color": "#8ab4ff",
+  "status": "dev",
+  "statusLabel": "Milestone 6 of 15",
+  "progress": [6, 15],
+  "year": "2026",
+  "tagline": "A hospital operating system, from front desk to pharmacy.",
+  "summary": "Multi-hospital software where one hospital can never see another’s patients. A query that forgets its hospital crashes instead of leaking data.",
+  "categories": ["Health", "Real-time"],
+  "languages": ["Python", "TypeScript"],
+  "stack": ["Django 6.1", "DRF", "Channels", "Celery", "React 19", "PostgreSQL 18 (RLS)", "Redis"],
+  "facts": [
+    ["6/15", "milestones done"],
+    ["4", "layers of tenant isolation"]
+  ],
+  "code": "https://github.com/asgatcreation/curavia",
+  "problem": "Hospital data is the worst thing to leak. Forgetting one filter in one query shouldn’t be enough to do it.",
+  "note": "In development. Orders, safety checks and referrals are being built now.",
+  "art": ["Curavia", "HOSPITAL OPERATING SYSTEM"],
+  "features": [
+    "Four layers of tenant isolation, including PostgreSQL row-level security",
+    "A permissions matrix that generates its own tests",
+    "A hash-chained audit log that can’t be quietly edited",
+    "TenantScopeMissing: unscoped queries crash on purpose"
+  ],
+  "shots": [],
+  "industry": "HealthTech",
+  "why": "Hospital records are the worst thing to leak. Curavia is a hospital operating system for Nigerian hospitals, from front desk and triage to lab, pharmacy, billing and wards, built so one forgotten filter can never expose another hospital’s patients.",
+  "hard": [
+    [
+      "Four layers of tenant isolation",
+      "Including PostgreSQL row-level security; a query with no hospital scope crashes with TenantScopeMissing."
+    ],
+    ["Permissions that test themselves", "A role-by-action matrix generates the permission tests."],
+    ["An audit log you can trust", "Hash-chained, so a quiet edit breaks the chain."],
+    ["Mandatory 2FA", "For every staff account."]
+  ],
+  "radar": [5, 4, 3, 5, 3, 4],
+  "arch": {
+    "Users & devices": ["Front desk & triage", "Doctors, lab & pharmacy", "Billing & wards"],
+    "Application": ["Django 6.1 + DRF", "React 19", "Channels (live)", "Celery workers"],
+    "Data": ["PostgreSQL 18 + RLS", "Redis", "Hash-chained audit log"],
+    "Services": []
+  },
+  "order": 6,
+  "draft": false
+}

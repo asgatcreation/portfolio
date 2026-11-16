@@ -1,0 +1,18 @@
+---
+/** Screenshot grid; buttons open the lightbox (site.js). Without JS each opens the image itself. */
+interface Props {
+  shots: [string, string][];
+  main?: boolean;
+  group: string;
+}
+const { shots, main = false, group } = Astro.props;
+---
+
+<div class:list={['gal', { main }]} data-gallery={group}>
+  {shots.map(([src, cap], i) => (
+    <a href={`/img/${src}`} data-shot={i} data-src={`/img/${src}`} data-cap={cap} aria-label={`Enlarge: ${cap}`}>
+      <img src={`/img/${src}`} alt="" loading="lazy" decoding="async" />
+      <span>{cap}</span>
+    </a>
+  ))}
+</div>

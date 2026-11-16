@@ -1,0 +1,43 @@
+<!-- NOW BUILDING -->
+<section class="block" id="now" aria-labelledby="now-title">
+  <div class="head">
+    <div>
+      <span class="eyebrow rv">Now building</span>
+      <h2 id="now-title" class="rv d1">
+        In progress, <span class="grad-text">in the open.</span>
+      </h2>
+    </div>
+    <p class="rv d2">
+      Progress comes from each project’s milestone plan. When one goes live, its status here changes on the next build.
+    </p>
+  </div>
+  <div class="now">
+    <div class="now-list" data-now></div>
+    <aside class="gh rv d1" aria-labelledby="gh-title">
+      <div class="gh-top">
+        <h3 id="gh-title">Live from GitHub</h3>
+        <span class="live-tag">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span data-gh-state>loading</span>
+        </span>
+      </div>
+      <div class="gh-nums">
+        <div>
+          <b data-gh-repos>—</b>
+          <span>public repos</span>
+        </div>
+        <div>
+          <b data-gh-own>—</b>
+          <span>my own (not forks)</span>
+        </div>
+      </div>
+      <p class="gh-label">Languages across my repos</p>
+      <div class="langbar" data-gh-bar aria-hidden="true"></div>
+      <ul class="langs" data-gh-langs></ul>
+      <p class="gh-label">Recently updated</p>
+      <ul class="recent" data-gh-recent>
+        <li class="m">Loading…</li>
+      </ul>
+    </aside>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+/** Complexity profile drawn on the server: no JavaScript needed. */
+interface Props {
+  values: number[];
+  axes: string[];
+}
+const { values, axes } = Astro.props;
+const S = 340,
+  c = S / 2,
+  R = 110,
+  n = axes.length;
+const pt = (i: number, r: number): [number, number] => {
+  const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+  return [c + r * Math.cos(a), c + r * Math.sin(a)];
+};
+const ring = (l: number) => axes.map((_, i) => pt(i, (R * l) / 5).join(',')).join(' ');
+const label = axes.map((a, i) => `${a} ${values[i]} of 5`).join(', ');
+---
+
+<figure class="radar-fig">
+  <svg viewBox={`-50 -10 ${S + 100} ${S + 20}`} class="radar" role="img" aria-label={`Complexity: ${label}`}>
+    {[1, 2, 3, 4, 5].map((l) => (
+      <polygon points={ring(l)} class="r-grid" />
+    ))}
+    {axes.map((a, i) => {
+      const e = pt(i, R);
+      const t = pt(i, R + 26);
+      const anchor = Math.abs(t[0] - c) < 5 ? 'middle' : t[0] > c ? 'start' : 'end';
+      return (
+        <>
+          <line x1={c} y1={c} x2={e[0]} y2={e[1]} class="r-grid" />
+          <text x={t[0]} y={t[1] + 4} text-anchor={anchor} class="r-lbl">
+            {a}
+          </text>
+        </>
+      );
+    })}
+    <polygon points={values.map((v, i) => pt(i, (R * v) / 5).join(',')).join(' ')} class="r-val" />
+    {values.map((v, i) => {
+      const q = pt(i, (R * v) / 5);
+      return <circle cx={q[0]} cy={q[1]} r="4" class="r-dot" />;
+    })}
+  </svg>
+  <figcaption>Complexity profile, self-assessed from 1 to 5</figcaption>
+</figure>

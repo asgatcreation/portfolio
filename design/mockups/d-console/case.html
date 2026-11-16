@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CarHub: case study · Akanji Oluwaseun Gabriel (Mockup D: Code / Build / Impact)</title>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="home.html" aria-label="Asgatcreation, home"><img src="../shared/img/logo-avatar.jpg" alt="" width="38" height="38"><span><b>asgat</b>creation</span></a>
+    <nav class="menu" id="menu" aria-label="Main">
+      <a href="home.html#build" aria-current="page">Work</a><a href="home.html#impact">Open source</a><a href="#">Research</a><a href="#">Lab</a><a href="#">Writing</a><a href="#">About</a>
+    </nav>
+    <div class="tools">
+      <button class="chip menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu>Menu</button>
+      <button class="chip kbd-chip" type="button" aria-label="Search (Ctrl K)">⌘K</button>
+      <button class="chip" type="button" data-theme-toggle><span data-theme-label>Dark</span></button>
+      <a class="btn gold-btn" href="home.html#contact" style="padding:.65rem .95rem;font-size:.85rem">Hire me</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="home.html">~</a> / <a href="home.html#build">work</a> / <b>carhub</b></nav>
+
+    <header class="case-hero">
+      <div>
+        <span class="st live">Live</span>
+        <h1>CarHub</h1>
+        <p class="lede" style="margin:0">Nigeria’s marketplace for verified cars. Reserve online with a refundable deposit, inspect in person, then pay the balance.</p>
+      </div>
+      <div class="specs hud">
+        <dl>
+          <dt>Role</dt><dd>Design and build</dd>
+          <dt>Year</dt><dd>2026</dd>
+          <dt>Stack</dt><dd>Django 5.2 · Channels · PostgreSQL · Paystack · Leaflet</dd>
+          <dt>Tests</dt><dd>146 · CI on Python 3.12 and 3.13</dd>
+          <dt>Links</dt><dd><a href="https://carhub-es73.onrender.com/">Live demo ↗</a> · <a href="https://github.com/asgatcreation/carhub">Code ↗</a></dd>
+        </dl>
+      </div>
+    </header>
+
+    <figure class="case-shot">
+      <div class="shot hud" style="padding:0"><div class="chrome"><i></i><i></i><i></i><span>carhub-es73.onrender.com</span></div><img src="../shared/img/01-home.jpg" alt="CarHub home page with a featured car, search and filters" style="aspect-ratio:auto"></div>
+      <figcaption><b>FIG.01</b> The home page. Listings, dealers and reviews are demo data; car photos come from Wikimedia Commons.</figcaption>
+    </figure>
+
+    <div class="layout">
+      <aside class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#problem">01 · The problem</a></li>
+          <li><a href="#solution">02 · The solution</a></li>
+          <li><a href="#hard">03 · Hardest problems</a></li>
+          <li><a href="#quality">04 · Testing</a></li>
+          <li><a href="#try">05 · Try it</a></li>
+        </ol>
+        <div class="progress" aria-hidden="true"><i data-progress></i></div>
+      </aside>
+
+      <article class="doc">
+        <section id="problem">
+          <h2><span>01</span>The problem</h2>
+          <p>Buying a car online in Nigeria usually means scrolling through unverified listings, then wiring money to a stranger. <strong>Nobody pays fifty million naira by card for a car they haven’t seen.</strong> So CarHub follows how a car sale really happens.</p>
+          <p class="aside"><b>Note</b>This is a portfolio project. No real vehicles are sold, and the demo data resets on every deploy.</p>
+          <blockquote class="quote">“Every step has a real status, notification and email behind it, from the deposit through to the sale.”<cite>— from the project README</cite></blockquote>
+        </section>
+
+        <section id="solution">
+          <h2><span>02</span>The solution</h2>
+          <p>Every listing is reviewed before it goes live, and every price is compared with the market. A buyer reserves with a refundable ₦250,000 deposit, which takes the car off the market. The seller confirms an inspection slot. The buyer inspects with their own mechanic, then pays the balance or cancels for a refund.</p>
+          <figure class="fig">
+            <div class="hud">
+              <svg viewBox="0 0 720 170" role="img" aria-label="State machine: reserved goes to scheduled when the seller confirms, then to completed when the balance is paid. Reserved or scheduled can go to cancelled with a refund.">
+                <defs><marker id="arD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--muted)"/></marker></defs>
+                <g fill="none" style="stroke:var(--line-2)" stroke-width="1.2">
+                  <rect x="10" y="24" width="160" height="48" rx="10"/><rect x="280" y="24" width="160" height="48" rx="10"/>
+                  <rect x="550" y="24" width="160" height="48" rx="10" style="stroke:var(--gold);stroke-width:1.8"/>
+                  <rect x="280" y="112" width="160" height="44" rx="10" stroke-dasharray="5 4"/>
+                </g>
+                <g fill="none" style="stroke:var(--muted)" stroke-width="1.2">
+                  <path d="M170 48 H278" marker-end="url(#arD)"/><path d="M440 48 H548" marker-end="url(#arD)"/>
+                  <path d="M90 72 V134 H278" marker-end="url(#arD)"/><path d="M360 72 V110" marker-end="url(#arD)"/>
+                </g>
+                <text x="90" y="53" text-anchor="middle" font-size="14">reserved</text>
+                <text x="360" y="53" text-anchor="middle" font-size="14">scheduled</text>
+                <text x="630" y="53" text-anchor="middle" font-size="14" style="fill:var(--gold-text)">completed</text>
+                <text x="360" y="139" text-anchor="middle" font-size="13">cancelled + refund</text>
+                <text x="224" y="38" text-anchor="middle" font-size="10" style="fill:var(--muted)">seller confirms</text>
+                <text x="494" y="38" text-anchor="middle" font-size="10" style="fill:var(--muted)">balance paid</text>
+              </svg>
+            </div>
+            <figcaption><b>FIG.02</b> Each car in an order has its own lifecycle, so one car can be cancelled while another goes ahead.</figcaption>
+          </figure>
+        </section>
+
+        <section id="hard">
+          <h2><span>03</span>The hardest problems</h2>
+          <p><strong>Two buyers, one car.</strong> Two people can press “Pay” for the same car in the same second. Checkout locks the car rows inside a transaction and checks they’re still available, so the second buyer is told the car has just gone. Nobody is charged for a car that’s already taken.</p>
+          <div class="codefile"><span class="tab">cars/views.py</span>
+<pre><code><span class="k">with</span> transaction.atomic():
+    <span class="c"># Lock the rows so two buyers can't reserve the same car at once.</span>
+    locked = list(Car.objects.<span class="k">select_for_update</span>().filter(
+        pk__in=[c.pk <span class="k">for</span> c <span class="k">in</span> cars], status=<span class="s">'available'</span>))
+    <span class="k">if</span> len(locked) != len(cars):
+        messages.error(request, <span class="s">'One of the cars was just reserved by someone else.'</span>)
+        <span class="k">return</span> redirect(<span class="s">'cars:cart'</span>)</code></pre></div>
+          <p><strong>Push a nudge, not the data.</strong> Live trips, chat and notifications run over WebSockets. A broadcast only says “this trip changed”. Each screen rebuilds its own view with the same permission checks as the normal pages, and only after the database has committed.</p>
+          <div class="codefile"><span class="tab">driverzone/realtime.py</span>
+<pre><code><span class="k">def</span> trip_changed(trip):
+    <span class="s">"""A trip's status, driver or the driver's position changed."""</span>
+    _send(f<span class="s">'trip_{trip.number}'</span>, <span class="s">'trip.update'</span>)
+    <span class="k">if</span> trip.driver_id:
+        _send(f<span class="s">'driver_{trip.driver_id}'</span>, <span class="s">'driver.update'</span>)
+    _send(<span class="s">'ops'</span>, <span class="s">'ops.update'</span>)</code></pre></div>
+          <p class="aside"><b>Fallback</b>If the socket drops, the page reconnects with backoff and falls back to polling, so tracking never stops.</p>
+          <div class="twoshots">
+            <img src="../shared/img/22-live-trip.jpg" alt="Live trip page with the car moving along a route on a map" loading="lazy">
+            <img src="../shared/img/13-mobile.jpg" alt="CarHub screens on a phone" loading="lazy">
+          </div>
+          <p class="mono" style="font-size:.78rem;color:var(--muted)"><b style="color:var(--gold-text);font-weight:500">FIG.03</b> Live trip tracking on desktop, and the phone layout.</p>
+        </section>
+
+        <section id="quality">
+          <h2><span>04</span>Testing and quality</h2>
+          <table>
+            <thead><tr><th>Area</th><th>What the tests prove</th></tr></thead>
+            <tbody>
+              <tr><td>checkout</td><td>Exact totals, the locked email, and a car reserved by someone else mid-checkout</td></tr>
+              <tr><td>payments</td><td>Webhook signatures; an order is paid only after Paystack verifies the amount</td></tr>
+              <tr><td>accounts</td><td>One-time codes never appear in the subject line or inbox preview</td></tr>
+              <tr><td>realtime</td><td>Live updates reach the rider; strangers are refused; the ops feed is staff-only</td></tr>
+            </tbody>
+          </table>
+          <p class="mono" style="font-size:.78rem;color:var(--muted)">146 automated tests · GitHub Actions on Python 3.12 and 3.13</p>
+        </section>
+
+        <section id="try">
+          <h2><span>05</span>Try it</h2>
+          <div class="run hud">
+            <div><h3>Open the live demo</h3><p>Render’s free tier: the first visit can take about 30 seconds to wake. One-click demo accounts for a buyer, a dealer, a parts vendor, a driver and a moderator.</p></div>
+            <a class="btn gold-btn" href="https://carhub-es73.onrender.com/">Launch demo <span class="arr">↗</span></a>
+          </div>
+        </section>
+
+        <nav class="pager" aria-label="More projects">
+          <a class="hud" href="#"><small>← Previous</small><span>Ojà Live</span></a>
+          <a class="hud" href="#"><small>Next →</small><span>FloatBook</span></a>
+        </nav>
+      </article>
+    </div>
+  </div>
+</main>
+<footer><div class="wrap"><span>© 2026 Akanji Oluwaseun Gabriel · asgatcreation</span><span><a href="../index.html">All mockups</a></span></div></footer>
+<script src="../shared/theme.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>

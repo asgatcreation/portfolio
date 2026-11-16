@@ -1,0 +1,67 @@
+{
+  "title": "FinanceFlow",
+  "color": "#3ddc97",
+  "featured": true,
+  "status": "live",
+  "statusLabel": "Live",
+  "year": "2026",
+  "tagline": "Your money. All of it. In one place.",
+  "summary": "A multi-currency expense tracker and finance dashboard. Track naira, dollars, euros and more, each transaction in its own currency, with budgets, charts, reports and exports.",
+  "categories": ["Fintech", "Productivity"],
+  "languages": ["Python", "JavaScript"],
+  "stack": ["Django 5", "Python 3.12", "PostgreSQL (Supabase)", "Google OAuth", "Chart.js", "Render"],
+  "facts": [
+    ["20", "currencies seeded"],
+    ["5", "currencies per user"],
+    ["4", "interactive charts"],
+    ["15", "starter categories"]
+  ],
+  "demo": "https://financeflow-app-uuu8.onrender.com",
+  "code": "https://github.com/asgatcreation/financeflow",
+  "problem": "Managing money across several currencies usually means converting everything by hand and losing track of what was really spent.",
+  "note": "Free hosting: the first load can take about 30 seconds.",
+  "cover": "/img/financeflow/04-dashboard.jpg",
+  "phone": "/img/financeflow/14-mobile-dashboard.jpg",
+  "features": [
+    "Each transaction stays in its own currency, never blended",
+    "Per-currency KPI cards: balance, income, expense, savings rate",
+    "4 Chart.js charts with a currency switcher",
+    "Monthly budgets per category and currency, with radial progress",
+    "12-month reports and 6-month predictions (weighted moving average)",
+    "PDF report, CSV and 3-sheet Excel export",
+    "Email sign-up or Google sign-in; your data is only yours"
+  ],
+  "shots": [
+    ["financeflow/01-landing.jpg", "Landing page"],
+    ["financeflow/04-dashboard.jpg", "Multi-currency dashboard"],
+    ["financeflow/05-transactions.jpg", "Transactions with per-currency totals"],
+    ["financeflow/06-budgets.jpg", "Budgets per category and currency"],
+    ["financeflow/07-reports.jpg", "Reports, insights and predictions"],
+    ["financeflow/08-currencies.jpg", "The multi-currency wallet"],
+    ["financeflow/10-transaction-form.jpg", "Currency-aware transaction form"],
+    ["financeflow/14-mobile-dashboard.jpg", "Dashboard on a phone"]
+  ],
+  "industry": "Personal finance",
+  "why": "Managing money across several currencies usually means converting everything by hand. I built FinanceFlow so naira, dollars and euros each stay in their own currency, with budgets, charts and reports that never blend them.",
+  "hard": [
+    [
+      "Never mixing currencies",
+      "Totals, KPIs, budgets and charts are all computed per currency, so ₦ and $ never land in one sum."
+    ],
+    [
+      "Reports people can use",
+      "12-month trends, 6-month predictions with a weighted moving average, and PDF, CSV and Excel exports."
+    ],
+    ["Your data only", "Email or Google sign-in, with every query scoped to the signed-in user."]
+  ],
+  "radar": [3, 1, 3, 3, 2, 4],
+  "arch": {
+    "Users & devices": ["Browser (desktop & phone)"],
+    "Application": ["Django 5", "Chart.js dashboards", "PDF & Excel export"],
+    "Data": ["PostgreSQL (Supabase)"],
+    "Services": ["Google OAuth", "Render hosting"]
+  },
+  "flow": ["Sign up", "Pick currencies", "Log transactions", "Watch charts update", "Export reports"],
+  "order": 3,
+  "draft": false
+}

@@ -1,0 +1,40 @@
+{
+  "title": "Ojà Live",
+  "color": "#ff7a59",
+  "status": "dev",
+  "statusLabel": "Milestone 2 of 11",
+  "progress": [2, 11],
+  "year": "2026",
+  "tagline": "Live auctions that pick the right winner every time.",
+  "summary": "A live auction house built to pick the same winner at the same price, whatever order the bids arrive in.",
+  "categories": ["Real-time", "Marketplace"],
+  "languages": ["TypeScript"],
+  "stack": ["Next.js 16", "Fastify", "Socket.IO", "BullMQ", "Redis Lua", "PostgreSQL"],
+  "facts": [["2/11", "milestones done"]],
+  "code": "https://github.com/asgatcreation/ojalive",
+  "problem": "When two bids land in the same millisecond, an auction must still be fair and repeatable.",
+  "note": "In development. Load, race and chaos test results arrive in milestones 10 and 11.",
+  "art": ["Ojà Live", "LIVE AUCTIONS"],
+  "features": [
+    "Bid engine checked with property-based tests",
+    "Bid logic in Redis Lua scripts",
+    "Live bidding over Socket.IO",
+    "Design and architecture decisions written up front"
+  ],
+  "shots": [],
+  "industry": "E-commerce · Real-time",
+  "why": "When two bids land in the same millisecond, a live auction must still pick the same winner at the same price every time. Ojà Live is built to prove that under load, races and failures.",
+  "hard": [
+    ["Order-independent bidding", "Bid logic runs in Redis Lua scripts and is checked with property-based tests."],
+    ["Proof, not promises", "Load, race and chaos test results are planned for milestones 10 and 11."]
+  ],
+  "radar": [3, 5, 4, 3, 2, 3],
+  "arch": {
+    "Users & devices": ["Bidders (Next.js 16)", "Sellers"],
+    "Application": ["Fastify API", "Socket.IO gateway", "BullMQ jobs"],
+    "Data": ["Redis + Lua bid engine", "PostgreSQL"],
+    "Services": []
+  },
+  "order": 7,
+  "draft": false
+}

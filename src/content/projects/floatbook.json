@@ -1,0 +1,85 @@
+{
+  "title": "FloatBook",
+  "color": "#f5a524",
+  "featured": true,
+  "status": "live",
+  "statusLabel": "Live demo",
+  "year": "2026",
+  "tagline": "Every naira at the counter, accounted for.",
+  "summary": "Back-office software for Nigerian POS and agent-banking businesses. It replaces the notebook and WhatsApp group: every transaction, the cash and wallet float at each outlet, the end-of-day count, reversals, and the owner’s numbers, live.",
+  "categories": ["Fintech"],
+  "languages": ["PHP", "TypeScript"],
+  "stack": [
+    "PHP 8.5",
+    "Laravel 13",
+    "Inertia 3",
+    "Vue 3",
+    "TypeScript",
+    "Tailwind CSS 4",
+    "PostgreSQL 17",
+    "Pest 5",
+    "Playwright",
+    "Docker"
+  ],
+  "facts": [
+    ["4", "demo roles"],
+    ["72h", "target per reversal case"],
+    ["L7", "Larastan level"],
+    ["1", "Docker container"]
+  ],
+  "demo": "https://floatbook.onrender.com",
+  "problem": "POS owners run their business from a notebook and WhatsApp messages. Cash goes missing, failed transactions are forgotten, and the owner can’t see today’s profit without being there.",
+  "note": "Honest note from the README: FloatBook does not connect to Moniepoint, OPay or Palmpay. Data comes from entry at the counter and imported provider statements, through an adapter layer ready for real integrations.",
+  "cover": "/img/floatbook/01-landing.jpg",
+  "features": [
+    "A one-thumb keypad: charges, fees and profit worked out as you type",
+    "Works offline and sends entries when the network returns, never twice",
+    "Cash and wallet float for every drawer, with low-balance alerts",
+    "A blind end-of-day count that closes the day for good",
+    "Each failed transaction opens a case with a 72-hour target",
+    "Import provider statements and see what doesn’t match",
+    "Flags duplicates, large amounts and after-hours entries",
+    "A double-entry ledger checked by the database; nothing is edited in place"
+  ],
+  "shots": [
+    ["floatbook/01-landing.jpg", "Landing page with the counter keypad"],
+    ["floatbook/02-dashboard.jpg", "The owner’s dashboard and what needs attention"],
+    ["floatbook/03-float.jpg", "Cash and wallet float at every outlet"]
+  ],
+  "industry": "Fintech · Agent banking",
+  "why": "POS owners run their shops from a notebook and a WhatsApp group: cash goes missing, failed transactions are forgotten, and the owner can’t see today’s profit without being there. FloatBook gives them a proper back office that works on a cheap phone, even offline.",
+  "hard": [
+    [
+      "A ledger that always balances",
+      "Every figure sits on a double-entry ledger checked by the database itself. Nothing is edited or deleted in place; mistakes are voided or reversed and both sides stay."
+    ],
+    [
+      "Offline without double-counting",
+      "Entries are kept on the phone when the network drops and sent once it returns, never twice."
+    ],
+    [
+      "A day that closes for good",
+      "The blind end-of-day count closes the day permanently; any difference needs a supervisor’s approval."
+    ],
+    [
+      "Security for money",
+      "2FA and passkeys with Laravel Fortify, four roles, and static analysis at Larastan level 7."
+    ]
+  ],
+  "radar": [5, 3, 5, 5, 3, 5],
+  "arch": {
+    "Users & devices": ["Agent phone (offline PWA)", "Owner dashboard", "Supervisor & accountant"],
+    "Application": ["Laravel 13 + Inertia", "Vue 3 + TypeScript", "Queue worker & scheduler", "Fortify: 2FA, passkeys"],
+    "Data": ["PostgreSQL 17 (Neon)", "Double-entry ledger"],
+    "Services": ["Brevo email", "Provider statements (CSV/Excel)"]
+  },
+  "flow": [
+    "Record a sale",
+    "Float updates live",
+    "Blind end-of-day count",
+    "Supervisor approves gaps",
+    "Owner gets the daily email"
+  ],
+  "order": 2,
+  "draft": false
+}

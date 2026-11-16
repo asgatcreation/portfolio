@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio mockups · Milestone 2</title>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Fraunces:opsz,wght@9..144,800&family=Cormorant+Garamond:wght@500&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+  :root { --paper: #f6f1e7; --ink: #1c1a16; --muted: #625b4f; --rule: #d6cdbb; --green: #1f5d3a; --oxblood: #7b1e2b; --prussian: #1d3b5c; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #13171c; --ink: #ebe5d8; --muted: #a29b8d; --rule: #2f363f; --green: #7cc39a; --oxblood: #e3929a; --prussian: #9dbde0; color-scheme: dark; } }
+  :root[data-theme="dark"] { --paper: #13171c; --ink: #ebe5d8; --muted: #a29b8d; --rule: #2f363f; --green: #7cc39a; --oxblood: #e3929a; --prussian: #9dbde0; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.1rem/1.6 "Newsreader", Georgia, serif; }
+  main { max-width: 66rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+  a { color: inherit; text-underline-offset: .18em; }
+  :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+  .top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .eyebrow { font: 600 .78rem/1 "Source Sans 3", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; margin: .8rem 0 1rem; }
+  h2 { font-weight: 400; font-size: 1.8rem; margin: 3.5rem 0 1rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+  p { max-width: 42rem; }
+  .sans { font-family: "Source Sans 3", sans-serif; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .card { border: 1px solid var(--rule); padding: 1.4rem; display: flex; flex-direction: column; }
+  .card h3 { font-weight: 400; font-size: 1.6rem; margin: .3rem 0 .5rem; }
+  .card p { font-size: 1rem; color: var(--muted); margin: 0 0 1rem; flex: 1; }
+  .card .links { font: 600 .95rem "Source Sans 3", sans-serif; display: flex; gap: 1.2rem; }
+  .swatch { display: inline-block; width: .8rem; height: .8rem; border-radius: 50%; vertical-align: -.05rem; margin-right: .4rem; }
+  .lead-tag { font: 600 .7rem/1 "Source Sans 3", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
+  .marks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .marks figure { margin: 0; border: 1px solid var(--rule); padding: 2rem 1rem 1.2rem; text-align: center; }
+  .marks svg { height: 96px; width: auto; max-width: 100%; color: var(--ink); }
+  .marks figcaption { font: 400 .9rem/1.45 "Source Sans 3", sans-serif; color: var(--muted); margin-top: 1rem; }
+  .marks figcaption b { color: var(--ink); }
+  .toggle { font: 600 .85rem "Source Sans 3", sans-serif; background: none; color: var(--ink); border: 1px solid var(--rule); border-radius: 999px; padding: .45rem .85rem; cursor: pointer; }
+  ul.notes { font-size: 1rem; padding-left: 1.2rem; max-width: 46rem; }
+  @media (max-width: 820px) { .grid, .marks { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><span class="eyebrow">Milestone 2 · Visual directions</span><button class="toggle" type="button" data-theme-toggle><span data-theme-label>Dark</span></button></div>
+  <h1>Three directions for your portfolio</h1>
+  <p>Each direction has a home page and a CarHub case study. All of them use the same real content, so you’re only comparing the look. Try each one at phone width and in dark mode (use the toggle on any page). Pick one, or tell me what to borrow from the others.</p>
+
+  <article class="card" style="margin-bottom:1.5rem;border-color:#c39432">
+    <span class="lead-tag" style="color:#a67a26">Newest · version 2</span>
+    <h3>E · Spotlight</h3>
+    <p><span class="swatch" style="background:#e6b450"></span>Your photo in the hero, stacking showcase cards for CarHub (cars, CAS accessories, DriverZone), FloatBook, FinanceFlow and naija-data, a project explorer with status, category and language filters, a full project view that slides up with real screenshots, 57 skills linked to projects, now-building progress, live GitHub data, journey, articles, FAQ, a 3-step contact form and Ctrl K search.</p>
+    <div class="links"><a href="e-portfolio/index.html">Open E</a></div>
+  </article>
+  <article class="card" style="margin-bottom:1.5rem">
+    <span class="eyebrow">Previous</span>
+    <h3>D · Code / Build / Impact</h3>
+    <p><span class="swatch" style="background:#d9ab4f"></span>Black and gold from the Asgatcreation logo. Dark first, techy and clean: a working console in the hero, gold Brownian paths, a live ticker, HUD-framed project cards, and sections named after your tagline. Geist, Geist Mono, Instrument Serif.</p>
+    <div class="links"><a href="d-console/home.html">Home</a><a href="d-console/case.html">Case study</a></div>
+  </article>
+  <h2 style="margin-top:2rem">Earlier directions</h2>
+  <div class="grid">
+    <article class="card">
+      <span class="lead-tag">First lead</span>
+      <h3>A · Monograph</h3>
+      <p><span class="swatch" style="background:var(--green)"></span>Deep Nigerian green. Like Tufte’s books and Stripe Press: one reading column, margin notes, § numbered sections, figures with captions. Newsreader, Source Sans 3, JetBrains Mono.</p>
+      <div class="links"><a href="a-monograph/home.html">Home</a><a href="a-monograph/case.html">Case study</a></div>
+    </article>
+    <article class="card">
+      <span class="eyebrow">Variation</span>
+      <h3>B · Broadsheet</h3>
+      <p><span class="swatch" style="background:var(--oxblood)"></span>Oxblood. A classic newspaper front page: masthead, double rules, columns, an “In figures” box and a fact box on case studies. Fraunces, Source Serif 4, Libre Franklin.</p>
+      <div class="links"><a href="b-broadsheet/home.html">Home</a><a href="b-broadsheet/case.html">Case study</a></div>
+    </article>
+    <article class="card">
+      <span class="eyebrow">Variation</span>
+      <h3>C · Catalogue</h3>
+      <p><span class="swatch" style="background:var(--prussian)"></span>Prussian blue. A museum exhibition catalogue: centred, very spacious, projects as numbered plates in mounts with object labels. Cormorant Garamond, EB Garamond, Inter.</p>
+      <div class="links"><a href="c-catalogue/home.html">Home</a><a href="c-catalogue/case.html">Case study</a></div>
+    </article>
+  </div>
+
+  <h2>Three marks</h2>
+  <div class="marks">
+    <figure>
+      <svg viewBox="0 0 100 100" role="img" aria-label="Seal: lowercase italic aog inside a thin circle"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="50" cy="50" r="41" fill="none" stroke="currentColor" stroke-width=".5"/><text x="50" y="61" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-style="italic" font-size="34" fill="currentColor">aog</text></svg>
+      <figcaption><b>1. The seal.</b> Italic initials in a double hairline ring, like a printer’s mark. Works at 16 px as a favicon. Used in mockup A.</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 100 100" role="img" aria-label="Monogram: bold capital AOG in a square frame with a rule beneath"><rect x="4" y="4" width="92" height="92" fill="none" stroke="currentColor" stroke-width="2.5"/><text x="50" y="60" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="800" font-size="34" letter-spacing="-1" fill="currentColor">AOG</text><path d="M24 72 H76" stroke="currentColor" stroke-width="1.2"/></svg>
+      <figcaption><b>2. The block.</b> Heavy capitals in a square, like a newspaper’s masthead stamp. The strongest at small sizes.</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 300 100" role="img" aria-label="Wordmark: ASGATCREATION in spaced capitals over a small Brownian line"><text x="150" y="52" text-anchor="middle" font-family="Cormorant Garamond, Garamond, serif" font-weight="500" font-size="26" letter-spacing="7" fill="currentColor">ASGATCREATION</text><path d="M40 72 l6 -2 l5 3 l6 -4 l5 2 l6 -5 l5 4 l6 -1 l5 -4 l6 3 l5 -2 l6 5 l5 -3 l6 1 l5 -5 l6 2 l5 -1 l6 4 l5 -3 l6 -2 l5 3 l6 -1 l5 -4 l6 2 l5 1 l6 -3 l5 2 l6 -2 l5 3 l6 -1 l5 -2 l6 2 l5 -1 l6 3 l5 -2 l6 0 l5 -3 l6 2 l5 -1 l4 1" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>
+      <figcaption><b>3. The wordmark.</b> Your brand name in spaced capitals, underlined by a short Brownian path. Needs the seal or block for the favicon.</figcaption>
+    </figure>
+  </div>
+
+  <h2>Notes on these mockups</h2>
+  <ul class="notes">
+    <li>All facts come from your repos, checked on 11 November 2026. The response time is a placeholder, <code>[[ADD: response time]]</code>, because you haven’t told me one.</li>
+    <li>The drawing is live Brownian motion: about 7 seconds to draw, then it redraws. It pauses off-screen and stays still for “reduce motion” users and Save-Data connections. The real site also gets a static SVG for when JavaScript is off.</li>
+    <li>Fonts load from Google Fonts here. The real site self-hosts them, subset to the characters we use, for speed.</li>
+    <li>Only CarHub has screenshots in your repos so far, so some cards in mockup C show “Screenshot to come”.</li>
+    <li>Status colours (live, in development, pre-release) are colour-blind safe and also differ in shape: a full, half and diamond dot.</li>
+  </ul>
+</main>
+<script src="shared/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "title": "EduNexus",
+  "color": "#ff9fd1",
+  "status": "private",
+  "statusLabel": "Private repository",
+  "year": "[[ADD]]",
+  "tagline": "[[ADD: one line on what EduNexus does]]",
+  "summary": "[[ADD: what EduNexus is, who it is for and what it solves. The code is private, so this page shows the story and screenshots, without a code link.]]",
+  "categories": ["EdTech", "Private"],
+  "languages": ["[[ADD]]"],
+  "stack": ["[[ADD: stack]]"],
+  "facts": [],
+  "problem": "[[ADD: the problem]]",
+  "note": "Private repository: the code isn’t public, but the details and screenshots can be.",
+  "art": ["EduNexus", "PRIVATE · DETAILS COMING"],
+  "features": ["[[ADD: 3–6 key features]]"],
+  "shots": [],
+  "industry": "EdTech",
+  "why": "[[ADD: why you built EduNexus]]",
+  "hard": [],
+  "order": 10,
+  "draft": true
+}

@@ -1,0 +1,57 @@
+<!-- WORK: explorer -->
+<section class="block" id="projects" aria-labelledby="projects-title">
+  <div class="head">
+    <div>
+      <span class="eyebrow rv">All projects</span>
+      <h2 id="projects-title" class="rv d1">
+        Explore everything
+      </h2>
+    </div>
+    <p class="rv d2">Filter by status, category or language, or search for a tool. Every card shows its true status.</p>
+  </div>
+  <div class="explorer rv">
+    <div class="ex-top">
+      <label class="search">
+        <span class="sr">Search projects</span>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-3.5-3.5" />
+        </svg>
+        <input type="search" placeholder="Search: Django, Paystack, maps…" data-ex-search />
+      </label>
+      <button class="btn sm" type="button" data-ex-reset>
+        Reset
+      </button>
+    </div>
+    <div class="ex-groups">
+      <div class="ex-group" role="group" aria-label="Status">
+        <span>Status</span>
+        <div data-ex-group="status"></div>
+      </div>
+      <div class="ex-group" role="group" aria-label="Category">
+        <span>Category</span>
+        <div data-ex-group="category"></div>
+      </div>
+      <div class="ex-group" role="group" aria-label="Language">
+        <span>Language</span>
+        <div data-ex-group="language"></div>
+      </div>
+    </div>
+    <p class="ex-count" aria-live="polite" data-ex-count></p>
+    <div class="ex-grid" data-ex-grid></div>
+    <div class="ex-empty" data-ex-empty hidden>
+      <b>No projects match.</b> Try another filter, or{' '}
+      <button type="button" class="linkish" data-ex-reset>
+        show everything
+      </button>
+      .
+    </div>
+  </div>
+</section>

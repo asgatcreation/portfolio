@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mockups",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4321", "--bind", "127.0.0.1", "--directory", "design/mockups"],
+      "port": 4321
+    },
+    {
+      "name": "site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["astro", "preview", "--port", "4322", "--host", "127.0.0.1"],
+      "port": 4322
+    }
+  ]
+}

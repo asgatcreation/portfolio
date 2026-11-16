@@ -1,0 +1,141 @@
+{
+  "title": "CarHub",
+  "color": "#e6b450",
+  "featured": true,
+  "status": "live",
+  "statusLabel": "Live",
+  "year": "2026",
+  "tagline": "Nigeria’s marketplace for verified cars: three products in one.",
+  "summary": "Reserve a car online with a refundable deposit, inspect it in person, then pay the balance. CarHub also sells parts and accessories that fit your car, and books rides and chauffeurs tracked live on a map.",
+  "categories": ["Marketplace", "Fintech", "Real-time"],
+  "languages": ["Python", "JavaScript"],
+  "stack": ["Django 5.2", "Django Channels", "PostgreSQL", "Paystack", "Leaflet", "OSRM", "PWA", "Google sign-in"],
+  "facts": [
+    ["146", "automated tests"],
+    ["3", "products in one"],
+    ["5", "demo roles"],
+    ["2", "Python versions in CI"]
+  ],
+  "demo": "https://carhub-es73.onrender.com/",
+  "code": "https://github.com/asgatcreation/carhub",
+  "problem": "Buying a car online in Nigeria usually means scrolling through unverified listings, then wiring money to a stranger. Nobody pays ₦50M by card for a car they haven’t seen, so CarHub models how the purchase really works.",
+  "note": "Portfolio project: listings, dealers and reviews are demo data and no real vehicles are sold. Free hosting, so the first visit can take 30–50 seconds to wake.",
+  "cover": "/img/carhub/01-home.jpg",
+  "phone": "/img/carhub/13-mobile.jpg",
+  "parts": [
+    {
+      "name": "Cars marketplace",
+      "short": "Cars",
+      "icon": "car",
+      "about": "Every listing is reviewed before it goes live and every price is compared with the market. Buyers reserve with a refundable ₦250,000 deposit, the seller confirms an inspection slot, and the buyer pays the balance or cancels for a refund.",
+      "features": [
+        "Filters for make, body, fuel, price, year, mileage and state",
+        "Natural-language search like “2021 lexus lagos”",
+        "A price badge that compares each car with the market",
+        "Checkout locks the car, so two buyers can never reserve one car",
+        "Each car in an order has its own status, notification and email",
+        "Public seller storefronts with ratings and reviews"
+      ],
+      "shots": [
+        ["carhub/01-home.jpg", "Home page with the featured-car spotlight"],
+        ["carhub/02-browse.jpg", "Browse with filters and price badges"],
+        ["carhub/03-car-detail.jpg", "Car page with the price insight"],
+        ["carhub/06-review-and-pay.jpg", "Review and pay: deposit today, balance at inspection"],
+        ["carhub/07-confirmation.jpg", "Confirmation and order tracking"],
+        ["carhub/08-seller-reservations.jpg", "Sellers confirm or reschedule inspections"],
+        ["carhub/10-seller-storefront.jpg", "A seller’s public storefront"]
+      ]
+    },
+    {
+      "name": "CAS · Car accessories & parts",
+      "short": "Accessories",
+      "icon": "parts",
+      "about": "Buyers save their car once, and every product shows “Fits your Camry” or “Doesn’t fit”. Approved vendors manage stock and fulfil orders.",
+      "features": [
+        "Fit check on every product for your saved car",
+        "One switch shows only parts that fit",
+        "Live stock; stock rows are locked so items can’t be oversold",
+        "Paystack, demo payment, or pay on delivery in Lagos and Abuja",
+        "Delivery priced by state, free over ₦100,000",
+        "Reviews marked “verified purchase”, moderated first"
+      ],
+      "shots": [
+        ["carhub/17-parts-store.jpg", "The parts store, shopping for your car"],
+        ["carhub/18-parts-shop.jpg", "Filtered to parts that fit"],
+        ["carhub/19-part-fits.jpg", "Product page with the fit check"]
+      ]
+    },
+    {
+      "name": "DriverZone · Rides & chauffeurs",
+      "short": "DriverZone",
+      "icon": "ride",
+      "about": "Book a ride, or a vetted chauffeur to drive your own car by the hour or day. Drivers share live GPS from their phone, and every trip is tracked live.",
+      "features": [
+        "Search any address (Photon), or drop pins; routes on real roads (OSRM)",
+        "Ride (Economy or Comfort) and Chauffeur, up to 30 days ahead",
+        "Dispatch to the nearest idle, verified driver",
+        "Fares recomputed on the server, never trusted from the browser",
+        "Live updates over WebSockets, with a polling fallback",
+        "A live operations map for staff"
+      ],
+      "shots": [
+        ["carhub/21-rides-booking.jpg", "Booking a ride on the map"],
+        ["carhub/22-live-trip.jpg", "Live trip tracking"],
+        ["carhub/23-rides-mobile.jpg", "Booking, live trip and driver app on a phone"],
+        ["carhub/24-live-ops.jpg", "Live rides map in the staff console"]
+      ]
+    }
+  ],
+  "extra": [
+    ["carhub/15-admin-console.jpg", "Staff console: everything public is checked first"],
+    ["carhub/11-verify-code.jpg", "Accounts verified with 6-digit codes"],
+    ["carhub/14-dark-mode.jpg", "Dark mode"],
+    ["carhub/13-mobile.jpg", "Designed for a 390px phone first"]
+  ],
+  "industry": "Automotive · E-commerce",
+  "why": "Buying a car online in Nigeria usually means scrolling unverified listings, then wiring money to a stranger. I built CarHub to follow how a car sale really happens (reserve, inspect, then pay) and to prove I can ship a complete marketplace: buyers, sellers, vendors, drivers and staff in one product.",
+  "hard": [
+    [
+      "Two buyers, one car",
+      "Checkout locks the car rows inside a transaction, so a second buyer is told the car has just gone. Nobody is charged for a car that is already taken."
+    ],
+    [
+      "Live trips that never freeze",
+      "Every status change is pushed over WebSockets the moment it is committed; if the socket drops, the page reconnects with backoff and falls back to polling."
+    ],
+    [
+      "Prices you can’t fake",
+      "Ride fares are always recomputed on the server from the real road route, never trusted from the browser."
+    ],
+    [
+      "Parts that really fit",
+      "Each product is matched against the buyer’s saved make, model and year, and stock rows are locked so nothing is oversold."
+    ]
+  ],
+  "radar": [4, 5, 4, 4, 5, 4],
+  "arch": {
+    "Users & devices": [
+      "Buyer browser / PWA",
+      "Seller & vendor dashboards",
+      "Driver phone (live GPS)",
+      "Staff console"
+    ],
+    "Application": [
+      "Django 5.2 views",
+      "Django Channels (WebSockets)",
+      "Dispatch & pricing",
+      "Emails & one-time codes"
+    ],
+    "Data": ["PostgreSQL", "Row locks on checkout"],
+    "Services": ["Paystack", "Google sign-in", "Brevo email", "OSRM routes", "Photon search", "OpenStreetMap"]
+  },
+  "flow": [
+    "Find a car",
+    "Reserve with ₦250,000 deposit",
+    "Seller confirms inspection",
+    "Inspect in person",
+    "Pay balance or get refund"
+  ],
+  "order": 1,
+  "draft": false
+}

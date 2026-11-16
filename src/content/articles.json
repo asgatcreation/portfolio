@@ -1,0 +1,50 @@
+[
+  {
+    "id": "a1",
+    "title": "Two buyers, one car: locking rows in a Django checkout",
+    "tag": "Engineering",
+    "from": "CarHub",
+    "mins": 6,
+    "status": "planned"
+  },
+  {
+    "id": "a2",
+    "title": "Why money should be whole kobo, never floats",
+    "tag": "Fintech",
+    "from": "naija-pay",
+    "mins": 5,
+    "status": "planned"
+  },
+  {
+    "id": "a3",
+    "title": "A double-entry ledger for POS agents, explained simply",
+    "tag": "Fintech",
+    "from": "FloatBook",
+    "mins": 8,
+    "status": "planned"
+  },
+  {
+    "id": "a4",
+    "title": "A query that forgets its hospital should crash",
+    "tag": "Security",
+    "from": "Curavia",
+    "mins": 7,
+    "status": "planned"
+  },
+  {
+    "id": "a5",
+    "title": "13,392 tests, three languages, one answer",
+    "tag": "Open source",
+    "from": "naija-data",
+    "mins": 6,
+    "status": "planned"
+  },
+  {
+    "id": "a6",
+    "title": "Push a nudge, not the data: live updates over WebSockets",
+    "tag": "Real-time",
+    "from": "CarHub",
+    "mins": 7,
+    "status": "planned"
+  }
+]

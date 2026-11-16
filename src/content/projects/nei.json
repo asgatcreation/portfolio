@@ -1,0 +1,67 @@
+{
+  "title": "Nigeria Economic Intelligence",
+  "color": "#b48cff",
+  "status": "report",
+  "statusLabel": "Report",
+  "year": "2026",
+  "tagline": "Nigeria’s economy and labour market, 1991–2025.",
+  "summary": "A reproducible analysis of Nigeria’s economy and labour market from 1991 to 2025: 898 observations across 25 indicators, national and for all 36 states plus the FCT.",
+  "categories": ["Data"],
+  "languages": ["Python", "R"],
+  "stack": ["Python", "R", "PostgreSQL", "Docker", "Jupyter"],
+  "facts": [
+    ["898", "observations"],
+    ["25", "indicators"],
+    ["37", "states + FCT"],
+    ["35", "years covered"]
+  ],
+  "code": "https://github.com/asgatcreation/nigeria-economic-intelligence",
+  "problem": "Economic figures for Nigeria are scattered across sources. This brings them together in one reproducible place.",
+  "note": "",
+  "art": ["1991 → 2025", "898 OBSERVATIONS · 25 INDICATORS"],
+  "features": [
+    "Growth, prices, work and population in one dataset",
+    "Analysis in Python and R",
+    "Stored in PostgreSQL, reproducible in Docker"
+  ],
+  "shots": [],
+  "industry": "Economics · Public policy",
+  "why": "Economic figures for Nigeria are scattered across sources. I brought them together through validated, tracked imports with a full revision history, so the evidence for policy can be checked and rerun.",
+  "hard": [
+    ["Validated, tracked imports", "Every load is checked and recorded with a revision history."],
+    ["National and state level", "All 36 states plus the FCT, side by side."],
+    ["Clear findings", "GDP per capita is still 8.4% below its 2015 peak."]
+  ],
+  "radar": [5, 1, 1, 2, 3, 2],
+  "arch": {
+    "Users & devices": ["Report readers", "Analysts"],
+    "Application": ["Validated imports (Python)", "Analysis (Python & R)"],
+    "Data": ["PostgreSQL + revision history"],
+    "Services": ["Official statistics sources", "Docker"]
+  },
+  "chart": {
+    "type": "bars",
+    "title": "Key findings",
+    "note": "Per cent, from the analysis",
+    "rows": [
+      ["Vulnerable employment", 66.5],
+      ["Measured unemployment", 3.1],
+      ["Poverty: Bauchi", 75.4],
+      ["Poverty: Lagos", 1.1]
+    ],
+    "unit": "%",
+    "max": 100
+  },
+  "chart2": {
+    "type": "bars",
+    "title": "Poverty vs age dependency",
+    "note": "Correlation (r)",
+    "rows": [
+      ["North", 0.86],
+      ["South", 0.07]
+    ],
+    "max": 1
+  },
+  "order": 9,
+  "draft": false
+}

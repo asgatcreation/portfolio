@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akanji Oluwaseun Gabriel · Software engineer (Mockup B: Broadsheet)</title>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,0..100,0..1;1,9..144,400..800,0..100,0..1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Libre+Franklin:wght@500;600;700&family=IBM+Plex+Mono&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap">
+  <div class="ears"><span>Nigeria · Wednesday 11 November 2026</span><span>Software · Data · Mathematics</span><span>Est. 2017 on GitHub</span></div>
+  <div class="title"><a href="home.html"><span class="name">Akanji Oluwaseun Gabriel</span><span class="motto">Asgatcreation · “We create IT here”</span></a></div>
+  <div class="rules"></div>
+  <nav class="sections" aria-label="Main">
+    <a href="#work">Work</a><a href="#">Open source</a><a href="#">Research</a><a href="#">Lab</a><a href="#">Writing</a><a href="#">About</a><a href="#contact">Contact</a>
+    <button class="toggle" type="button" data-theme-toggle><span data-theme-label>Dark</span></button>
+  </nav>
+</header>
+
+<main id="main" class="wrap">
+  <div class="front">
+    <article class="lead" aria-labelledby="hero-title">
+      <p class="kicker">Software engineer · Data scientist · Mathematician</p>
+      <h1 id="hero-title">I build software that has to be <i>right</i>: money, medicine and live data.</h1>
+      <p class="standfirst">Ledgers that balance, audit logs that can’t be quietly edited, and bid engines tested against race conditions.</p>
+      <div class="byline">For startups, fintechs, hospitals, schools and research teams, and for employers hiring remote or in Nigeria</div>
+      <div class="cols">
+        <p>Most software works on a good day. The systems I build are judged on a bad one: two buyers press “Pay” in the same second, a network drops at a POS counter, or a doctor’s query forgets which hospital it’s in.</p>
+        <p>So I design for the bad day first. Money is stored as whole kobo. Every record has a source. Every README says what doesn’t work yet. The tests prove the rest.</p>
+      </div>
+      <div class="btns"><a class="btn primary" href="#contact">Start a project</a><a class="btn" href="#work">Read the work</a></div>
+    </article>
+    <aside>
+      <figure class="figbox">
+        <canvas data-brownian data-paths="12" data-band="true" data-axes="true" data-seed="2015" role="img" aria-label="Twelve sample paths of Brownian motion drawn from left to right"></canvas>
+      </figure>
+      <figcaption><b>Fig. 1.</b> Twelve sample paths of standard Brownian motion, drawn live, with the 95% envelope ±1.96√t. Move your cursor to add a little drift.</figcaption>
+      <div class="figures">
+        <h2>In figures</h2>
+        <dl>
+          <dt>5</dt><dd>live products and demos</dd>
+          <dt>4</dt><dd>published packages on PyPI, npm and Go</dd>
+          <dt>13,392</dt><dd>shared test cases in naija-data</dd>
+          <dt>146</dt><dd>automated tests in CarHub</dd>
+        </dl>
+        <p class="src">Sources: project READMEs and the package registries, checked 11 Nov 2026.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="band" id="work"><h2>Selected work</h2><p>Every project shows its true status.</p></div>
+  <div class="stories">
+    <article class="story top">
+      <img src="../shared/img/01-home.jpg" alt="CarHub home page" loading="lazy">
+      <span class="status live">Live</span>
+      <h3><a href="case.html">CarHub: reserve a car with a deposit, then inspect it before you pay</a></h3>
+      <p>A marketplace for verified cars, with a parts store and rides tracked live over WebSockets. Django, Channels, PostgreSQL and Paystack.</p>
+      <div class="links"><a href="case.html">Case study</a><a href="https://carhub-es73.onrender.com/">Live demo ↗</a><a href="https://github.com/asgatcreation/carhub">Code ↗</a></div>
+    </article>
+    <article class="story">
+      <span class="status live">Live demo</span>
+      <h3><a href="#">FloatBook replaces the POS owner’s notebook</a></h3>
+      <p>Transactions, cash and e-wallet float, the end-of-day count and reversals, all on a double-entry ledger. Works offline.</p>
+      <p class="meta">Laravel · Vue · TypeScript · PostgreSQL · 2026</p>
+      <div class="links"><a href="https://floatbook.onrender.com">Demo ↗</a><a href="https://github.com/asgatcreation/floatbook">Code ↗</a></div>
+    </article>
+    <article class="story">
+      <span class="status live">Open source · v1.0.0</span>
+      <h3><a href="#">naija-data: every Nigerian ward, with a source</a></h3>
+      <p>States, LGAs, 8,809 wards, banks and phone numbers for Python, JavaScript and Go, plus a free REST API.</p>
+      <p class="meta">Python · TypeScript · Go · 2026</p>
+    </article>
+    <article class="story">
+      <span class="status dev">In development · milestone 6 of 15</span>
+      <h3><a href="#">Curavia: one system for a whole hospital</a></h3>
+      <p>A query that forgets its hospital crashes instead of leaking another hospital’s patients.</p>
+      <p class="meta">Django · React · PostgreSQL · 2026</p>
+    </article>
+    <article class="story">
+      <span class="status dev">In development · milestone 2 of 11</span>
+      <h3><a href="#">Ojà Live: an auction that’s fair in the same millisecond</a></h3>
+      <p>A bid engine designed to pick the same winner at the same price, whatever order the bids arrive in.</p>
+      <p class="meta">TypeScript · Socket.IO · Redis · 2026</p>
+    </article>
+  </div>
+
+  <div class="two">
+    <section>
+      <div class="band"><h2>What I build</h2></div>
+      <div class="briefs" style="grid-template-columns:1fr 1fr">
+        <div><h3>SaaS and web apps</h3><p>Multi-tenant platforms with real permissions.</p></div>
+        <div><h3>Fintech and payments</h3><p>Webhooks, ledgers and reconciliation.</p></div>
+        <div><h3>Real-time systems</h3><p>WebSockets with a fallback, live tracking.</p></div>
+        <div><h3>Data and dashboards</h3><p>Reproducible pipelines in Python, R and SQL.</p></div>
+      </div>
+    </section>
+    <section>
+      <div class="band"><h2>From the wire</h2><p>Latest commits</p></div>
+      <ul class="wire">
+        <li><time>11 Nov</time><code>curavia</code>Milestone 6d: orders, the safety checks, and referrals</li>
+        <li><time>11 Nov</time><code>ojalive</code>Record that CI is green and close out milestone 2</li>
+        <li><time>10 Nov</time><code>naija-pay</code>Add the Flutterwave sandbox harness</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="notice" id="contact" aria-labelledby="cta-title">
+    <p class="kicker">Notice</p>
+    <h2 id="cta-title">Wanted: projects that have to be right.</h2>
+    <p>Tell me what you’re building. I reply within [[ADD: response time]].</p>
+    <div class="btns"><a class="btn primary" href="#">Start a project</a><a class="btn" href="mailto:asgatcreation@gmail.com">Email me</a></div>
+  </section>
+</main>
+<footer><div class="wrap"><span>© 2026 Akanji Oluwaseun Gabriel · Asgatcreation</span><span><a href="https://github.com/asgatcreation">GitHub</a> · <a href="https://www.linkedin.com/in/oluwaseun-akanji-1361a2127/">LinkedIn</a> · <a href="../index.html">All mockups</a></span></div></footer>
+<script src="../shared/theme.js"></script>
+<script src="../shared/hero.js"></script>
+</body>
+</html>
