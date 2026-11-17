@@ -24,5 +24,7 @@ jobs:
         run: npm run lint
       - name: Format
         run: npm run format:check
+      - name: Test the contact function
+        run: npm test
       - name: Build (fails on any [[ADD]] placeholder)
         run: npm run build

@@ -10,7 +10,8 @@ You need Node.js 24 (see `.nvmrc`).
 ```bash
 npm ci            # install the exact pinned versions
 npm run dev       # local site with hot reload
-npm run verify    # type check, lint, format check and build: the same as CI
+npm test          # tests for the contact function
+npm run verify    # type check, lint, format check, tests and build: the same as CI
 npm run preview   # serve the built site from dist/
 ```
 
@@ -28,6 +29,8 @@ npm run preview   # serve the built site from dist/
 | `src/scripts/app.js`                           | Home-page interactions (showcase, filters, project pop-up, search, forms).           |
 | `src/scripts/site.js`                          | Interactions on inner pages (menu, search palette, gallery lightbox).                |
 | `src/scripts/lab.js`                           | The three tools on /lab/.                                                            |
+| `functions/api/contact.js`                     | The contact endpoint that sends the forms (Cloudflare Pages Function).               |
+| `tests/`                                       | Tests for the contact function.                                                      |
 | `src/styles/global.css`                        | Design tokens and all styles.                                                        |
 | `public/img`, `public/cv`                      | Screenshots, portrait, logo and the five CV PDFs.                                    |
 | `design/mockups/`                              | The design mockups from milestone 2 (not part of the site).                          |

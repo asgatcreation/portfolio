@@ -12,4 +12,9 @@ export default [
   ...astro.configs['jsx-a11y-strict'],
   { files: ['src/scripts/**/*.js'], languageOptions: { globals: globals.browser, sourceType: 'module' } },
   { files: ['scripts/**/*.mjs', '*.config.*'], languageOptions: { globals: globals.node } },
+  { files: ['functions/**/*.js'], languageOptions: { globals: globals.serviceworker, sourceType: 'module' } },
+  {
+    files: ['tests/**/*.mjs'],
+    languageOptions: { globals: { ...globals.node, ...globals.serviceworker }, sourceType: 'module' },
+  },
 ];

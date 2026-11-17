@@ -1,3 +1,7 @@
+---
+const turnstileKey = import.meta.env['PUBLIC_TURNSTILE_SITE_KEY'] ?? '';
+---
+
 <!-- CONTACT -->
 <section class="block" id="contact" aria-labelledby="contact-title">
   <div class="contact3 rv">
@@ -251,6 +255,13 @@
           ></textarea>
           <span class="err">A few more words, please (at least 10 characters).</span>
         </div>
+        <div class="hp" aria-hidden="true">
+          <label for="m-company">Company (leave this empty)</label>
+          <input id="m-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        {turnstileKey && (
+          <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="auto" data-size="flexible" />
+        )}
         <div class="c3-actions">
           <button class="btn gold" type="submit" data-send="email">
             Send message{' '}
@@ -336,6 +347,13 @@
           />
         </div>
         <div class="summary" data-book-summary aria-live="polite"></div>
+        <div class="hp" aria-hidden="true">
+          <label for="b-company">Company (leave this empty)</label>
+          <input id="b-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        {turnstileKey && (
+          <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="auto" data-size="flexible" />
+        )}
         <div class="c3-actions">
           <button class="btn gold" type="submit" data-book="email">
             Request this call
@@ -400,6 +418,9 @@
       <p class="form-note" data-form-note>
         Your message goes straight to my inbox or WhatsApp.
       </p>
+      {turnstileKey && (
+        <script is:inline async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+      )}
     </div>
   </div>
 </section>

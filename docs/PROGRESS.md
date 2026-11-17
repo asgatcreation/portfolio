@@ -8,7 +8,7 @@ Where the portfolio stands, newest milestone first. Updated 17 November 2026.
 | 2         | Visual direction: mockups, chosen and refined                                    | Done — 16 November 2026 |
 | 3         | The real site: Astro build of the approved direction                             | Done — 17 November 2026 |
 | 4         | Remaining pages: about, services, now, writing, cv, lab, research, uses, privacy | Done — 17 November 2026 |
-| 5         | Contact form that really sends (host function, spam check)                       | Not started             |
+| 5         | Contact form that really sends (host function, spam check)                       | Done — 17 November 2026 |
 | 6         | Search over projects and AsgatArticles                                           | Not started             |
 | 7         | Social preview images, metadata and structured data                              | Not started             |
 | 8         | First AsgatArticles posts                                                        | Not started             |
@@ -19,6 +19,43 @@ Where the portfolio stands, newest milestone first. Updated 17 November 2026.
 | 13        | Domain, deploy and launch                                                        | Not started             |
 
 ---
+
+## Milestone 5 — the contact form really sends (done, 17 November 2026)
+
+The message and booking forms now post to the site's own endpoint instead of only opening your mail app.
+
+**What was built**
+
+- `functions/api/contact.js`: a Cloudflare Pages Function at `POST /api/contact`. No dependencies.
+  It validates the fields, ignores anything that fills the hidden honeypot, checks Turnstile when it is
+  configured, limits each IP to five messages an hour when a KV namespace is bound, then sends the message
+  through Brevo with the visitor's address as reply-to and an acknowledgement back to them.
+- Both forms carry the honeypot and, when a Turnstile site key is set at build time, the spam-check widget.
+- The page still falls back: if the endpoint is missing (any host without the function), or the network
+  fails, it opens the visitor's mail app with the message already written, exactly as before. A real error
+  from the function — too many messages, a failed spam check — is shown as a sentence instead.
+- 15 tests in `tests/contact.test.mjs` (`npm test`, now part of `npm run verify` and of CI).
+- Decisions written up in [ADR 0007](adr/0007-contact-function-brevo-turnstile.md).
+
+**Checked**
+
+- `npm run verify` clean: 0 errors, 15 tests passing, 23 pages built, no placeholders.
+- In the browser: a complete message posts to `/api/contact` with every field and clears the form on
+  success; a 429 from the server is shown to the visitor and the button re-enables; the booking form posts
+  as a booking with the chosen day, time and method; an empty form still blocks with three fields marked
+  and focus moved to the first; the honeypot is off-screen and cannot be tabbed into; no console errors.
+- What is **not** proved yet: real delivery. That needs the accounts below and a deployed site.
+
+**Still needed from you (about 20 minutes, all in your own accounts)**
+
+1. **Brevo** (free): sign up at brevo.com, add and verify a sender address, then create an API key under
+   SMTP & API. The key goes straight into Cloudflare, not to me and not into this repository.
+2. **Turnstile** (free, optional but recommended): in the Cloudflare dashboard, Turnstile, Add site, for
+   your domain. You get a site key (public) and a secret key.
+3. **In Cloudflare Pages, Settings, Environment variables**, set `BREVO_API_KEY`, `CONTACT_TO` (where
+   messages should arrive), `CONTACT_FROM` (the verified sender), `TURNSTILE_SECRET_KEY`, and as a build
+   variable `PUBLIC_TURNSTILE_SITE_KEY`.
+4. Optional: create a KV namespace and bind it as `CONTACT_RATE` to switch the rate limit on.
 
 ## Milestone 4 — the standing pages (done, 17 November 2026)
 

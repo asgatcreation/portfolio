@@ -489,17 +489,43 @@
       'About: ' + f.topic.value, 'Budget: ' + f.budget.value, 'Timeline: ' + f.when.value, '', f.message.value.trim()].filter(function (x) { return x !== null; }).join('\n');
   }
   function done(el, text) { el.textContent = text; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); }
+  // Send through the site's own endpoint when it is there; fall back to the visitor's mail app when it is not.
+  var ENDPOINT = '/api/contact';
+  function token(form) { var t = form.elements['cf-turnstile-response']; return t ? t.value : ''; }
+  function busy(btn, on) { btn.disabled = on; btn.setAttribute('aria-busy', String(on)); btn.classList.toggle('sending', on); }
+  function post(payload) {
+    return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (data) { return { status: r.status, ok: r.ok, data: data }; }); });
+  }
+  function send(form, btn, payload, status, subject, body, onSent) {
+    busy(btn, true);
+    done(status, 'Sending…');
+    post(payload).then(function (res) {
+      busy(btn, false);
+      if (res.ok) { onSent(); return; }
+      if (res.status === 503 || res.status === 404 || res.status === 405) { // no sending set up on this host
+        location.href = mailLink(subject, body);
+        done(status, 'Your email app is opening with the message ready. Just press send.');
+        return;
+      }
+      done(status, (res.data && res.data.error) || 'That did not send. Please use email or WhatsApp below.');
+      if (window.turnstile) window.turnstile.reset();
+    }).catch(function () {
+      busy(btn, false);
+      location.href = mailLink(subject, body);
+      done(status, 'Your email app is opening with the message ready. Just press send.');
+    });
+  }
   mf.addEventListener('submit', function (e) {
     e.preventDefault(); if (!check(mf)) return;
-    var f = mf.elements, subject = f.topic.value + ' · from ' + f.name.value.trim();
-    if (C.formEndpoint) {
-      fetch(C.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ subject: subject, name: f.name.value, email: f.email.value, message: msgText(f) }) })
-        .then(function (r) { if (!r.ok) throw 0; done(mStatus, 'Thank you, ' + f.name.value.trim().split(' ')[0] + '! Your message has been sent.'); mf.reset(); chars.textContent = '0 / 2000'; })
-        .catch(function () { location.href = mailLink(subject, msgText(f)); });
-    } else {
-      location.href = mailLink(subject, msgText(f));
-      done(mStatus, 'Your email app is opening with the message ready. Just press send.');
-    }
+    var f = mf.elements, subject = f.topic.value + ' · from ' + f.name.value.trim(), body = msgText(f);
+    send(mf, $('[data-send="email"]', mf), {
+      kind: 'message', subject: subject, name: f.name.value, email: f.email.value, phone: f.phone.value,
+      org: f.org.value, message: body, company: f.company.value, token: token(mf)
+    }, mStatus, subject, body, function () {
+      done(mStatus, 'Thank you, ' + f.name.value.trim().split(' ')[0] + '! Your message is on its way. I reply to everything, usually within one working day.');
+      mf.reset(); chars.textContent = '0 / 2000';
+    });
   });
   $('[data-send="wa"]', mf).addEventListener('click', function () {
     if (!check(mf)) return; open(waLink('Hello Gabriel,\n\n' + msgText(mf.elements)), '_blank', 'noopener');
@@ -521,8 +547,13 @@
   function bookBody() { var f = bf.elements; return [bookText(), 'Name: ' + f.name.value.trim(), 'Email: ' + f.email.value.trim(), f.about.value.trim() ? 'Topic: ' + f.about.value.trim() : null].filter(Boolean).join('\n'); }
   bf.addEventListener('submit', function (e) {
     e.preventDefault(); if (!check(bf)) return;
-    location.href = mailLink('Call request · ' + bf.elements.day.value + ' ' + bf.elements.time.value, bookBody());
-    done(bStatus, 'Your email app is opening with the request. I’ll confirm the time by email.');
+    var f = bf.elements, subject = 'Call request · ' + f.day.value + ' ' + f.time.value, body = bookBody();
+    send(bf, $('[data-book="email"]', bf), {
+      kind: 'booking', subject: subject, name: f.name.value, email: f.email.value, message: body,
+      company: f.company.value, token: token(bf)
+    }, bStatus, subject, body, function () {
+      done(bStatus, 'Request sent for ' + f.day.value + ' at ' + f.time.value + ' WAT. I’ll confirm by email.');
+    });
   });
   $('[data-book="wa"]', bf).addEventListener('click', function () { if (!check(bf)) return; open(waLink('Hello Gabriel,\n\n' + bookBody()), '_blank', 'noopener'); done(bStatus, 'WhatsApp is opening with your request. I’ll confirm the time there.'); });
   // 3. WhatsApp quick messages
