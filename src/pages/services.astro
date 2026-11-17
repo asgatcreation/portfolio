@@ -1,0 +1,272 @@
+---
+import Base from '../layouts/Base.astro';
+import InnerOverlays from '../components/InnerOverlays.astro';
+
+const services: [string, string, string[]][] = [
+  [
+    'Web apps & SaaS',
+    'A platform your team actually runs the business on: roles and permissions, dashboards, reports and an audit trail.',
+    [
+      'Roles and permissions that are tested, not hoped for',
+      'Dashboards and exports your staff can use without training',
+      'An audit log, so you can answer "who changed this?"',
+      'Deployed with backups and a monitored error log',
+    ],
+  ],
+  [
+    'Mobile-ready apps',
+    'Phone-first products for Nigerian networks: they load on a weak connection and keep working when it drops.',
+    [
+      'Installable web apps (PWA) that work offline and sync later',
+      'Flutter when you need to be in the app stores',
+      'Tested at 320 px wide, not only on a laptop',
+      'Light and dark, and real keyboard and screen-reader support',
+    ],
+  ],
+  [
+    'E-commerce & marketplaces',
+    'Stores, bookings and multi-vendor marketplaces, with payments that reconcile.',
+    [
+      'Carts, orders, delivery and refunds',
+      'Multiple sellers, commissions and payouts',
+      'Paystack and Flutterwave, with verified webhooks',
+      'Stock that cannot be sold twice: real database locking',
+    ],
+  ],
+  [
+    'Fintech & payments',
+    'Money is the part that must never be approximately right. I build it as a ledger, in whole kobo.',
+    [
+      'Double-entry ledgers and wallets that balance',
+      'Reconciliation, statements and daily closing',
+      'Webhook handling that survives retries and replays',
+      'Provider adapters, so you are not locked to one processor',
+    ],
+  ],
+  [
+    'Data science & statistics',
+    'Analysis you can defend: every number traceable to its source, every step repeatable.',
+    [
+      'Cleaning and joining messy, real-world data',
+      'Modelling, forecasting and significance testing',
+      'Reproducible pipelines (Docker, migration ledgers, revision audits)',
+      'Reports and charts written for decision-makers, not statisticians',
+    ],
+  ],
+  [
+    'Surveys & data collection',
+    'The full survey cycle, from questionnaire to clean dataset — what I do at the National Bureau of Statistics.',
+    [
+      'Sample and questionnaire design',
+      'CAPI instruments in CSPro, tested before the field',
+      'Enumerator training and field supervision',
+      'Quality control, cleaning and weighting',
+    ],
+  ],
+  [
+    'AI & automation',
+    'Machine learning and LLM features where they save real time, and nowhere else.',
+    [
+      'Classification, forecasting and scoring models',
+      'LLM features with guardrails and a human in the loop',
+      'Document and data extraction',
+      'Automating the reports someone currently makes by hand',
+    ],
+  ],
+  [
+    'Consulting & training',
+    'A second pair of eyes, or teaching your team to keep going without me.',
+    [
+      'Architecture and code review with a written report',
+      'Choosing a stack, and saying honestly what it will cost',
+      'Training developers, analysts or enumerators',
+      'Rescuing a project that has stalled',
+    ],
+  ],
+];
+
+const ways: [string, string, string][] = [
+  ['Fixed-scope project', 'From a prototype to a full platform', 'We agree the milestones and a price per milestone.'],
+  ['Monthly contract', 'Ongoing build and support', 'A set number of days a month, with a plan we review together.'],
+  ['Full-time role', 'Remote, or in Nigeria', 'Open to the right team. My CVs are on this site.'],
+  [
+    'Analysis or survey work',
+    'One report, one dataset',
+    'Scoped as a piece of work with a deliverable and a deadline.',
+  ],
+];
+---
+
+<Base
+  title="Services"
+  description="Web apps, mobile-ready products, e-commerce, fintech, data science, surveys, AI and consulting — for any industry and any size of client, freelance, contract or full-time."
+>
+  <main id="main" class="page">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a> / <span aria-current="page">services</span>
+      </nav>
+      <header class="page-head">
+        <span class="eyebrow">What I do</span>
+        <h1>How I can help</h1>
+        <p>
+          Any industry, any size: from a first prototype to a national-scale system. Freelance, contract or full-time.
+          Below is what each kind of work actually includes.
+        </p>
+      </header>
+
+      <article class="case">
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Eight kinds of work</span>
+            <small>01</small>
+          </h2>
+          <div class="svc-list">
+            {services.map(([title, intro, points], i) => (
+              <article class="spot svc">
+                <span class="num">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{title}</h3>
+                <p>{intro}</p>
+                <ul class="feat">
+                  {points.map((pt) => (
+                    <li>{pt}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Ways to work together</span>
+            <small>02</small>
+          </h2>
+          <div class="ways">
+            {ways.map(([title, who, how]) => (
+              <div>
+                <span class="kind">{who}</span>
+                <h3 class="h4">{title}</h3>
+                <p>{how}</p>
+              </div>
+            ))}
+          </div>
+          <div class="clients">
+            <span>I work with</span>
+            <ul>
+              <li>Startups</li>
+              <li>Small &amp; growing businesses</li>
+              <li>NGOs &amp; development partners</li>
+              <li>Government &amp; research</li>
+              <li>Schools &amp; ed-tech teams</li>
+              <li>Farms &amp; agri businesses</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>How a project runs</span>
+            <small>03</small>
+          </h2>
+          <ol class="process">
+            <li class="step">
+              <span class="n">01</span>
+              <h3>Discover</h3>
+              <p>We agree on the problem, the users and what must never go wrong.</p>
+            </li>
+            <li class="step">
+              <span class="n">02</span>
+              <h3>Design</h3>
+              <p>Screens, data model and a plan split into small milestones.</p>
+            </li>
+            <li class="step">
+              <span class="n">03</span>
+              <h3>Build &amp; test</h3>
+              <p>Working software every milestone, with automated tests from day one.</p>
+            </li>
+            <li class="step">
+              <span class="n">04</span>
+              <h3>Launch &amp; support</h3>
+              <p>Deploy, monitor and hand over clear docs you can keep.</p>
+            </li>
+          </ol>
+          <p class="art-note">
+            You see something working at the end of every milestone, and you can stop at any milestone boundary.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Common questions</span>
+            <small>04</small>
+          </h2>
+          <div class="faq">
+            <details>
+              <summary>What does it cost?</summary>
+              <p>
+                It depends on the milestones, so I quote after the first conversation — per milestone for project work,
+                or per month for a contract. You will have the price in writing before any work starts.
+              </p>
+            </details>
+            <details>
+              <summary>Do you work with small budgets?</summary>
+              <p>
+                Yes. We cut scope, not quality: one milestone that works beats five that are half-built. Plenty of
+                useful products start as a single screen.
+              </p>
+            </details>
+            <details>
+              <summary>Who owns the code?</summary>
+              <p>
+                You do, on payment. You get the repository, the deployment and the documentation, so you or another
+                developer can carry on without me.
+              </p>
+            </details>
+            <details>
+              <summary>Can you work with my existing team or codebase?</summary>
+              <p>
+                Yes — joining a team, reviewing an existing codebase or taking over a stalled project are all normal
+                work for me.
+              </p>
+            </details>
+            <details>
+              <summary>Which time zone are you in?</summary>
+              <p>West Africa Time (UTC+1), in Oyo, Nigeria. I work with clients anywhere, online.</p>
+            </details>
+            <details>
+              <summary>Do you sign NDAs?</summary>
+              <p>
+                Yes. Some of my work is private and stays private — that is why one project on this site has no code
+                link.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Start a conversation</span>
+            <small>05</small>
+          </h2>
+          <p>
+            Tell me what you are trying to build. If it is not something I should do, I will say so and tell you why.
+          </p>
+          <div class="v-ctas">
+            <a class="btn gold" href="/#contact">
+              Send a message
+            </a>
+            <a class="btn" href="https://wa.me/2348160948723" target="_blank" rel="noopener">
+              WhatsApp ↗
+            </a>
+            <a class="btn" href="/work/">
+              See the work first
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../scripts/site.js"></script>
+</Base>

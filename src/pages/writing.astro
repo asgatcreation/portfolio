@@ -1,0 +1,110 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import InnerOverlays from '../components/InnerOverlays.astro';
+
+const entries = await getCollection('articles');
+const articles = entries.map((e) => e.data);
+const published = articles.filter((a) => a.status === 'published');
+const planned = articles.filter((a) => a.status === 'planned');
+const tags = [...new Set(articles.map((a) => a.tag))].sort();
+---
+
+<Base
+  title="AsgatArticles"
+  description="Writing on engineering, fintech, data and the projects behind them: row locking, double-entry ledgers, tenant isolation and testing."
+>
+  <main id="main" class="page">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a> / <span aria-current="page">writing</span>
+      </nav>
+      <header class="page-head">
+        <span class="eyebrow">Blog</span>
+        <h1>
+          Asgat<span class="grad-text">Articles</span>
+        </h1>
+        <p>
+          Notes on the hard parts of the projects on this site — written out properly, so the next person solving the
+          same problem does not start from nothing.
+        </p>
+      </header>
+
+      <article class="case">
+        {published.length > 0 && (
+          <section class="v-sec">
+            <h2 class="v-h">
+              <span>Published</span>
+              <small>{String(published.length).padStart(2, '0')}</small>
+            </h2>
+            <div class="articles">
+              {published.map((a) => (
+                <article class="acard">
+                  <div class="top">
+                    <span>{a.tag}</span>
+                    <span>{a.mins} min read</span>
+                  </div>
+                  <h3>{a.title}</h3>
+                  <p class="from">
+                    From <b>{a.from}</b>
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Coming up</span>
+            <small>{String(planned.length).padStart(2, '0')}</small>
+          </h2>
+          <p>
+            {published.length === 0
+              ? 'Nothing is published yet. These are the articles being written, each one from a problem I actually hit:'
+              : 'Also being written:'}
+          </p>
+          <div class="articles">
+            {planned.map((a) => (
+              <article class="acard">
+                <div class="top">
+                  <span>{a.tag}</span>
+                  <span class="draft">Planned · {a.mins} min</span>
+                </div>
+                <h3>{a.title}</h3>
+                <p class="from">
+                  From <b>{a.from}</b>
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Topics</span>
+            <small>—</small>
+          </h2>
+          <ul class="tags">
+            {tags.map((t) => (
+              <li>{t}</li>
+            ))}
+          </ul>
+          <p class="art-note">
+            Want one of these sooner, or have a question it should answer? Tell me on{' '}
+            <a class="linkish" href="https://wa.me/2348160948723" target="_blank" rel="noopener">
+              WhatsApp
+            </a>{' '}
+            or through the{' '}
+            <a class="linkish" href="/#contact">
+              contact form
+            </a>
+            , and I will write that one next.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../scripts/site.js"></script>
+</Base>

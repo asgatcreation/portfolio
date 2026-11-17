@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import InnerOverlays from '../components/InnerOverlays.astro';
+import { usesGroups } from '../data/pages';
+
+const total = usesGroups.reduce((n, [, items]) => n + items.length, 0);
+---
+
+<Base
+  title="Uses"
+  description="The tools Akanji Oluwaseun Gabriel builds with — languages, frameworks, databases, payments, testing and hosting — each one in use by a project on this site."
+>
+  <main id="main" class="page">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a> / <span aria-current="page">uses</span>
+      </nav>
+      <header class="page-head">
+        <span class="eyebrow">Uses</span>
+        <h1>What I build with</h1>
+        <p>
+          {total} tools, grouped. This is not a wish list: beside each one is the project that actually uses it, so you
+          can go and read the code.
+        </p>
+      </header>
+
+      <article class="case">
+        {usesGroups.map(([group, items], i) => (
+          <section class="v-sec">
+            <h2 class="v-h">
+              <span>{group}</span>
+              <small>{String(i + 1).padStart(2, '0')}</small>
+            </h2>
+            <ul class="uses">
+              {items.map(([name, note]) => (
+                <li>
+                  <b>{name}</b>
+                  <span>{note}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>How I choose</span>
+            <small>{String(usesGroups.length + 1).padStart(2, '0')}</small>
+          </h2>
+          <ul class="feat grid2">
+            <li>Boring and stable beats new and exciting, for anything that holds money or patient data.</li>
+            <li>Pin exact versions. An upgrade is a decision, not an accident.</li>
+            <li>
+              The database does the hard parts: constraints, locks and row-level security, not application code alone.
+            </li>
+            <li>Tests from the first milestone, running in CI on every push.</li>
+            <li>If a tool cannot be explained to the client paying for it, it needs a better reason than fashion.</li>
+            <li>Whatever your team already knows is worth a lot. I work in your stack when that is the right call.</li>
+          </ul>
+          <p class="art-note">
+            This site itself: Astro, strict TypeScript, content checked by zod, plain CSS and JavaScript, no runtime
+            dependencies. The decisions are written down in the repository's architecture decision records.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../scripts/site.js"></script>
+</Base>

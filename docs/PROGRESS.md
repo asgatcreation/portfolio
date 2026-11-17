@@ -7,7 +7,7 @@ Where the portfolio stands, newest milestone first. Updated 17 November 2026.
 | 1         | Research: every repo read, every demo link checked                               | Done — 11 November 2026 |
 | 2         | Visual direction: mockups, chosen and refined                                    | Done — 16 November 2026 |
 | 3         | The real site: Astro build of the approved direction                             | Done — 17 November 2026 |
-| 4         | Remaining pages: about, services, now, writing, cv, lab, research, uses, privacy | Not started             |
+| 4         | Remaining pages: about, services, now, writing, cv, lab, research, uses, privacy | Done — 17 November 2026 |
 | 5         | Contact form that really sends (host function, spam check)                       | Not started             |
 | 6         | Search over projects and AsgatArticles                                           | Not started             |
 | 7         | Social preview images, metadata and structured data                              | Not started             |
@@ -19,6 +19,41 @@ Where the portfolio stands, newest milestone first. Updated 17 November 2026.
 | 13        | Domain, deploy and launch                                                        | Not started             |
 
 ---
+
+## Milestone 4 — the standing pages (done, 17 November 2026)
+
+Nine pages, so the site is no longer only a long home page. Every fact on them comes from the CVs, a
+project README or the project files — nothing new was invented.
+
+| Page         | What is on it                                                                                                                    |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| `/about/`    | The long version: portrait, the two working lives, full experience, education, certificates, CV downloads                        |
+| `/services/` | The eight kinds of work, with what each one actually includes; ways to work together; how a project runs; six common questions   |
+| `/now/`      | What is in progress this month, what is simply running, and that I am open to work. Dated, and kept by hand                      |
+| `/writing/`  | AsgatArticles: the six articles being written, by topic. Honest that none is published yet                                       |
+| `/cv/`       | The CV as a web page — profile, key skills, experience, education, selected projects — plus the five PDFs                        |
+| `/research/` | The economic findings with charts, the naija-data datasets, the national surveys, and the two dissertations                      |
+| `/lab/`      | Three small tools that run in the page: a NUBAN account checker, a float-versus-kobo demonstration, and a Brownian-motion canvas |
+| `/uses/`     | 43 tools in eight groups, each with the project that uses it, and how they are chosen                                            |
+| `/privacy/`  | A plain account: no cookies, no analytics, what the three outside requests are, and what the forms do                            |
+
+**Also in this milestone**
+
+- The footer now has every page in two columns; the home sections link through to their full pages
+  (about, services, now, writing, uses, research, lab).
+- Inner pages got a working search. The Ctrl K palette used to do nothing outside the home page; it now
+  lists every page and project, filters as you type, moves with the arrow keys and closes with Escape.
+- New styles for the page layouts, and one new script (`src/scripts/lab.js`) for the three tools.
+
+**Checked**
+
+- `npm run verify` clean: 0 errors across 48 files, ESLint and Prettier pass, 23 pages built, no placeholders.
+- No sideways scroll on any new page at 320, 360, 375, 768, 1024 or 1280 px, in light and dark.
+- No console errors on any page.
+- The three lab tools were used, not just loaded: the NUBAN checker accepts a correct number, rejects a
+  wrong check digit and says which digit would be right; the kobo demonstration shows the float drifting by
+  0.0000000002 naira over ten thousand additions; the Brownian canvas draws and reports its own numbers.
+- The palette was opened, filtered to one result and closed with Escape.
 
 ## Milestone 3 — the real site (done, 17 November 2026)
 

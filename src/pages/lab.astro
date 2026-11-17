@@ -1,0 +1,194 @@
+---
+import Base from '../layouts/Base.astro';
+import InnerOverlays from '../components/InnerOverlays.astro';
+---
+
+<Base
+  title="Lab"
+  description="Three small working tools: a NUBAN account-number checker, a demonstration of why money must be whole kobo, and a Brownian-motion visualiser."
+>
+  <main id="main" class="page">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a> / <span aria-current="page">lab</span>
+      </nav>
+      <header class="page-head">
+        <span class="eyebrow">Lab</span>
+        <h1>Small things that run.</h1>
+        <p>
+          Three of the ideas behind my projects, small enough to try in the page. Everything here runs in your browser —
+          nothing is sent anywhere.
+        </p>
+      </header>
+
+      <article class="case">
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>NUBAN account checker</span>
+            <small>01</small>
+          </h2>
+          <p class="v-why">
+            Nigerian account numbers carry a check digit. Work it out before you call the bank's API and you catch a
+            mistyped account in the form, not after a failed transfer. This is the Central Bank's NUBAN rule: weights
+            3·7·3 across the bank code and the first nine digits, then the check digit is what makes the total land on a
+            multiple of ten.
+          </p>
+          <form class="tool" data-nuban>
+            <div class="tool-fields">
+              <div class="fld">
+                <label for="nb-bank">
+                  Bank code <i>*</i>
+                </label>
+                <input
+                  id="nb-bank"
+                  name="bank"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  maxlength="3"
+                  placeholder="058"
+                  required
+                />
+                <span class="err" data-err>
+                  Three digits, for example 058.
+                </span>
+              </div>
+              <div class="fld">
+                <label for="nb-acct">
+                  Account number <i>*</i>
+                </label>
+                <input
+                  id="nb-acct"
+                  name="acct"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  maxlength="10"
+                  placeholder="0123456789"
+                  required
+                />
+                <span class="err" data-err>
+                  Ten digits.
+                </span>
+              </div>
+            </div>
+            <div class="tool-actions">
+              <button class="btn gold sm" type="submit">
+                Check
+              </button>
+              <button class="btn sm" type="button" data-nuban-demo>
+                Fill a valid example
+              </button>
+            </div>
+            <output class="tool-out" data-out aria-live="polite"></output>
+          </form>
+          <p class="art-note">
+            The check digit only proves the number is well formed. Whether the account exists, and whose it is, is still
+            a question for the bank.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Why money is whole kobo</span>
+            <small>02</small>
+          </h2>
+          <p class="v-why">
+            Every ledger I build stores money as an integer number of kobo, never a decimal. Here is the reason, in your
+            own browser: add the same small amount again and again, once as a floating-point number of naira and once as
+            whole kobo, and watch one of them drift.
+          </p>
+          <form class="tool" data-kobo>
+            <div class="tool-fields">
+              <div class="fld">
+                <label for="kb-amt">Amount each time (₦)</label>
+                <input id="kb-amt" name="amt" inputmode="decimal" autocomplete="off" value="0.10" />
+              </div>
+              <div class="fld">
+                <label for="kb-n">How many times</label>
+                <input id="kb-n" name="n" type="number" min="1" max="1000000" step="1" value="10000" />
+              </div>
+            </div>
+            <div class="tool-actions">
+              <button class="btn gold sm" type="submit">
+                Add them up
+              </button>
+            </div>
+            <output class="tool-out" data-out aria-live="polite"></output>
+          </form>
+          <p class="art-note">
+            The gap looks tiny. Across a day of transactions it is the difference between a ledger that balances and an
+            afternoon spent finding one naira.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Brownian motion</span>
+            <small>03</small>
+          </h2>
+          <p class="v-why">
+            The random walk behind option pricing, and the mathematics I studied before I wrote software for a living.
+            Each line is one path: the same rules, a different roll of the dice. Change the volatility and watch the
+            spread open up.
+          </p>
+          <div class="tool">
+            <div class="tool-fields">
+              <div class="fld">
+                <label for="bm-paths">
+                  Paths: <span data-bm-paths-val>12</span>
+                </label>
+                <input id="bm-paths" type="range" min="1" max="40" step="1" value="12" data-bm-paths />
+              </div>
+              <div class="fld">
+                <label for="bm-vol">
+                  Volatility: <span data-bm-vol-val>20%</span>
+                </label>
+                <input id="bm-vol" type="range" min="5" max="60" step="1" value="20" data-bm-vol />
+              </div>
+              <div class="fld">
+                <label for="bm-steps">
+                  Steps: <span data-bm-steps-val>250</span>
+                </label>
+                <input id="bm-steps" type="range" min="50" max="500" step="10" value="250" data-bm-steps />
+              </div>
+            </div>
+            <div class="tool-actions">
+              <button class="btn sm" type="button" data-bm-roll>
+                Roll again
+              </button>
+            </div>
+            <div class="bm-wrap">
+              <canvas data-bm-canvas width="900" height="420" aria-hidden="true"></canvas>
+            </div>
+            <p class="sr">A drawing of the simulated paths. The numbers below describe the same result in words.</p>
+            <output class="tool-out" data-bm-out aria-live="polite"></output>
+          </div>
+          <p class="art-note">
+            A simulation, not a forecast. Nobody should price anything real from a canvas on a portfolio site.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Want one of these for your product?</span>
+            <small>04</small>
+          </h2>
+          <p>
+            Account validation, a ledger that balances, or a model turned into something your team can actually use —
+            that is the day job.
+          </p>
+          <div class="v-ctas">
+            <a class="btn gold" href="/#contact">
+              Get in touch
+            </a>
+            <a class="btn" href="/work/">
+              See the projects
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../scripts/site.js"></script>
+  <script src="../scripts/lab.js"></script>
+</Base>

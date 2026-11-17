@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import InnerOverlays from '../components/InnerOverlays.astro';
+import { nowStudy, nowUpdated, nowWork } from '../data/pages';
+import { publishedProjects } from '../data/projects';
+
+const projects = await publishedProjects();
+const live = projects.filter((p) => p.status === 'live');
+const building = projects.filter((p) => p.status === 'dev' || p.status === 'pre');
+---
+
+<Base
+  title="Now"
+  description="What Akanji Oluwaseun Gabriel is working on this month: projects in progress, survey work and study."
+>
+  <main id="main" class="page">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a> / <span aria-current="page">now</span>
+      </nav>
+      <header class="page-head">
+        <span class="eyebrow">Now</span>
+        <h1>What I'm working on</h1>
+        <p>
+          One page, honestly kept. If something here goes quiet for a month, it means it has stopped — not that I forgot
+          to update the page.
+        </p>
+        <p class="stamp">Updated {nowUpdated}</p>
+      </header>
+
+      <article class="case">
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Building</span>
+            <small>01</small>
+          </h2>
+          <div class="now-rows">
+            {nowWork.map((item) => (
+              <div class="now-row">
+                <div>
+                  <h3 class="h4">{item.what}</h3>
+                  <span class="kind">{item.where}</span>
+                  <p>{item.detail}</p>
+                </div>
+                {item.link && (
+                  <a class="btn sm" href={item.link}>
+                    Case study
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Studying, measuring, writing</span>
+            <small>02</small>
+          </h2>
+          <div class="now-rows">
+            {nowStudy.map((item) => (
+              <div class="now-row">
+                <div>
+                  <h3 class="h4">{item.what}</h3>
+                  <span class="kind">{item.where}</span>
+                  <p>{item.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Running, and not changing much</span>
+            <small>03</small>
+          </h2>
+          <p>These are live and looked after rather than actively built. Each one has a demo you can open.</p>
+          <ul class="now-live">
+            {live.map((p) => (
+              <li>
+                <a href={`/work/${p.id}/`}>
+                  <b>{p.title}</b>
+                  <small>{p.tagline}</small>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p class="art-note">
+            {building.length} more are in development or pre-release — their progress is on the{' '}
+            <a class="linkish" href="/#now">
+              home page
+            </a>{' '}
+            and on each case study.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Open to work</span>
+            <small>04</small>
+          </h2>
+          <p>
+            I have room for one more project at a time, and I am open to a full-time role for the right team. Freelance,
+            contract or full-time, in any industry.
+          </p>
+          <div class="v-ctas">
+            <a class="btn gold" href="/#contact">
+              Get in touch
+            </a>
+            <a class="btn" href="/services/">
+              What I can do
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../scripts/site.js"></script>
+</Base>

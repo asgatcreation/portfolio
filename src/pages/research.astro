@@ -1,0 +1,213 @@
+---
+import Base from '../layouts/Base.astro';
+import InnerOverlays from '../components/InnerOverlays.astro';
+import Bars from '../components/work/Bars.astro';
+import { naijaDataFacts, neiFacts, neiFindings } from '../data/pages';
+---
+
+<Base
+  title="Research & data"
+  description="Data work by Akanji Oluwaseun Gabriel: Nigeria's economic and labour-market indicators, the naija-data reference datasets, and national survey work with the NBS, FAO, UNICEF and UNODC."
+>
+  <main id="main" class="page">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a> / <span aria-current="page">research</span>
+      </nav>
+      <header class="page-head">
+        <span class="eyebrow">Research &amp; data</span>
+        <h1>Numbers you can check.</h1>
+        <p>
+          I spend my working week on official statistics, and my own time on data products. Everything below has a
+          source: a pipeline you can run, a dataset with a citation per row, or a national survey.
+        </p>
+      </header>
+
+      <article class="case">
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Nigeria Economic &amp; Labour Market Intelligence</span>
+            <small>01</small>
+          </h2>
+          <p class="v-why">
+            A reproducible pipeline that pulls Nigeria's economic and labour indicators into one database, checks them,
+            and produces a findings report. Built in Python and R on PostgreSQL, in Docker, with a migration ledger and
+            a revision audit so that a number can never change quietly.
+          </p>
+          <div class="v-facts">
+            {neiFacts.map(([v, l]) => (
+              <div>
+                <b>{v}</b>
+                <span>{l}</span>
+              </div>
+            ))}
+          </div>
+          <h3 class="h4 cv-sub">What the data says</h3>
+          <div class="find">
+            {neiFindings.map(([title, text], i) => (
+              <article>
+                <span>{String(i + 1).padStart(2, '0')}</span>
+                <h4 class="h4">{title}</h4>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+          <div class="charts">
+            <Bars
+              title="Real GDP per person"
+              note="Index, 2015 peak = 100"
+              rows={[
+                ['2015 peak', 100],
+                ['Latest', 91.6],
+              ]}
+              unit="% of peak"
+              max={100}
+            />
+            <Bars
+              title="Manufacturing share of GDP"
+              note="Then and now"
+              rows={[
+                ['At its peak', 19.5],
+                ['Latest', 8.3],
+              ]}
+              unit="%"
+              max={20}
+            />
+            <Bars
+              title="Work, two ways of counting"
+              note="The headline rate next to how the work is actually paid"
+              rows={[
+                ['Unemployment rate', 3.1],
+                ['Vulnerable employment', 66.5],
+              ]}
+              unit="%"
+              max={100}
+            />
+          </div>
+          <p class="art-note">
+            Figures from the project's own findings report. The full case study is at{' '}
+            <a class="linkish" href="/work/nei/">
+              Nigeria Economic Intelligence
+            </a>
+            .
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>naija-data: reference data with sources</span>
+            <small>02</small>
+          </h2>
+          <p class="v-why">
+            Nigerian developers kept re-typing the same lists — states, local governments, wards, bank codes, phone
+            rules — and each copy was wrong in a different way. naija-data publishes them once, with a source for every
+            row, and gives the same answers in Python, JavaScript and Go. 13,392 shared test cases run against all
+            three, so the libraries cannot drift apart.
+          </p>
+          <div class="v-facts">
+            {naijaDataFacts.map(([v, l]) => (
+              <div>
+                <b>{v}</b>
+                <span>{l}</span>
+              </div>
+            ))}
+          </div>
+          <div class="charts">
+            <Bars
+              title="What is in the dataset"
+              note="Rows by type (log scale, so small and large fit together)"
+              rows={[
+                ['States', 37],
+                ['Bank codes', 899],
+                ['Local governments', 774],
+                ['Wards', 8809],
+              ]}
+              log
+            />
+          </div>
+          <div class="v-ctas">
+            <a class="btn gold" href="/work/naijadata/">
+              Read the case study
+            </a>
+            <a class="btn" href="https://github.com/asgatcreation/naija-data" target="_blank" rel="noopener">
+              Code on GitHub ↗
+            </a>
+          </div>
+          <p class="art-note">Code is MIT; the data is published under CC BY 4.0.</p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>National survey work</span>
+            <small>03</small>
+          </h2>
+          <p>
+            At the National Bureau of Statistics I work on surveys that feed Nigeria's official statistics. My part is
+            the field and the data: training enumerators, supervising collection, and checking what comes back.
+          </p>
+          <ul class="feat grid2">
+            <li>Crop Cutting Pilot Survey, NBS × FAO — Team Lead, 2026</li>
+            <li>Multiple Indicator Cluster Survey (MICS 7), NBS × UNICEF — Assistant Team Supervisor, 2025–26</li>
+            <li>Integrated Price and Crop Cutting Survey (IPCCS) 2024 — Supervising Field Officer</li>
+            <li>Public Integrity Survey, UNODC × NBS, 2023 — Team Lead Field Officer</li>
+            <li>Quarterly GDP and monthly CPI surveys — Field Officer</li>
+            <li>National Agricultural Sample Census 2022 and National Business Sample Census 2020 — listing</li>
+          </ul>
+          <p class="art-note">
+            Survey microdata belongs to the NBS and its partners, so none of it appears on this site. What I can offer
+            is the method and the experience.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Mathematics &amp; statistics</span>
+            <small>04</small>
+          </h2>
+          <p>My own academic work, both at the University of Ibadan:</p>
+          <div class="tl">
+            <ol>
+              <li>
+                <span class="when">In progress · MSc Statistics</span>
+                <b>Modified Three-Parameter Rama Distribution and Its Applications</b>
+                <p>
+                  Extending a lifetime distribution with a third parameter and testing how well it fits real datasets
+                  against the alternatives.
+                </p>
+              </li>
+              <li>
+                <span class="when">2021 · MSc Mathematics</span>
+                <b>Compact Lie Groups and the Fourier–Stieltjes Transform of Vector Measures</b>
+                <p>Harmonic analysis on compact groups, written and typeset in LaTeX.</p>
+              </li>
+            </ol>
+          </div>
+          <p class="art-note">
+            This is also where the engineering habits come from: if a result cannot be reproduced, it is not a result.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Need data work?</span>
+            <small>05</small>
+          </h2>
+          <p>
+            Survey design, analysis, forecasting, a reproducible pipeline, or a report your board can read: tell me what
+            question you need answered.
+          </p>
+          <div class="v-ctas">
+            <a class="btn gold" href="/#contact">
+              Start a conversation
+            </a>
+            <a class="btn" href="/services/">
+              Data services
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../scripts/site.js"></script>
+</Base>

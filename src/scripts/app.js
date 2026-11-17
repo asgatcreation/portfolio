@@ -695,9 +695,11 @@
   /* ---------- Command palette ---------- */
   var pal = $('[data-palette]'), palIn = $('[data-palette-input]'), palList = $('[data-palette-list]'), palSel = 0, palItems = [], palReturn = null;
   var SECTIONS = [['About me', '#about', '👋'], ['Featured work', '#work', '★'], ['All projects', '#projects', '▦'], ['Now building', '#now', '⚙'], ['Skills & tools', '#skills', '◆'], ['Journey', '#journey', '↗'], ['Articles', '#writing', '✎'], ['FAQ', '#faq', '?'], ['Contact', '#contact', '✉']];
+  var PAGES = [['About', '/about/', '◉'], ['All projects', '/work/', '▦'], ['Services', '/services/', '❖'], ['Research & data', '/research/', '⌗'], ['Lab', '/lab/', '⚙'], ['AsgatArticles', '/writing/', '✎'], ['CV', '/cv/', '☰'], ['Now', '/now/', '◑'], ['Uses', '/uses/', '⚒'], ['Privacy', '/privacy/', '⛉']];
   var ITEMS = [].concat(
     P.map(function (p) { return { g: 'Projects', t: p.title, s: p.statusLabel + ' · ' + p.categories.join(', '), i: p.title[0], run: function () { location.hash = '#project/' + p.id; } }; }),
     SECTIONS.map(function (s) { return { g: 'Go to', t: s[0], s: 'Section', i: s[2], run: function () { $(s[1]).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); } }; }),
+    PAGES.map(function (pg) { return { g: 'Pages', t: pg[0], s: pg[1], i: pg[2], run: function () { location.href = pg[1]; } }; }),
     [{ g: 'Actions', t: 'Switch light / dark theme', s: 'Theme', i: '◐', run: function () { $('[data-theme-toggle]').click(); } },
      { g: 'Actions', t: 'Copy my email address', s: 'asgatcreation@gmail.com', i: '@', run: function () { copy('asgatcreation@gmail.com', 'Email copied'); } },
      { g: 'Actions', t: 'Download my CV', s: 'General · Software engineer · Data scientist · Statistician', i: '⇩', run: function () { $('#about').scrollIntoView(); setTimeout(function () { cvOpen(true); }, 400); } },

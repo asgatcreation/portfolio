@@ -1,0 +1,289 @@
+---
+import Base from '../layouts/Base.astro';
+import InnerOverlays from '../components/InnerOverlays.astro';
+import { cvs, site } from '../data/site';
+import { publishedProjects } from '../data/projects';
+
+const projects = await publishedProjects();
+const picks = projects.filter((p) => p.featured).slice(0, 4);
+---
+
+<Base
+  title="CV"
+  description="The CV of Akanji Oluwaseun Gabriel: Statistician I at the National Bureau of Statistics, full-stack software engineer and data scientist. Five PDF versions to download."
+>
+  <main id="main" class="page">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a> / <span aria-current="page">cv</span>
+      </nav>
+      <header class="page-head">
+        <span class="eyebrow">Curriculum vitae</span>
+        <h1>Akanji Oluwaseun Gabriel</h1>
+        <p>
+          Statistician I at the National Bureau of Statistics, full-stack software engineer and data scientist.
+          {site.location} · WAT. Read it here, or download the version that fits the role.
+        </p>
+        <div class="v-ctas">
+          <a class="btn gold" href="/cv/Akanji_Oluwaseun_CV_General_Full.pdf" download>
+            Download full CV (PDF)
+          </a>
+          <a class="btn" href="/#contact">
+            Get in touch
+          </a>
+        </div>
+      </header>
+
+      <article class="case">
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Profile</span>
+            <small>01</small>
+          </h2>
+          <p class="v-why">
+            A statistician and software engineer with over five years in Nigeria's official statistics system and a
+            growing record of shipped software. I lead field teams on national surveys for the National Bureau of
+            Statistics with partners including FAO, UNICEF and UNODC, and I design and build production web platforms:
+            marketplaces, fintech back offices, clinic software and open-source data packages. Trained in mathematics to
+            master's level, with a second master's in statistics in progress.
+          </p>
+          <dl class="v-meta">
+            <div>
+              <dt>Location</dt>
+              <dd>{site.location}</dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd>
+                <a class="linkish" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>Phone / WhatsApp</dt>
+              <dd>
+                <a class="linkish" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">
+                  {site.phone}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>Languages</dt>
+              <dd>English, Yoruba</dd>
+            </div>
+            <div>
+              <dt>GitHub</dt>
+              <dd>
+                <a class="linkish" href={site.github} target="_blank" rel="noopener">
+                  github.com/asgatcreation ↗
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>LinkedIn</dt>
+              <dd>
+                <a class="linkish" href={site.linkedin} target="_blank" rel="noopener">
+                  Oluwaseun Akanji ↗
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Key skills</span>
+            <small>02</small>
+          </h2>
+          <div class="cv-cols">
+            <div>
+              <h3 class="h4">Software engineering</h3>
+              <ul class="feat">
+                <li>Python / Django &amp; DRF, PHP / Laravel, TypeScript / Node (Fastify, NestJS)</li>
+                <li>Next.js, React, Vue 3, Astro, Tailwind CSS, plain CSS and JavaScript</li>
+                <li>PostgreSQL, Redis, SQLite; row-level security, locking, migrations</li>
+                <li>Real time with WebSockets; background jobs with Celery and BullMQ</li>
+                <li>Paystack and Flutterwave; double-entry ledgers in integer kobo</li>
+                <li>Testing: pytest, Pest, Playwright, property-based tests, CI on every push</li>
+                <li>Docker, GitHub Actions, Cloudflare Workers and Pages, Render</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="h4">Statistics &amp; data</h3>
+              <ul class="feat">
+                <li>Survey design, sampling, weighting and quality control</li>
+                <li>CAPI instruments in CSPro; field-team training and supervision</li>
+                <li>Stata, SPSS, R, Python (pandas, NumPy, scikit-learn)</li>
+                <li>Modelling, forecasting and significance testing</li>
+                <li>Reproducible pipelines: migration ledgers, revision audits, Docker</li>
+                <li>LaTeX for reports, dissertations and slides; SageMath</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Experience</span>
+            <small>03</small>
+          </h2>
+          <div class="tl">
+            <ol>
+              <li>
+                <span class="when">2022 – present</span>
+                <b>Statistician I</b>
+                <span class="where">National Bureau of Statistics, Oyo State</span>
+                <p>
+                  Lead and supervise field teams on national surveys; CAPI data collection, cleaning and analysis in
+                  Stata, SPSS and CSPro; train and mentor enumerators; quality control on incoming data.
+                </p>
+                <ul class="roles-mini">
+                  <li>
+                    <b>Team Lead</b> · Crop Cutting Pilot Survey, NBS × FAO · 2026 –
+                  </li>
+                  <li>
+                    <b>Assistant Team Supervisor</b> · MICS 7, NBS × UNICEF · 2025–26
+                  </li>
+                  <li>
+                    <b>Supervising Field Officer</b> · IPCCS 2024
+                  </li>
+                  <li>
+                    <b>Team Lead Field Officer</b> · UNODC–NBS Public Integrity Survey · 2023
+                  </li>
+                  <li>
+                    <b>Field Officer</b> · Quarterly GDP and monthly CPI surveys
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span class="when">Ongoing</span>
+                <b>Full-stack software engineer</b>
+                <span class="where">asgatcreation · independent</span>
+                <p>
+                  Design, build and ship web platforms end to end: requirements, data model, back end, front end,
+                  payments, tests, deployment and documentation. Live products include CarHub, FloatBook, FinanceFlow,
+                  TaskFlow and the naija-data packages; Curavia, Ojà Live, naija-pay and Scoreline are in development.
+                </p>
+              </li>
+              <li>
+                <span class="when">2020 – 2022</span>
+                <b>Ad-hoc Field Officer</b>
+                <span class="where">National Bureau of Statistics, Oyo State</span>
+                <p>National Agricultural Sample Census 2022 (listing); National Business Sample Census 2020.</p>
+              </li>
+              <li>
+                <span class="when">2020 – 2024</span>
+                <b>Administrative Officer</b>
+                <span class="where">Sword of the Spirit Ministries, Ibadan</span>
+                <p>Administration and data reporting across 81 churches.</p>
+              </li>
+              <li>
+                <span class="when">2016 – 2018</span>
+                <b>Mathematics Teacher</b>
+                <span class="where">Army Day Secondary School (NYSC) · Class International School</span>
+                <p>Taught mathematics to secondary classes and prepared students for external examinations.</p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Education</span>
+            <small>04</small>
+          </h2>
+          <div class="tl">
+            <ol>
+              <li>
+                <span class="when">2025 – present</span>
+                <b>MSc Statistics (in progress)</b>
+                <span class="where">University of Ibadan</span>
+                <p>Dissertation: Modified Three-Parameter Rama Distribution and Its Applications.</p>
+              </li>
+              <li>
+                <span class="when">2018 – 2021</span>
+                <b>MSc Mathematics</b>
+                <span class="where">University of Ibadan</span>
+                <p>Dissertation: Compact Lie Groups and the Fourier–Stieltjes Transform of Vector Measures.</p>
+              </li>
+              <li>
+                <span class="when">2012 – 2016</span>
+                <b>BSc Mathematics, Second Class Upper</b>
+                <span class="where">University of Ilorin · MTN Foundation Scholar</span>
+              </li>
+            </ol>
+          </div>
+          <h3 class="h4 cv-sub">Certificates &amp; training</h3>
+          <ul class="certs">
+            <li>
+              <b>Applied Artificial Intelligence Programme</b>
+              <span>Patwillsvision &amp; Rollascriptings · 2026</span>
+            </li>
+            <li>
+              <b>Data Science and Machine Learning</b>
+              <span>Muzedata</span>
+            </li>
+            <li>
+              <b>Full-Stack Web Development</b>
+              <span>Zuri Training × I4G · 2022–23</span>
+            </li>
+            <li>
+              <b>Sage Days 102 (SageMath)</b>
+              <span>OpenDreamKit &amp; University of Ibadan · 2019</span>
+            </li>
+            <li>
+              <b>Python Workshop for Scientists in Africa</b>
+              <span>University of Ibadan · 2018</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Selected projects</span>
+            <small>05</small>
+          </h2>
+          <ul class="now-live">
+            {picks.map((p) => (
+              <li>
+                <a href={`/work/${p.id}/`}>
+                  <b>{p.title}</b>
+                  <small>{p.tagline}</small>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p class="art-note">
+            Every project, with its true status, is on the{' '}
+            <a class="linkish" href="/work/">
+              work page
+            </a>
+            .
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Downloads</span>
+            <small>06</small>
+          </h2>
+          <ul class="dl-list">
+            {cvs.map(([name, note, file]) => (
+              <li>
+                <a href={`/cv/${file}`} download>
+                  <b>{name}</b>
+                  <small>{note}</small>
+                  <span aria-hidden="true">PDF ↓</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p class="art-note">References are available on request.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../scripts/site.js"></script>
+</Base>

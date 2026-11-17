@@ -1,3 +1,32 @@
+---
+import { publishedProjects } from '../data/projects';
+
+const projects = await publishedProjects();
+const pages: [string, string, string][] = [
+  ['About', '/about/', 'Story, experience, education'],
+  ['All projects', '/work/', 'Every project and its true status'],
+  ['Services', '/services/', 'What I do and how we work'],
+  ['Research & data', '/research/', 'Findings, datasets and surveys'],
+  ['Lab', '/lab/', 'Three small tools that run in the page'],
+  ['AsgatArticles', '/writing/', 'Writing on tech and data'],
+  ['CV', '/cv/', 'Full CV and five PDF downloads'],
+  ['Now', '/now/', 'What I am working on this month'],
+  ['Uses', '/uses/', 'The tools I build with'],
+  ['Privacy', '/privacy/', 'What this site collects: almost nothing'],
+  ['Home', '/', 'Back to the start'],
+];
+const items = [
+  ...pages.map(([t, href, s]) => ({ g: 'Pages', t, s, href })),
+  ...projects.map((p) => ({
+    g: 'Projects',
+    t: p.title,
+    s: `${p.statusLabel} · ${p.categories.join(', ')}`,
+    href: `/work/${p.id}/`,
+  })),
+];
+const navData = JSON.stringify(items).replace(/</g, '\u003c');
+---
+
 <button class="totop" type="button" aria-label="Back to top" data-totop>
   <svg class="ringp" viewBox="0 0 50 50" aria-hidden="true">
     <circle
@@ -69,4 +98,46 @@
   </button>
 </div>
 
+<!-- Command palette -->
+<div class="palette" data-palette hidden>
+  <div class="p-scrim" data-palette-close></div>
+  <div class="p-box" role="dialog" aria-modal="true" aria-label="Search the site">
+    <div class="p-input">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-3.5-3.5" />
+      </svg>
+      <input
+        type="text"
+        placeholder="Search pages and projects…"
+        aria-label="Search"
+        role="combobox"
+        aria-expanded="true"
+        aria-controls="p-list"
+        aria-autocomplete="list"
+        data-palette-input
+      />
+      <kbd>Esc</kbd>
+    </div>
+    <div class="p-list" id="p-list" role="listbox" aria-label="Results" data-palette-list></div>
+    <div class="p-foot">
+      <span>
+        <kbd>↑</kbd>
+        <kbd>↓</kbd> move
+      </span>
+      <span>
+        <kbd>Enter</kbd> open
+      </span>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="site-nav-data" set:html={navData} />
 <div class="toast" data-toast role="status" aria-live="polite"></div>

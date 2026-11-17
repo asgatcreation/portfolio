@@ -131,7 +131,134 @@
       if (Math.abs(d) > 50) show(idx + (d < 0 ? 1 : -1));
     });
   }
+  // Command palette: pages and projects, rendered from the JSON block in InnerOverlays.
+  var pal = $('[data-palette]'),
+    palIn = $('[data-palette-input]'),
+    palList = $('[data-palette-list]'),
+    palBtn = $('[data-palette-open]'),
+    palSel = 0,
+    palItems = [],
+    palReturn = null,
+    NAV = [];
+  try {
+    NAV = JSON.parse($('#site-nav-data').textContent);
+  } catch {
+    NAV = []; // no data block on this page: the palette simply stays empty
+  }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text) n.textContent = text;
+    return n;
+  }
+  function palMark() {
+    $$('[role="option"]', palList).forEach(function (o, i) {
+      o.setAttribute('aria-selected', String(i === palSel));
+      if (i === palSel) {
+        palIn.setAttribute('aria-activedescendant', o.id);
+        o.scrollIntoView({ block: 'nearest' });
+      }
+    });
+  }
+  function palRender() {
+    var q = palIn.value.trim().toLowerCase();
+    palList.textContent = '';
+    palItems = NAV.filter(function (it) {
+      return !q || (it.t + ' ' + it.s + ' ' + it.g).toLowerCase().indexOf(q) > -1;
+    });
+    if (palSel >= palItems.length) palSel = 0;
+    if (!palItems.length) {
+      palList.appendChild(el('div', 'none', 'Nothing found for “' + palIn.value + '”'));
+      palIn.removeAttribute('aria-activedescendant');
+      return;
+    }
+    var last = '';
+    palItems.forEach(function (it, i) {
+      if (it.g !== last) {
+        var grp = el('div', 'grp', it.g);
+        grp.setAttribute('role', 'presentation');
+        palList.appendChild(grp);
+        last = it.g;
+      }
+      var row = el('div', null);
+      row.setAttribute('role', 'option');
+      row.id = 'pal-' + i;
+      row.setAttribute('aria-selected', String(i === palSel));
+      var ic = el('span', 'pi', it.t.charAt(0));
+      ic.setAttribute('aria-hidden', 'true');
+      var box = el('span', null);
+      box.appendChild(el('b', null, it.t));
+      box.appendChild(el('small', null, it.s));
+      row.appendChild(ic);
+      row.appendChild(box);
+      row.addEventListener('click', function () {
+        palRun(i);
+      });
+      row.addEventListener('mousemove', function () {
+        if (palSel !== i) {
+          palSel = i;
+          palMark();
+        }
+      });
+      palList.appendChild(row);
+    });
+    palMark();
+  }
+  function palRun(i) {
+    var it = palItems[i];
+    palClose();
+    if (it) location.href = it.href;
+  }
+  function palOpen() {
+    palReturn = document.activeElement;
+    pal.hidden = false;
+    palIn.value = '';
+    palSel = 0;
+    palRender();
+    document.body.classList.add('locked');
+    palIn.focus();
+  }
+  function palClose() {
+    if (!pal || pal.hidden) return;
+    pal.hidden = true;
+    document.body.classList.remove('locked');
+    if (palReturn) palReturn.focus({ preventScroll: true });
+  }
+  if (pal && palBtn) {
+    palBtn.addEventListener('click', palOpen);
+    $('[data-palette-close]').addEventListener('click', palClose);
+    palIn.addEventListener('input', function () {
+      palSel = 0;
+      palRender();
+    });
+    palIn.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        palSel = (palSel + 1) % Math.max(1, palItems.length);
+        palMark();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        palSel = (palSel - 1 + palItems.length) % Math.max(1, palItems.length);
+        palMark();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        palRun(palSel);
+      }
+    });
+  }
+
   document.addEventListener('keydown', function (e) {
+    if (pal && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      if (pal.hidden) palOpen();
+      else palClose();
+      return;
+    }
+    if (pal && !pal.hidden) {
+      if (e.key === 'Escape') palClose();
+      else if (e.key === 'Tab') e.preventDefault();
+      return;
+    }
     if (lb && !lb.hidden) {
       if (e.key === 'Escape') close();
       else if (e.key === 'ArrowRight') show(idx + 1);

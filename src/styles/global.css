@@ -664,7 +664,7 @@ ol.process { list-style: none; padding: 0; margin: 0; }
 /* ---------- Footer v2 ---------- */
 .foot-cta { text-align: center; margin-bottom: 4rem; }
 .foot-cta h2 { font-size: clamp(2rem, 5vw, 4rem); }
-.foot-cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 3rem; border-bottom: 1px solid var(--line); margin-bottom: 3rem; }
+.foot-cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 3rem; border-bottom: 1px solid var(--line); margin-bottom: 3rem; }
 .foot-cols p { color: var(--muted); max-width: 22rem; font-size: .9rem; }
 .foot-cols nav { display: grid; gap: .5rem; align-content: start; font-size: .9rem; color: var(--muted); }
 .foot-cols h3 { font: 500 .72rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin: 0 0 .4rem; }
@@ -1053,3 +1053,76 @@ body.locked { overflow: hidden; }
 .v-h small { font: 500 .75rem var(--mono); color: var(--gold-text); }
 .h4 { font: 700 1.05rem var(--display); margin: 0 0 .4rem; }
 .v-part .h4 { font-size: 1.5rem; font-weight: 800; }
+
+/* ---------- Standing pages: about, services, now, writing, cv, research, lab, uses, privacy ---------- */
+.stamp { font: 500 .75rem var(--mono); color: var(--dim); margin-top: 1rem; }
+.page-head a { color: var(--gold-text); }
+.cv-sub { margin: 2rem 0 1rem; font-size: 1.2rem; font-weight: 800; }
+.v-sec code { font: 500 .88em var(--mono); padding: .15rem .4rem; border-radius: 6px; background: var(--card-2); border: 1px solid var(--line); }
+.v-sec > .about { gap: 3rem; }
+.v-meta.wide { grid-template-columns: minmax(0, 1fr); }
+.v-meta.wide dd { font-weight: 500; color: var(--muted); }
+
+.dl-list { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: .6rem; }
+.dl-list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: .2rem 1rem; padding: 1rem 1.2rem; border-radius: 16px; border: 1px solid var(--line); background: var(--card); transition: border-color .25s, transform .25s; }
+.dl-list a:hover { border-color: var(--gold); transform: translateX(4px); }
+.dl-list b { font-size: 1rem; }
+.dl-list small { grid-column: 1; color: var(--muted); font-size: .85rem; }
+.dl-list a > span { grid-row: 1 / 3; grid-column: 2; font: 500 .78rem var(--mono); color: var(--gold-text); }
+
+.svc-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+.spot.svc { padding: 1.8rem; }
+.spot.svc .feat { margin-top: 1rem; }
+.spot.svc .feat li { font-size: .9rem; color: var(--muted); }
+
+.ways { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1.6rem; }
+.ways > div { padding: 1.4rem 1.5rem; border-radius: 20px; border: 1px solid var(--line); background: var(--card); }
+.ways p { margin: .3rem 0 0; color: var(--muted); font-size: .92rem; }
+
+.now-rows { display: grid; gap: .8rem; }
+.now-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1rem; padding: 1.4rem 1.5rem; border-radius: 20px; border: 1px solid var(--line); background: var(--card); }
+.now-row p { margin: .5rem 0 0; color: var(--muted); font-size: .94rem; }
+.now-live { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+.now-live a { display: grid; gap: .2rem; padding: 1rem 1.2rem; border-radius: 16px; border: 1px solid var(--line); background: var(--card); transition: border-color .25s, transform .25s; }
+.now-live a:hover { border-color: var(--gold); transform: translateY(-3px); }
+.now-live small { color: var(--muted); font-size: .85rem; }
+
+.uses { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+.uses li { display: grid; gap: .15rem; padding: .95rem 1.1rem; border-radius: 14px; border: 1px solid var(--line); background: var(--card); }
+.uses b { font-size: .98rem; }
+.uses span { color: var(--muted); font-size: .86rem; }
+
+.find { display: grid; gap: .8rem; margin-bottom: 1.6rem; }
+.find article { position: relative; padding: 1.4rem 1.5rem 1.4rem 3.6rem; border-radius: 20px; border: 1px solid var(--line); background: var(--card); }
+.find article > span { position: absolute; left: 1.4rem; top: 1.4rem; font: 500 .78rem var(--mono); color: var(--gold-text); }
+.find p { margin: .3rem 0 0; color: var(--muted); font-size: .94rem; }
+
+.cv-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem; }
+
+/* Lab tools */
+.tool { margin: 1.4rem 0 0; padding: 1.6rem; border-radius: 22px; border: 1px solid var(--line-2); background: var(--card); }
+.tool-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 1rem; }
+.tool-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+.tool-out { display: none; margin-top: 1.2rem; padding: 1.1rem 1.2rem; border-radius: 16px; border: 1px solid var(--line); background: var(--bg-2); }
+.tool-out.show { display: grid; gap: .3rem; }
+.tool-out b { font: 700 1rem var(--display); }
+.tool-out span { color: var(--muted); font-size: .9rem; }
+.tool-out.ok { border-color: color-mix(in srgb, var(--live) 45%, var(--line)); }
+.tool-out.ok b { color: var(--live); }
+.tool-out.bad { border-color: #ff7a7a66; }
+.tool-out.bad b { color: #ff7a7a; }
+.tool-out.warn { border-color: color-mix(in srgb, var(--gold) 45%, var(--line)); }
+.tool-out.warn b { color: var(--gold-text); }
+.tool input[type="range"] { width: 100%; accent-color: var(--gold); padding: 0; border: 0; background: none; }
+.bm-wrap { margin-top: 1.2rem; border-radius: 16px; border: 1px solid var(--line); background: var(--bg-2); overflow: hidden; }
+.bm-wrap canvas { display: block; width: 100%; height: auto; }
+
+@media (max-width: 1020px) {
+  .svc-list, .ways, .cv-cols, .uses, .now-live { grid-template-columns: minmax(0, 1fr); }
+  .v-sec > .about { grid-template-columns: minmax(0, 1fr); gap: 2.4rem; }
+}
+@media (max-width: 600px) {
+  .now-row { grid-template-columns: minmax(0, 1fr); }
+  .tool { padding: 1.1rem; }
+  .find article { padding: 1.2rem 1.2rem 1.2rem 3.2rem; }
+}

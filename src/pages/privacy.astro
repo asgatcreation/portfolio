@@ -1,0 +1,161 @@
+---
+import Base from '../layouts/Base.astro';
+import InnerOverlays from '../components/InnerOverlays.astro';
+import { site } from '../data/site';
+
+const updated = '17 November 2026';
+---
+
+<Base
+  title="Privacy"
+  description="What this site does and does not collect: no cookies, no analytics, no tracking. A plain account of the few requests your browser makes."
+>
+  <main id="main" class="page">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a> / <span aria-current="page">privacy</span>
+      </nav>
+      <header class="page-head">
+        <span class="eyebrow">Privacy</span>
+        <h1>What this site knows about you</h1>
+        <p>
+          Very little, and none of it on purpose. This page says exactly what happens when you open it — written
+          plainly, because a privacy notice nobody can read protects nobody.
+        </p>
+        <p class="stamp">Updated {updated}</p>
+      </header>
+
+      <article class="case">
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>The short version</span>
+            <small>01</small>
+          </h2>
+          <ul class="feat grid2">
+            <li>No cookies are set by this site.</li>
+            <li>No analytics, no tracking pixels, no advertising, no session recording.</li>
+            <li>No account to create, and nothing you type is stored on a server.</li>
+            <li>Nothing is shared with or sold to anybody.</li>
+          </ul>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>What your browser stores</span>
+            <small>02</small>
+          </h2>
+          <p>
+            One thing: if you switch between light and dark, the choice is saved in your own browser (in
+            <code>localStorage</code>, under the name <code>theme</code>) so the next page does not flash the wrong
+            colours. It never leaves your device and I cannot read it. Clearing your browser data removes it.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Requests your browser makes</span>
+            <small>03</small>
+          </h2>
+          <p>
+            The pages are static files, but three requests go to other companies. They will see your IP address, as any
+            web request does.
+          </p>
+          <dl class="v-meta wide">
+            <div>
+              <dt>The host</dt>
+              <dd>
+                The pages, images and PDFs are served by this site's hosting provider, which keeps short-lived server
+                logs of requests (IP address, page, time) for security and troubleshooting. I do not read them for
+                analytics.
+              </dd>
+            </div>
+            <div>
+              <dt>Google Fonts</dt>
+              <dd>
+                The three typefaces are loaded from <code>fonts.googleapis.com</code> and
+                <code>fonts.gstatic.com</code>, so Google receives the request for the font files. If you would rather
+                that did not happen, a font blocker or a strict privacy extension will stop it and the site still works.
+              </dd>
+            </div>
+            <div>
+              <dt>GitHub</dt>
+              <dd>
+                The home page shows my live repository count and languages, which it reads from GitHub's public API when
+                you reach that section, so GitHub sees that request. With JavaScript off, the panel simply says it could
+                not load.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>The forms</span>
+            <small>04</small>
+          </h2>
+          <p>
+            The message form and the booking form do not send anything anywhere by themselves. They check what you have
+            typed in your browser, then open your own e-mail app or WhatsApp with the message already written, and you
+            decide whether to send it. Until you press send in that app, nothing has left your device.
+          </p>
+          <p>
+            When you do send it, I receive it the ordinary way — as an e-mail at {site.email} or a WhatsApp message on
+            {site.phone} — and I keep it only as long as I need it to reply and to keep a record of the work.
+          </p>
+          <p class="art-note">
+            This will change later: the message form is being given a proper send button that posts to a small function
+            on this site's own domain, with a spam check. When that happens, this page will be updated to say exactly
+            what the function stores and for how long.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Links away from here</span>
+            <small>05</small>
+          </h2>
+          <p>
+            Project demos, GitHub, LinkedIn, X and WhatsApp are other people's services with their own privacy policies.
+            Opening them is a normal visit to those sites, and what they collect is up to them.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Children, and your rights</span>
+            <small>06</small>
+          </h2>
+          <p>
+            This site is not aimed at children and collects nothing from anyone. Since there is no database and no
+            account, there is nothing of yours to download, correct or delete. If you have written to me and want our
+            correspondence deleted, ask and I will delete it.
+          </p>
+        </section>
+
+        <section class="v-sec">
+          <h2 class="v-h">
+            <span>Who to ask</span>
+            <small>07</small>
+          </h2>
+          <p>
+            This site belongs to Akanji Oluwaseun Gabriel (asgatcreation), {site.location}. Questions about this page,
+            or anything on the site:
+          </p>
+          <div class="v-ctas">
+            <a class="btn gold" href={`mailto:${site.email}`}>
+              Email me
+            </a>
+            <a class="btn" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">
+              WhatsApp ↗
+            </a>
+          </div>
+          <p class="art-note">
+            The site's code is public, so you do not have to take my word for any of this — you can read it.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+  <InnerOverlays slot="overlays" />
+  <script src="../scripts/site.js"></script>
+</Base>

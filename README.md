@@ -16,19 +16,22 @@ npm run preview   # serve the built site from dist/
 
 ## Where things live
 
-| Path                                           | What it is                                                                   |
-| ---------------------------------------------- | ---------------------------------------------------------------------------- |
-| `src/content/projects/*.json`                  | One file per project. Checked against the schema in `src/content.config.ts`. |
-| `src/content/articles.json`                    | AsgatArticles: planned and published posts.                                  |
-| `src/data/site.ts`, `src/data/site-extra.json` | Name, contact details, CV files, booking times.                              |
-| `src/components/home/`                         | The home-page sections.                                                      |
-| `src/pages/work/[slug].astro`                  | The full case-study page for each project.                                   |
-| `src/scripts/app.js`                           | Home-page interactions (showcase, filters, project pop-up, search, forms).   |
-| `src/scripts/site.js`                          | Interactions on inner pages (menu, gallery lightbox).                        |
-| `src/styles/global.css`                        | Design tokens and all styles.                                                |
-| `public/img`, `public/cv`                      | Screenshots, portrait, logo and the five CV PDFs.                            |
-| `design/mockups/`                              | The design mockups from milestone 2 (not part of the site).                  |
-| `docs/`                                        | Research, progress log and architecture decision records.                    |
+| Path                                           | What it is                                                                           |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `src/content/projects/*.json`                  | One file per project. Checked against the schema in `src/content.config.ts`.         |
+| `src/content/articles.json`                    | AsgatArticles: planned and published posts.                                          |
+| `src/data/site.ts`, `src/data/site-extra.json` | Name, contact details, CV files, booking times.                                      |
+| `src/components/home/`                         | The home-page sections.                                                              |
+| `src/pages/work/[slug].astro`                  | The full case-study page for each project.                                           |
+| `src/pages/*.astro`                            | The standing pages: about, services, now, writing, cv, research, lab, uses, privacy. |
+| `src/data/pages.ts`                            | Content for /now/, /uses/ and /research/ (the parts not held as projects).           |
+| `src/scripts/app.js`                           | Home-page interactions (showcase, filters, project pop-up, search, forms).           |
+| `src/scripts/site.js`                          | Interactions on inner pages (menu, search palette, gallery lightbox).                |
+| `src/scripts/lab.js`                           | The three tools on /lab/.                                                            |
+| `src/styles/global.css`                        | Design tokens and all styles.                                                        |
+| `public/img`, `public/cv`                      | Screenshots, portrait, logo and the five CV PDFs.                                    |
+| `design/mockups/`                              | The design mockups from milestone 2 (not part of the site).                          |
+| `docs/`                                        | Research, progress log and architecture decision records.                            |
 
 ## Updating a project
 
