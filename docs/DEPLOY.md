@@ -134,8 +134,10 @@ pointing at that namespace. Redeploy. Each visitor IP is then limited to five me
 
 `portfolio.pages.dev` works forever and costs nothing, so this can wait.
 
-1. Buy the domain (`asgatcreation.com` or similar). Cloudflare Registrar sells at cost, which keeps
-   everything in one place.
+1. Buy the domain. Cloudflare Registrar sells at cost, which keeps everything in one place.
+   Checked on 18 November 2026, `asgatcreation.dev`, `asgatcreation.com` and `asgatcreation.app` were
+   all unregistered. `.dev` is a normal domain anyone can buy, and it is on the browsers' HTTPS-only
+   list — every visit must use HTTPS, which this site does anyway, so there is nothing extra to do.
 2. Add the domain to Cloudflare: **Account Home** → **Add a domain**, then follow the nameserver
    instructions from your registrar.
 3. In your Pages project: **Custom domains** → **Set up a domain** → type the domain. Cloudflare creates
