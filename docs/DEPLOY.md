@@ -23,12 +23,17 @@ renamed since, the nearby wording should still make it obvious; tell me and I wi
 
    | Field                  | Value                                                               |
    | ---------------------- | ------------------------------------------------------------------- |
-   | Project name           | `portfolio` (this becomes `portfolio.pages.dev`)                    |
+   | Project name           | `asgatcreation` (this becomes `asgatcreation.pages.dev`)            |
    | Production branch      | `main`                                                              |
    | Framework preset       | **Astro** (or leave as None — the two fields below are what matter) |
    | Build command          | `npm run build`                                                     |
    | Build output directory | `dist`                                                              |
    | Root directory         | leave empty                                                         |
+
+   The project name is the address, and these names are shared by everyone on Cloudflare. I checked on
+   18 November 2026: `asgatcreation` was free, while plain `portfolio` is already taken by someone else.
+   If Cloudflare says the name is in use, try `asgat` or `asgatcreation-site` and tell me which you
+   picked, so the rest of the settings match.
 
 7. Open **Environment variables (advanced)** and add one for now:
 
@@ -37,7 +42,7 @@ renamed since, the nearby wording should still make it obvious; tell me and I wi
    | `NODE_VERSION` | `24`  |
 
 8. Press **Save and Deploy**. The build takes two or three minutes. When it finishes you get a link
-   like `https://portfolio.pages.dev` — that is your site, live.
+   like `https://asgatcreation.pages.dev` — that is your site, live.
 
 From now on, every push to `main` deploys itself. Pull requests get their own preview link.
 
@@ -74,7 +79,7 @@ your visitor nothing at all.
 1. In the Cloudflare dashboard sidebar, choose **Turnstile**.
 2. Select **Add widget**.
    - **Widget name:** `portfolio contact form`
-   - **Hostnames:** `portfolio.pages.dev`, plus your own domain when you have one. Add `localhost` as
+   - **Hostnames:** `asgatcreation.pages.dev`, plus your own domain when you have one. Add `localhost` as
      well if you want the widget to appear while testing on your own machine.
    - **Widget mode:** **Managed** (Cloudflare decides when to challenge).
    - **Region:** choose the one nearest you. **This cannot be changed later.**
@@ -88,7 +93,7 @@ Skipping this part is fine: without it the honeypot and the rate limit still wor
 
 ## Part 4 — Tell the site about the keys
 
-In **Workers & Pages** → your `portfolio` project → **Settings**.
+In **Workers & Pages** → your `asgatcreation` project → **Settings**.
 
 **Variables and secrets** (these are read by the contact function, at run time). Add each one for the
 **Production** environment, and mark the two keys as **Secret** rather than plain text:
@@ -103,10 +108,10 @@ In **Workers & Pages** → your `portfolio` project → **Settings**.
 **Build variables** (read while the site is being built). Add under the build settings, next to
 `NODE_VERSION`:
 
-| Name                        | Value                                                           |
-| --------------------------- | --------------------------------------------------------------- |
-| `PUBLIC_TURNSTILE_SITE_KEY` | the site key from part 3                                        |
-| `SITE_URL`                  | `https://portfolio.pages.dev`, or your domain once you have one |
+| Name                        | Value                                                               |
+| --------------------------- | ------------------------------------------------------------------- |
+| `PUBLIC_TURNSTILE_SITE_KEY` | the site key from part 3                                            |
+| `SITE_URL`                  | `https://asgatcreation.pages.dev`, or your domain once you have one |
 
 Then **Deployments** → the latest one → **Retry deployment**, so the new build picks up the build
 variables.
@@ -132,7 +137,8 @@ pointing at that namespace. Redeploy. Each visitor IP is then limited to five me
 
 ## Part 5 — Your own domain, when you buy one
 
-`portfolio.pages.dev` works forever and costs nothing, so this can wait.
+`asgatcreation.pages.dev` works forever and costs nothing, so this can wait. When you do buy one,
+nothing breaks: the pages.dev address keeps working alongside it.
 
 1. Buy the domain. Cloudflare Registrar sells at cost, which keeps everything in one place.
    Checked on 18 November 2026, `asgatcreation.dev`, `asgatcreation.com` and `asgatcreation.app` were
