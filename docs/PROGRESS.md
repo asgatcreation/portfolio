@@ -46,33 +46,22 @@ The message and booking forms now post to the site's own endpoint instead of onl
   and focus moved to the first; the honeypot is off-screen and cannot be tabbed into; no console errors.
 - What is **not** proved yet: real delivery. That needs the accounts below and a deployed site.
 
-**Still needed from you (about 20 minutes, all in your own accounts)**
+**Still needed from you**
 
-1. **Brevo** (free): sign up at brevo.com, add and verify a sender address, then create an API key under
-   SMTP & API. The key goes straight into Cloudflare, not to me and not into this repository.
-2. **Turnstile** (free, optional but recommended): in the Cloudflare dashboard, Turnstile, Add site, for
-   your domain. You get a site key (public) and a secret key.
-3. **In Cloudflare Pages, Settings, Environment variables**, set `BREVO_API_KEY`, `CONTACT_TO` (where
-   messages should arrive), `CONTACT_FROM` (the verified sender), `TURNSTILE_SECRET_KEY`, and as a build
-   variable `PUBLIC_TURNSTILE_SITE_KEY`.
-4. Optional: create a KV namespace and bind it as `CONTACT_RATE` to switch the rate limit on.
+Deployment and the keys, written out click by click in [DEPLOY.md](DEPLOY.md): a Cloudflare Pages
+project (15 minutes), then Brevo and Turnstile accounts and five variables (20 minutes). All of it is
+free, and every key stays in your own accounts.
 
-## Milestone 4 — the standing pages (done, 17 November 2026)
-
-Nine pages, so the site is no longer only a long home page. Every fact on them comes from the CVs, a
-project README or the project files — nothing new was invented.
-
-| Page         | What is on it                                                                                                                    |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| `/about/`    | The long version: portrait, the two working lives, full experience, education, certificates, CV downloads                        |
-| `/services/` | The eight kinds of work, with what each one actually includes; ways to work together; how a project runs; six common questions   |
-| `/now/`      | What is in progress this month, what is simply running, and that I am open to work. Dated, and kept by hand                      |
-| `/writing/`  | AsgatArticles: the six articles being written, by topic. Honest that none is published yet                                       |
-| `/cv/`       | The CV as a web page — profile, key skills, experience, education, selected projects — plus the five PDFs                        |
-| `/research/` | The economic findings with charts, the naija-data datasets, the national surveys, and the two dissertations                      |
-| `/lab/`      | Three small tools that run in the page: a NUBAN account checker, a float-versus-kobo demonstration, and a Brownian-motion canvas |
-| `/uses/`     | 43 tools in eight groups, each with the project that uses it, and how they are chosen                                            |
-| `/privacy/`  | A plain account: no cookies, no analytics, what the three outside requests are, and what the forms do                            |
+------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| `/about/` | The long version: portrait, the two working lives, full experience, education, certificates, CV downloads |
+| `/services/` | The eight kinds of work, with what each one actually includes; ways to work together; how a project runs; six common questions |
+| `/now/` | What is in progress this month, what is simply running, and that I am open to work. Dated, and kept by hand |
+| `/writing/` | AsgatArticles: the six articles being written, by topic. Honest that none is published yet |
+| `/cv/` | The CV as a web page — profile, key skills, experience, education, selected projects — plus the five PDFs |
+| `/research/` | The economic findings with charts, the naija-data datasets, the national surveys, and the two dissertations |
+| `/lab/` | Three small tools that run in the page: a NUBAN account checker, a float-versus-kobo demonstration, and a Brownian-motion canvas |
+| `/uses/` | 43 tools in eight groups, each with the project that uses it, and how they are chosen |
+| `/privacy/` | A plain account: no cookies, no analytics, what the three outside requests are, and what the forms do |
 
 **Also in this milestone**
 

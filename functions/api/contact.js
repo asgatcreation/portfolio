@@ -100,8 +100,7 @@ function buildEmail(fields, env) {
     ['Phone', fields.phone],
     ['Organisation', fields.org],
   ].filter(([, v]) => v);
-  const text =
-    rows.map(([k, v]) => k + ': ' + v).join('\n') + '\n\n' + fields.message + '\n\n— sent from the contact form';
+  // Brevo takes one body type per request, so the message to the owner is HTML only.
   const html =
     '<h2>' +
     escapeHtml(title) +
@@ -115,7 +114,6 @@ function buildEmail(fields, env) {
     to: [{ email: env.CONTACT_TO }],
     replyTo: { email: fields.email, name: fields.name },
     subject: title,
-    textContent: text,
     htmlContent: html,
   };
 }

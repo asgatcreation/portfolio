@@ -31,3 +31,15 @@ same domain later (milestone 5) with no extra service and no e-mail address expo
 Costs: the deploy is tied to one vendor's dashboard settings, which live outside the repository. The build
 command and variables are therefore written down in `docs/PROGRESS.md` so they can be rebuilt from scratch.
 Moving host later means re-creating redirects and the function, but nothing in `src/` would change.
+
+## Pages or Workers static assets? (checked 18 November 2026)
+
+Cloudflare now lets a Worker serve static assets too, and its own migration guide says Workers has the
+broader feature set (Durable Objects, cron triggers, fuller observability), with the same price for this
+kind of site: static requests free, function calls charged the same way.
+
+This site stays on **Pages**, for two reasons. The whole deployment is clicks in a dashboard plus a
+`functions/` folder, with no `wrangler.jsonc` and no local tooling for the owner to install — and nothing
+this site needs is on the Workers-only list. If that changes (a cron job to rebuild daily, Durable
+Objects for something live), moving is a `wrangler.jsonc` with `assets.directory` and porting one
+function file, so the decision is cheap to revisit.

@@ -35,6 +35,7 @@ npm run preview   # serve the built site from dist/
 | `public/img`, `public/cv`                      | Screenshots, portrait, logo and the five CV PDFs.                                    |
 | `design/mockups/`                              | The design mockups from milestone 2 (not part of the site).                          |
 | `docs/`                                        | Research, progress log and architecture decision records.                            |
+| `docs/DEPLOY.md`                               | Step-by-step: putting the site live on Cloudflare, and the contact form keys.        |
 
 ## Updating a project
 

@@ -89,13 +89,17 @@ test('a good message is sent to the owner, with the visitor as reply-to', async 
   assert.equal(sent.sender.email, 'site@example.com');
   assert.equal(sent.replyTo.email, 'ada@example.com');
   assert.match(sent.subject, /New message/);
-  assert.match(sent.textContent, /small marketplace/);
+  assert.match(sent.htmlContent, /small marketplace/);
+  assert.equal(sent.textContent, undefined); // Brevo takes one body type per request
 });
 
 test('an acknowledgement goes to the visitor, and CONTACT_AUTOREPLY=off stops it', async () => {
   await post(good);
   assert.equal(calls.length, 2);
-  assert.equal(JSON.parse(calls[1].init.body).to[0].email, 'ada@example.com');
+  const reply = JSON.parse(calls[1].init.body);
+  assert.equal(reply.to[0].email, 'ada@example.com');
+  assert.match(reply.textContent, /small marketplace/); // the visitor gets their own words back
+  assert.equal(reply.htmlContent, undefined);
 
   calls = [];
   await post(good, { ...ENV, CONTACT_AUTOREPLY: 'off' });
@@ -107,7 +111,6 @@ test('HTML in a message cannot reach the e-mail as markup', async () => {
   const sent = JSON.parse(calls[0].init.body);
   assert.ok(!sent.htmlContent.includes('<script>'));
   assert.ok(sent.htmlContent.includes('&lt;script&gt;'));
-  assert.ok(sent.textContent.includes('<script>alert(1)</script>')); // plain text is fine as it is
 });
 
 test('without the Brevo settings it answers 503, so the page can fall back to mail', async () => {
