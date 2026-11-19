@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Direction I · Obsidian — Akanji Oluwaseun Gabriel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    />
+    <style>
+      /* Direction I — Obsidian.
+         Built from the logo: true black, metallic gold (#7c4c03 → #c78212 → #f2c24f), silver.
+         Dark only, by design — this palette is the brand, and it does not have a light mode. */
+      :root {
+        --black: #000000;
+        --panel: #0b0a08;
+        --raise: #131110;
+        --line: #241f17;
+        --silver: #d5d5d5;
+        --muted: #8e8a83;
+        --gold-deep: #7c4c03;
+        --gold: #c78212;
+        --gold-bright: #f2c24f;
+        --metal: linear-gradient(135deg, #7c4c03 0%, #c78212 38%, #f2c24f 62%, #c78212 100%);
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--black);
+        color: var(--silver);
+        font:
+          400 1rem/1.65 'Inter',
+          system-ui,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      :focus-visible {
+        outline: 2px solid var(--gold-bright);
+        outline-offset: 3px;
+      }
+      .wrap {
+        max-width: 76rem;
+        margin: 0 auto;
+        padding: 0 1.75rem;
+      }
+      .disp {
+        font-family: 'Outfit', sans-serif;
+        letter-spacing: -0.02em;
+      }
+      .gold-text {
+        background: var(--metal);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: #c78212;
+        -webkit-text-fill-color: transparent;
+      }
+      .eyebrow {
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      /* ---------- header ---------- */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+      }
+      header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 4.5rem;
+        gap: 1.5rem;
+      }
+      .mark {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .mark img {
+        width: 2.1rem;
+        height: 2.1rem;
+        border-radius: 50%;
+        display: block;
+      }
+      .mark b {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 0.82rem;
+        color: var(--silver);
+      }
+      nav {
+        display: flex;
+        gap: 2rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      nav a {
+        position: relative;
+        padding: 0.2rem 0;
+      }
+      nav a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 100%;
+        bottom: 0;
+        height: 1px;
+        background: var(--metal);
+        transition: right 0.28s ease;
+      }
+      nav a:hover {
+        color: var(--silver);
+      }
+      nav a:hover::after {
+        right: 0;
+      }
+      .btn {
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        padding: 0.62rem 1.3rem;
+        border-radius: 2px;
+        border: 1px solid var(--gold-deep);
+        color: var(--gold-bright);
+        white-space: nowrap;
+        transition:
+          background 0.25s ease,
+          color 0.25s ease;
+      }
+      .btn:hover {
+        background: var(--metal);
+        color: #1a1203;
+        border-color: transparent;
+      }
+      .btn.solid {
+        background: var(--metal);
+        color: #1a1203;
+        border-color: transparent;
+        font-weight: 600;
+      }
+      .btn.solid:hover {
+        filter: brightness(1.12);
+      }
+      .btn.ghost {
+        border-color: var(--line);
+        color: var(--silver);
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        position: relative;
+        padding: 7.5rem 0 5rem;
+        overflow: hidden;
+      }
+      .hero::before {
+        /* a single slow gold bloom — the only light in the room */
+        content: '';
+        position: absolute;
+        top: -28%;
+        left: 50%;
+        width: 70rem;
+        height: 46rem;
+        transform: translateX(-50%);
+        background: radial-gradient(ellipse at center, rgba(199, 130, 18, 0.2) 0%, transparent 62%);
+        pointer-events: none;
+      }
+      .hero .wrap {
+        position: relative;
+      }
+      .avail {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.82rem;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.42rem 1rem;
+        margin-bottom: 2.2rem;
+        background: var(--panel);
+      }
+      .avail i {
+        width: 0.42rem;
+        height: 0.42rem;
+        border-radius: 50%;
+        background: #4ade80;
+        box-shadow: 0 0 10px #4ade80;
+      }
+      h1 {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(2.6rem, 7vw, 5.4rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+        font-weight: 600;
+        margin: 0.9rem 0 1.6rem;
+        color: #fff;
+      }
+      .lede {
+        font-size: 1.12rem;
+        color: var(--muted);
+        max-width: 48ch;
+        margin: 0 0 2.5rem;
+      }
+      .lede b {
+        color: var(--silver);
+        font-weight: 500;
+      }
+      .cta {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        margin-bottom: 4.5rem;
+      }
+
+      .strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .strip div {
+        padding: 1.8rem 0;
+        border-right: 1px solid var(--line);
+        padding-left: 1.6rem;
+      }
+      .strip div:first-child {
+        padding-left: 0;
+      }
+      .strip div:last-child {
+        border-right: 0;
+      }
+      .strip b {
+        font-family: 'Outfit', sans-serif;
+        display: block;
+        font-size: 2.5rem;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      .strip small {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ---------- section furniture ---------- */
+      section {
+        padding: 6.5rem 0;
+      }
+      .shead {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 3.5rem;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 1.5rem;
+      }
+      .shead h2 {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin: 0.7rem 0 0;
+        color: #fff;
+      }
+      .shead p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 34ch;
+        font-size: 0.95rem;
+      }
+
+      /* ---------- work: big alternating panels ---------- */
+      .proj {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        gap: 3.5rem;
+        align-items: center;
+        padding: 3.5rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .proj:nth-child(even) .shot {
+        order: -1;
+      }
+      .pnum {
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.3em;
+        color: var(--gold-deep);
+      }
+      .proj h3 {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin: 0.7rem 0 0.4rem;
+        color: #fff;
+      }
+      .proj .tag {
+        color: var(--gold);
+        font-size: 0.95rem;
+        margin: 0 0 1rem;
+      }
+      .proj p.body {
+        color: var(--muted);
+        margin: 0 0 1.5rem;
+        font-size: 0.97rem;
+      }
+      .chips {
+        display: flex;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.6rem;
+      }
+      .chip {
+        font-size: 0.75rem;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        padding: 0.22rem 0.6rem;
+        background: var(--panel);
+      }
+      .st {
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 0.28rem 0.65rem;
+        border-radius: 2px;
+        background: rgba(74, 222, 128, 0.12);
+        color: #4ade80;
+      }
+      .st.dev {
+        background: rgba(199, 130, 18, 0.14);
+        color: var(--gold-bright);
+      }
+      .more {
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--gold-bright);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .more span {
+        transition: transform 0.25s ease;
+      }
+      .more:hover span {
+        transform: translateX(5px);
+      }
+
+      /* the gold-edged frame is the signature device */
+      .shot {
+        position: relative;
+        border-radius: 4px;
+        padding: 1px;
+        background: linear-gradient(135deg, var(--gold-deep), rgba(242, 194, 79, 0.15) 45%, transparent 75%);
+      }
+      .shot .inner {
+        background: var(--raise);
+        border-radius: 3px;
+        overflow: hidden;
+        position: relative;
+      }
+      .shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+        filter: saturate(0.92);
+        transition:
+          transform 0.5s ease,
+          filter 0.5s ease;
+      }
+      .proj:hover .shot img {
+        transform: scale(1.025);
+        filter: saturate(1.08);
+      }
+      .shot .soon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        text-align: center;
+        min-height: 17rem;
+        padding: 2rem;
+        background:
+          repeating-linear-gradient(
+            135deg,
+            transparent 0 14px,
+            rgba(199, 130, 18, 0.045) 14px 28px
+          ),
+          var(--raise);
+      }
+      .shot .soon p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        max-width: 26ch;
+      }
+      .shot .triple {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--line);
+      }
+      .shot .triple figure {
+        margin: 0;
+        background: var(--raise);
+        display: flex;
+        flex-direction: column;
+      }
+      /* the three shots have different proportions, so crop them to one height */
+      .shot .triple img {
+        height: 13.5rem;
+        object-fit: cover;
+        object-position: top center;
+        flex: 1;
+      }
+      .shot .triple figcaption {
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        padding: 0.55rem 0.6rem;
+        text-align: center;
+      }
+
+      /* ---------- statement band ---------- */
+      .band {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+      }
+      .band .wrap {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+      .band p {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(1.5rem, 3.6vw, 2.5rem);
+        line-height: 1.25;
+        letter-spacing: -0.03em;
+        font-weight: 300;
+        margin: 0;
+        max-width: 24ch;
+        color: var(--silver);
+      }
+      .band p b {
+        font-weight: 600;
+      }
+
+      /* ---------- services ---------- */
+      .svc {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+      .svc article {
+        background: var(--black);
+        padding: 2rem 1.6rem;
+        transition: background 0.3s ease;
+      }
+      .svc article:hover {
+        background: var(--panel);
+      }
+      .svc h3 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.08rem;
+        font-weight: 600;
+        margin: 1rem 0 0.5rem;
+        color: #fff;
+      }
+      .svc p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .svc .n {
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.28em;
+        color: var(--gold-deep);
+      }
+
+      /* ---------- contact ---------- */
+      .end {
+        text-align: center;
+        padding: 7rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .end::before {
+        content: '';
+        position: absolute;
+        bottom: -60%;
+        left: 50%;
+        width: 60rem;
+        height: 40rem;
+        transform: translateX(-50%);
+        background: radial-gradient(ellipse at center, rgba(199, 130, 18, 0.16) 0%, transparent 65%);
+        pointer-events: none;
+      }
+      .end .wrap {
+        position: relative;
+      }
+      .end h2 {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        margin: 1rem 0 1rem;
+        color: #fff;
+      }
+      .end p {
+        color: var(--muted);
+        max-width: 44ch;
+        margin: 0 auto 2.2rem;
+      }
+      .end .cta {
+        justify-content: center;
+        margin-bottom: 0;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 2rem 0;
+        font-size: 0.82rem;
+        color: var(--muted);
+      }
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      /* reveal on scroll — slight, and off entirely for reduced motion */
+      .rv {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .rv {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .shot img,
+        .more span,
+        nav a::after {
+          transition: none;
+        }
+      }
+
+      @media (max-width: 900px) {
+        nav {
+          display: none;
+        }
+        .hero {
+          padding: 4rem 0 3rem;
+        }
+        .proj {
+          grid-template-columns: 1fr;
+          gap: 1.8rem;
+        }
+        .proj:nth-child(even) .shot {
+          order: 0;
+        }
+        .strip {
+          grid-template-columns: 1fr 1fr;
+        }
+        .strip div {
+          padding-left: 1.2rem;
+        }
+        .strip div:nth-child(2n) {
+          border-right: 0;
+        }
+        .strip div:nth-child(-n + 2) {
+          border-bottom: 1px solid var(--line);
+        }
+        .strip div:nth-child(3) {
+          padding-left: 0;
+        }
+        .svc {
+          grid-template-columns: 1fr;
+        }
+        .shead {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.8rem;
+        }
+        section {
+          padding: 4rem 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <a class="mark" href="#"
+          ><img src="../../../public/img/logo-avatar.jpg" alt="" /><b>asgatcreation</b></a
+        >
+        <nav>
+          <a href="#work">Work</a><a href="#services">Services</a><a href="#">About</a><a href="#">Writing</a
+          ><a href="#contact">Contact</a>
+        </nav>
+        <a class="btn" href="#contact">Start a project</a>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="wrap">
+        <span class="avail"><i></i>Available for freelance, contract &amp; full-time</span>
+        <p class="eyebrow">Code / Build / Impact</p>
+        <h1>I code. I build.<br /><span class="gold-text">I make impact.</span></h1>
+        <p class="lede">
+          Software engineer, data scientist and statistician. I take an idea from the first sketch to
+          something real and running — <b>fintech, edtech, agritech, health, commerce and public data</b>.
+        </p>
+        <div class="cta">
+          <a class="btn solid" href="#work">See the work</a>
+          <a class="btn ghost" href="#">Download CV</a>
+        </div>
+
+        <div class="strip">
+          <div><b>40</b><small>Repositories</small></div>
+          <div><b>12</b><small>Projects</small></div>
+          <div><b>57</b><small>Skills</small></div>
+          <div><b>9</b><small>Sectors</small></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="shead rv">
+          <div>
+            <p class="eyebrow">Selected work</p>
+            <h2>Things I built, and why.</h2>
+          </div>
+          <p>Every project here is real, with its true status shown. No mock clients, no invented numbers.</p>
+        </div>
+
+        <article class="proj rv">
+          <div>
+            <span class="pnum">01</span>
+            <h3>CarHub</h3>
+            <p class="tag">Three products in one.</p>
+            <p class="body">
+              Nigeria's marketplace for verified cars — plus a CAS accessories store and DriverZone, the
+              driver-hire side. One account, one checkout, three businesses.
+            </p>
+            <div class="chips">
+              <span class="chip">Next.js</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span
+              ><span class="chip">Paystack</span>
+            </div>
+            <p><span class="st">Live</span></p>
+            <a class="more" href="#">Read the case study <span>→</span></a>
+          </div>
+          <div class="shot">
+            <div class="inner">
+              <div class="triple">
+                <figure>
+                  <img src="../../../public/img/carhub/01-home.jpg" alt="CarHub home page" />
+                  <figcaption>Marketplace</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../../public/img/carhub/03-car-detail.jpg" alt="A CarHub car listing" />
+                  <figcaption>Listing</figcaption>
+                </figure>
+                <figure>
+                  <img src="../../../public/img/carhub/06-review-and-pay.jpg" alt="CarHub checkout" />
+                  <figcaption>Checkout</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj rv">
+          <div>
+            <span class="pnum">02</span>
+            <h3>FloatBook</h3>
+            <p class="tag">Every naira at the counter, accounted for.</p>
+            <p class="body">
+              Cash float tracking for businesses that still run on physical money. Counts, reconciles and
+              flags the gap before it becomes an argument.
+            </p>
+            <div class="chips">
+              <span class="chip">React</span><span class="chip">Node</span><span class="chip">Brevo</span>
+            </div>
+            <p><span class="st">Live</span></p>
+            <a class="more" href="#">Read the case study <span>→</span></a>
+          </div>
+          <div class="shot">
+            <div class="inner">
+              <img src="../../../public/img/floatbook/02-dashboard.jpg" alt="The FloatBook dashboard" />
+            </div>
+          </div>
+        </article>
+
+        <article class="proj rv">
+          <div>
+            <span class="pnum">03</span>
+            <h3>FinanceFlow</h3>
+            <p class="tag">Your money. All of it. In one place.</p>
+            <p class="body">
+              Accounts, transactions, budgets and reports in a single view, built so the numbers always
+              reconcile — money is stored in kobo, never in floating point.
+            </p>
+            <div class="chips">
+              <span class="chip">React Native</span><span class="chip">TypeScript</span
+              ><span class="chip">Charts</span>
+            </div>
+            <p><span class="st">Live</span></p>
+            <a class="more" href="#">Read the case study <span>→</span></a>
+          </div>
+          <div class="shot">
+            <div class="inner">
+              <img src="../../../public/img/financeflow/04-dashboard.jpg" alt="The FinanceFlow dashboard" />
+            </div>
+          </div>
+        </article>
+
+        <article class="proj rv">
+          <div>
+            <span class="pnum">04</span>
+            <h3>Curavia</h3>
+            <p class="tag">A hospital operating system.</p>
+            <p class="body">
+              Front desk to pharmacy: patients, appointments, records, dispensing and billing, built as one
+              system rather than five that argue with each other.
+            </p>
+            <div class="chips">
+              <span class="chip">TypeScript</span><span class="chip">Prisma</span><span class="chip">Testing</span>
+            </div>
+            <p><span class="st dev">In development</span></p>
+            <a class="more" href="#">Read the case study <span>→</span></a>
+          </div>
+          <div class="shot">
+            <div class="inner soon">
+              <p class="eyebrow">In development</p>
+              <p>No screens to show yet — Curavia is still being built.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="band">
+      <div class="wrap rv">
+        <p class="eyebrow">The short version</p>
+        <p style="margin-top: 1.2rem">
+          I don't only write the code. I work out <b>what should exist</b>, build it, and stay until it
+          actually runs.
+        </p>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="shead rv">
+          <div>
+            <p class="eyebrow">Services</p>
+            <h2>How I can help.</h2>
+          </div>
+          <p>Freelance, contract or full-time. Any size of client, any level of technical experience.</p>
+        </div>
+        <div class="svc rv">
+          <article>
+            <span class="n">01</span>
+            <h3>Product engineering</h3>
+            <p>Web and mobile applications, from an empty folder to something your customers use daily.</p>
+          </article>
+          <article>
+            <span class="n">02</span>
+            <h3>Data &amp; statistics</h3>
+            <p>Analysis that holds up to scrutiny — surveys, econometrics, reporting and the charts to match.</p>
+          </article>
+          <article>
+            <span class="n">03</span>
+            <h3>Payments &amp; fintech</h3>
+            <p>Money handled correctly: reconciliation, provider integration, and no floating-point naira.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="end">
+      <div class="wrap">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's build the thing.</h2>
+        <p>
+          Tell me what you have in mind — an idea on paper, a project that stalled, or a role you are trying
+          to fill. I reply to everything, usually within a working day.
+        </p>
+        <div class="cta">
+          <a class="btn solid" href="#">Send a message</a>
+          <a class="btn ghost" href="#">WhatsApp</a>
+          <a class="btn ghost" href="#">Book a call</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <span>Akanji Oluwaseun Gabriel · asgatcreation</span>
+        <span>Direction I — Obsidian</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var items = document.querySelectorAll('.rv');
+        if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          items.forEach(function (el) {
+            el.classList.add('in');
+          });
+          return;
+        }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -12% 0px' },
+        );
+        items.forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>
