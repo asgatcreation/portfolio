@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Direction F · Studio — Akanji Oluwaseun Gabriel</title>
+    <script>
+      try {
+        var t = localStorage.getItem('theme-f');
+        if (t) document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <style>
+      /* Direction F — Studio. Deep slate, one cool accent, restrained type, no motion. */
+      :root {
+        --bg: #0c0e12;
+        --panel: #14171d;
+        --line: #232833;
+        --ink: #e7eaf0;
+        --muted: #949cab;
+        --accent: #6ea8fe;
+        --accent-soft: #1b2941;
+        color-scheme: dark;
+      }
+      @media (prefers-color-scheme: light) {
+        :root:not([data-theme='dark']) {
+          --bg: #fbfbfc;
+          --panel: #ffffff;
+          --line: #e3e6ec;
+          --ink: #14171d;
+          --muted: #5d6675;
+          --accent: #2563c9;
+          --accent-soft: #e8f0ff;
+          color-scheme: light;
+        }
+      }
+      :root[data-theme='light'] {
+        --bg: #fbfbfc;
+        --panel: #ffffff;
+        --line: #e3e6ec;
+        --ink: #14171d;
+        --muted: #5d6675;
+        --accent: #2563c9;
+        --accent-soft: #e8f0ff;
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          400 1rem/1.65 'Inter',
+          system-ui,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: 68rem;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 3px;
+      }
+
+      header.top {
+        border-bottom: 1px solid var(--line);
+        position: sticky;
+        top: 0;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(8px);
+        z-index: 5;
+      }
+      .top .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 4rem;
+        gap: 1rem;
+      }
+      .brand {
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .brand i {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background: var(--accent);
+        display: block;
+      }
+      nav {
+        display: flex;
+        gap: 1.6rem;
+        font-size: 0.925rem;
+        color: var(--muted);
+      }
+      nav a:hover {
+        color: var(--ink);
+      }
+      .tbtn {
+        font: inherit;
+        font-size: 0.85rem;
+        background: none;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        border-radius: 7px;
+        padding: 0.35rem 0.7rem;
+        cursor: pointer;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 6rem 0 4.5rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .avail {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.35rem 0.85rem;
+        margin-bottom: 2rem;
+      }
+      .avail i {
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background: #41c98a;
+        display: block;
+      }
+      h1 {
+        font-size: clamp(2rem, 4.4vw, 3.1rem);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+        font-weight: 600;
+        margin: 0 0 1.25rem;
+        max-width: 22ch;
+      }
+      h1 span {
+        color: var(--muted);
+      }
+      .lede {
+        font-size: 1.1rem;
+        color: var(--muted);
+        max-width: 46ch;
+        margin: 0 0 2.25rem;
+      }
+      .cta {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        font-size: 0.95rem;
+        font-weight: 500;
+        padding: 0.7rem 1.2rem;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        display: inline-block;
+      }
+      .btn.pri {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      :root[data-theme='light'] .btn.pri {
+        color: #fff;
+      }
+
+      /* Stats */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-bottom: 1px solid var(--line);
+      }
+      .stats div {
+        padding: 2rem 0;
+      }
+      .stats b {
+        display: block;
+        font-size: 1.9rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .stats small {
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      /* Sections */
+      section {
+        padding: 4.5rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .lbl {
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 600;
+        margin: 0 0 0.75rem;
+      }
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin: 0 0 2.25rem;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+      .card:hover {
+        border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+      }
+      .card .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .card h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin: 0;
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+      .tags {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin-top: 0.25rem;
+      }
+      .tag {
+        font-size: 0.75rem;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 0.12rem 0.45rem;
+      }
+      .pill {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.18rem 0.5rem;
+        border-radius: 5px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        white-space: nowrap;
+      }
+      .pill.dev {
+        background: color-mix(in srgb, #e0a33a 18%, transparent);
+        color: #e0a33a;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .skills span {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: 7px;
+        padding: 0.45rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      footer {
+        padding: 3rem 0 4rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 760px) {
+        .cards,
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        nav {
+          display: none;
+        }
+        .hero {
+          padding: 3.5rem 0 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap">
+        <span class="brand"><i></i>asgatcreation</span>
+        <nav>
+          <a href="#work">Work</a><a href="#skills">Skills</a><a href="#">About</a><a href="#">Writing</a
+          ><a href="#">Contact</a>
+        </nav>
+        <button class="tbtn" id="tog" type="button">Light</button>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="hero">
+        <span class="avail"><i></i>Available for freelance, contract &amp; full-time</span>
+        <h1>I code. I build. <span>I make impact.</span></h1>
+        <p class="lede">
+          Software engineer, data scientist and statistician. I design and build for every industry — from
+          the first idea to launch.
+        </p>
+        <div class="cta">
+          <a class="btn pri" href="#work">See the work</a>
+          <a class="btn" href="#">Download CV</a>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div><b>40</b><small>public repositories</small></div>
+        <div><b>12</b><small>projects documented</small></div>
+        <div><b>57</b><small>skills listed</small></div>
+        <div><b>9</b><small>sectors worked in</small></div>
+      </div>
+
+      <section id="work">
+        <p class="lbl">Selected work</p>
+        <h2>Twelve projects, each with the real story behind it.</h2>
+        <div class="cards">
+          <a class="card" href="#"
+            ><div class="row">
+              <h3>CarHub</h3>
+              <span class="pill">Live</span>
+            </div>
+            <p>Nigeria's marketplace for verified cars: three products in one.</p>
+            <div class="tags">
+              <span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Paystack</span>
+            </div></a
+          >
+          <a class="card" href="#"
+            ><div class="row">
+              <h3>FloatBook</h3>
+              <span class="pill">Live</span>
+            </div>
+            <p>Every naira at the counter, accounted for.</p>
+            <div class="tags">
+              <span class="tag">React</span><span class="tag">Node</span><span class="tag">Brevo</span>
+            </div></a
+          >
+          <a class="card" href="#"
+            ><div class="row">
+              <h3>Curavia</h3>
+              <span class="pill dev">In development</span>
+            </div>
+            <p>A hospital operating system, from front desk to pharmacy.</p>
+            <div class="tags">
+              <span class="tag">TypeScript</span><span class="tag">Prisma</span><span class="tag">Testing</span>
+            </div></a
+          >
+          <a class="card" href="#"
+            ><div class="row">
+              <h3>naija-data</h3>
+              <span class="pill">Live</span>
+            </div>
+            <p>Sourced Nigerian reference data, in three languages.</p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">Open data</span><span class="tag">npm</span>
+            </div></a
+          >
+        </div>
+      </section>
+
+      <section id="skills">
+        <p class="lbl">What I work with</p>
+        <h2>Tools chosen for the job, not for the CV.</h2>
+        <div class="skills">
+          <span>TypeScript</span><span>Python</span><span>React</span><span>Next.js</span><span>Astro</span
+          ><span>Node.js</span><span>PostgreSQL</span><span>Prisma</span><span>R</span><span>Stata</span
+          ><span>pandas</span><span>scikit-learn</span><span>Docker</span><span>Git</span>
+        </div>
+      </section>
+
+      <footer>
+        <span>Akanji Oluwaseun Gabriel · asgatcreation</span>
+        <span>Direction F — Studio</span>
+      </footer>
+    </div>
+
+    <script>
+      var b = document.getElementById('tog');
+      function dark() {
+        var d = document.documentElement.dataset.theme;
+        if (d) return d === 'dark';
+        return !window.matchMedia('(prefers-color-scheme: light)').matches;
+      }
+      function paint() {
+        b.textContent = dark() ? 'Light' : 'Dark';
+      }
+      b.addEventListener('click', function () {
+        var next = dark() ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        try {
+          localStorage.setItem('theme-f', next);
+        } catch (e) {}
+        paint();
+      });
+      paint();
+    </script>
+  </body>
+</html>

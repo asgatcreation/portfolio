@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Direction H · Desk — Akanji Oluwaseun Gabriel</title>
+    <script>
+      try {
+        var t = localStorage.getItem('theme-h');
+        if (t) document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    />
+    <style>
+      /* Direction H — Desk. The data-scientist side: tabular, monospace metadata, real numbers. */
+      :root {
+        --bg: #f4f6f8;
+        --panel: #ffffff;
+        --ink: #11161c;
+        --muted: #5f6b78;
+        --line: #dde3ea;
+        --accent: #0f6f5c;
+        --accent-soft: #e2f1ed;
+        --warn: #9a6400;
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #0e1317;
+          --panel: #151c22;
+          --ink: #e6ecf2;
+          --muted: #93a1af;
+          --line: #232d36;
+          --accent: #4fc0a4;
+          --accent-soft: #10302a;
+          --warn: #d8a443;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme='dark'] {
+        --bg: #0e1317;
+        --panel: #151c22;
+        --ink: #e6ecf2;
+        --muted: #93a1af;
+        --line: #232d36;
+        --accent: #4fc0a4;
+        --accent-soft: #10302a;
+        --warn: #d8a443;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          400 0.97rem/1.6 'IBM Plex Sans',
+          system-ui,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .mono {
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      }
+      .wrap {
+        max-width: 70rem;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      header {
+        background: var(--panel);
+        border-bottom: 1px solid var(--line);
+      }
+      header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 3.5rem;
+        gap: 1rem;
+      }
+      .brand {
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: -0.01em;
+      }
+      .brand span {
+        color: var(--accent);
+      }
+      nav {
+        display: flex;
+        gap: 1.4rem;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+      nav a:hover {
+        color: var(--ink);
+      }
+      .tbtn {
+        font: inherit;
+        font-size: 0.78rem;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        color: var(--muted);
+        border-radius: 6px;
+        padding: 0.3rem 0.65rem;
+        cursor: pointer;
+      }
+
+      .hero {
+        padding: 3.5rem 0 2.5rem;
+      }
+      .kv {
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 600;
+        margin: 0 0 0.9rem;
+      }
+      h1 {
+        font-size: clamp(1.85rem, 3.6vw, 2.6rem);
+        line-height: 1.18;
+        letter-spacing: -0.025em;
+        font-weight: 600;
+        margin: 0 0 1rem;
+        max-width: 24ch;
+      }
+      .lede {
+        color: var(--muted);
+        max-width: 54ch;
+        margin: 0 0 1.75rem;
+      }
+      .cta {
+        display: flex;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0.58rem 1.05rem;
+        border-radius: 6px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+      .btn.pri {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      /* A real panel of figures, the way a report would show them. */
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+      .panel > h2 {
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        margin: 0;
+        padding: 0.7rem 1.1rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .figs {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .figs div {
+        padding: 1.1rem;
+        border-right: 1px solid var(--line);
+      }
+      .figs div:last-child {
+        border-right: 0;
+      }
+      .figs b {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+      }
+      .figs small {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.72rem 1.1rem;
+        border-bottom: 1px solid var(--line);
+      }
+      th {
+        font-size: 0.72rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      tbody tr:last-child td {
+        border-bottom: 0;
+      }
+      tbody tr:hover {
+        background: var(--bg);
+      }
+      td.name {
+        font-weight: 600;
+      }
+      td.name small {
+        display: block;
+        font-weight: 400;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+      .st {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.15rem 0.45rem;
+        border-radius: 4px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        white-space: nowrap;
+      }
+      .st.dev {
+        background: color-mix(in srgb, var(--warn) 16%, transparent);
+        color: var(--warn);
+      }
+      .bar {
+        height: 6px;
+        border-radius: 3px;
+        background: var(--line);
+        position: relative;
+        min-width: 70px;
+      }
+      .bar i {
+        position: absolute;
+        inset: 0 auto 0 0;
+        border-radius: 3px;
+        background: var(--accent);
+        display: block;
+      }
+
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+      }
+      .skill {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.4rem 1.1rem;
+      }
+      .skill span {
+        flex: 1;
+      }
+      .skill em {
+        font-style: normal;
+        font-size: 0.8rem;
+        color: var(--muted);
+        text-align: right;
+      }
+      .note {
+        margin: 0;
+        padding: 0.6rem 1.1rem 0.8rem;
+        font-size: 0.75rem;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+      }
+
+      footer {
+        padding: 2.5rem 0 3.5rem;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 820px) {
+        nav {
+          display: none;
+        }
+        .figs {
+          grid-template-columns: 1fr 1fr;
+        }
+        .figs div:nth-child(2) {
+          border-right: 0;
+        }
+        .figs div:nth-child(1),
+        .figs div:nth-child(2) {
+          border-bottom: 1px solid var(--line);
+        }
+        .two {
+          grid-template-columns: 1fr;
+        }
+        .hide-s {
+          display: none;
+        }
+        th,
+        td {
+          padding: 0.6rem 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <span class="brand">asgat<span>creation</span></span>
+        <nav>
+          <a href="#work">Work</a><a href="#skills">Skills</a><a href="#">Research</a><a href="#">About</a
+          ><a href="#">Contact</a>
+        </nav>
+        <button class="tbtn" id="tog" type="button">Dark</button>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="hero">
+        <p class="kv mono">Available · Freelance, contract &amp; full-time</p>
+        <h1>I code. I build. I make impact.</h1>
+        <p class="lede">
+          Software engineer, data scientist and statistician. I build products that ship and analysis that
+          holds up — across fintech, edtech, agritech, health and public data.
+        </p>
+        <div class="cta">
+          <a class="btn pri" href="#work">See the work</a><a class="btn" href="#">Download CV</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>At a glance</h2>
+        <div class="figs">
+          <div><b>40</b><small>public repositories</small></div>
+          <div><b>12</b><small>projects documented</small></div>
+          <div><b>57</b><small>skills listed</small></div>
+          <div><b>9</b><small>sectors worked in</small></div>
+        </div>
+      </div>
+
+      <div class="panel" id="work">
+        <h2>Selected work</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th class="hide-s">Stack</th>
+              <th class="hide-s">Complexity<sup>†</sup></th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">CarHub<small>Verified cars, three products in one.</small></td>
+              <td class="mono hide-s">Next.js · PostgreSQL</td>
+              <td class="hide-s"><span class="bar"><i style="width: 90%"></i></span></td>
+              <td><span class="st">Live</span></td>
+            </tr>
+            <tr>
+              <td class="name">FloatBook<small>Every naira at the counter, accounted for.</small></td>
+              <td class="mono hide-s">React · Node</td>
+              <td class="hide-s"><span class="bar"><i style="width: 70%"></i></span></td>
+              <td><span class="st">Live</span></td>
+            </tr>
+            <tr>
+              <td class="name">Curavia<small>A hospital operating system.</small></td>
+              <td class="mono hide-s">TypeScript · Prisma</td>
+              <td class="hide-s"><span class="bar"><i style="width: 85%"></i></span></td>
+              <td><span class="st dev">In dev</span></td>
+            </tr>
+            <tr>
+              <td class="name">naija-data<small>Nigerian reference data, three languages.</small></td>
+              <td class="mono hide-s">Python · npm</td>
+              <td class="hide-s"><span class="bar"><i style="width: 55%"></i></span></td>
+              <td><span class="st">Live</span></td>
+            </tr>
+            <tr>
+              <td class="name">Nigeria Economic Intelligence<small>The economy, 1991–2025.</small></td>
+              <td class="mono hide-s">R · Stata</td>
+              <td class="hide-s"><span class="bar"><i style="width: 65%"></i></span></td>
+              <td><span class="st dev">Report</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note mono">† Self-assessed, and labelled that way wherever it appears.</p>
+      </div>
+
+      <div class="two" id="skills">
+        <div class="panel">
+          <h2>Engineering</h2>
+          <div class="skill"><span>TypeScript</span><em class="mono">CarHub · Curavia</em></div>
+          <div class="skill"><span>React / Next.js</span><em class="mono">CarHub · FloatBook</em></div>
+          <div class="skill"><span>Node.js</span><em class="mono">FloatBook · naija-pay</em></div>
+          <div class="skill"><span>PostgreSQL</span><em class="mono">CarHub · Curavia</em></div>
+        </div>
+        <div class="panel">
+          <h2>Data &amp; statistics</h2>
+          <div class="skill"><span>Python</span><em class="mono">naija-data · NEI</em></div>
+          <div class="skill"><span>R</span><em class="mono">NEI</em></div>
+          <div class="skill"><span>Stata</span><em class="mono">NEI · dissertations</em></div>
+          <div class="skill"><span>scikit-learn</span><em class="mono">NEI</em></div>
+        </div>
+      </div>
+
+      <footer>Akanji Oluwaseun Gabriel · asgatcreation · Direction H — Desk</footer>
+    </div>
+
+    <script>
+      var b = document.getElementById('tog');
+      function dark() {
+        var d = document.documentElement.dataset.theme;
+        if (d) return d === 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function paint() {
+        b.textContent = dark() ? 'Light' : 'Dark';
+      }
+      b.addEventListener('click', function () {
+        var next = dark() ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        try {
+          localStorage.setItem('theme-h', next);
+        } catch (e) {}
+        paint();
+      });
+      paint();
+    </script>
+  </body>
+</html>
