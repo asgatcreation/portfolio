@@ -57,15 +57,6 @@
     setTimeout(ready, 2500);
   }
 
-  /* ---------- Cursor ---------- */
-  if (fine && !reduce) {
-    var ring = $('.cursor'), dot = $('.cursor-dot'), mx = -100, my = -100, rx = -100, ry = -100;
-    addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; document.body.classList.add('has-cursor'); dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)'; }, { passive: true });
-    document.addEventListener('mouseleave', function () { document.body.classList.remove('has-cursor'); });
-    (function follow() { rx += (mx - rx) * .18; ry += (my - ry) * .18; ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)'; requestAnimationFrame(follow); })();
-    document.addEventListener('mouseover', function (e) { ring.classList.toggle('hover', !!e.target.closest('a, button, input, textarea, label, summary')); });
-  }
-
   /* ---------- Nav, progress, back to top, menu, scroll spy ---------- */
   var nav = $('[data-nav]'), prog = $('[data-scroll-progress]'), topBtn = $('[data-totop]'), topRing = $('[data-totop-ring]');
   var cards = [];
@@ -731,8 +722,7 @@
     P.map(function (p) { return { g: 'Projects', t: p.title, s: p.statusLabel + ' · ' + p.categories.join(', '), i: p.title[0], run: function () { location.hash = '#project/' + p.id; } }; }),
     SECTIONS.map(function (s) { return { g: 'Go to', t: s[0], s: 'Section', i: s[2], run: function () { $(s[1]).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); } }; }),
     PAGES.map(function (pg) { return { g: 'Pages', t: pg[0], s: pg[1], i: pg[2], run: function () { location.href = pg[1]; } }; }),
-    [{ g: 'Actions', t: 'Switch light / dark theme', s: 'Theme', i: '◐', run: function () { $('[data-theme-toggle]').click(); } },
-     { g: 'Actions', t: 'Copy my email address', s: 'asgatcreation@gmail.com', i: '@', run: function () { copy('asgatcreation@gmail.com', 'Email copied'); } },
+    [{ g: 'Actions', t: 'Copy my email address', s: 'asgatcreation@gmail.com', i: '@', run: function () { copy('asgatcreation@gmail.com', 'Email copied'); } },
      { g: 'Actions', t: 'Download my CV', s: 'General · Software engineer · Data scientist · Statistician', i: '⇩', run: function () { $('#about').scrollIntoView(); setTimeout(function () { cvOpen(true); }, 400); } },
      { g: 'Actions', t: 'Open GitHub profile', s: 'github.com/asgatcreation', i: '↗', run: function () { open('https://github.com/asgatcreation', '_blank', 'noopener'); } }]
   );
