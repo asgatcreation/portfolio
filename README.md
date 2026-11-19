@@ -29,13 +29,15 @@ npm run preview   # serve the built site from dist/
 | `src/scripts/app.js`                           | Home-page interactions (showcase, filters, project pop-up, search, forms).           |
 | `src/scripts/site.js`                          | Interactions on inner pages (menu, search palette, gallery lightbox).                |
 | `src/scripts/lab.js`                           | The three tools on /lab/.                                                            |
-| `functions/api/contact.js`                     | The contact endpoint that sends the forms (Cloudflare Pages Function).               |
-| `tests/`                                       | Tests for the contact function.                                                      |
+| `lib/contact.mjs`                              | The contact form's logic, shared by every host. No dependencies.                     |
+| `api/contact.js`                               | The contact endpoint on Vercel. A thin wrapper around `lib/contact.mjs`.             |
+| `functions/api/contact.js`                     | The same endpoint for Cloudflare Pages, kept so the site can move back.              |
+| `tests/`                                       | Tests for the contact logic and both host wrappers.                                  |
 | `src/styles/global.css`                        | Design tokens and all styles.                                                        |
 | `public/img`, `public/cv`                      | Screenshots, portrait, logo and the five CV PDFs.                                    |
 | `design/mockups/`                              | The design mockups from milestone 2 (not part of the site).                          |
 | `docs/`                                        | Research, progress log and architecture decision records.                            |
-| `docs/DEPLOY.md`                               | Step-by-step: putting the site live on Cloudflare, and the contact form keys.        |
+| `docs/DEPLOY.md`                               | Step-by-step: putting the site live on Vercel, and the contact form keys.            |
 
 ## Updating a project
 

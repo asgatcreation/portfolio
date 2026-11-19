@@ -2,7 +2,9 @@
 // because fetch is replaced with a stub that records what the function tried to send.
 import assert from 'node:assert/strict';
 import test, { afterEach, beforeEach } from 'node:test';
-import { onRequest, onRequestPost, readForm } from '../functions/api/contact.js';
+import { readForm } from '../lib/contact.mjs';
+import { onRequest, onRequestPost } from '../functions/api/contact.js';
+import { GET as vercelGet, POST as vercelPost } from '../api/contact.js';
 
 const realFetch = globalThis.fetch;
 let calls = [];
@@ -164,4 +166,41 @@ test('a failure at Brevo is reported, not swallowed', async () => {
 test('anything that is not a POST gets 405', async () => {
   const res = onRequest();
   assert.equal(res.status, 405);
+});
+
+// The Vercel handler is the same logic behind a different door, so it gets the same checks.
+
+const vercelRequest = (body, headers = {}) =>
+  new Request('https://example.com/api/contact', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...headers },
+    body: typeof body === 'string' ? body : JSON.stringify(body),
+  });
+
+test('the Vercel handler sends a good message and reads its settings from process.env', async () => {
+  const saved = { ...process.env };
+  Object.assign(process.env, ENV, { CONTACT_AUTOREPLY: 'off' });
+  try {
+    const res = await vercelPost(vercelRequest(good, { 'x-forwarded-for': '203.0.113.9, 70.41.3.18' }));
+    assert.equal(res.status, 200);
+    assert.equal(calls.length, 1);
+    const sent = JSON.parse(calls[0].init.body);
+    assert.equal(sent.to[0].email, 'owner@example.com');
+    assert.equal(sent.replyTo.email, 'ada@example.com');
+  } finally {
+    process.env = saved;
+  }
+});
+
+test('the Vercel handler refuses bad input and answers 405 to a GET', async () => {
+  const saved = { ...process.env };
+  Object.assign(process.env, ENV);
+  try {
+    assert.equal((await vercelPost(vercelRequest('{not json'))).status, 400);
+    assert.equal((await vercelPost(vercelRequest({ ...good, email: 'nope' }))).status, 400);
+    assert.equal(calls.length, 0);
+    assert.equal(vercelGet().status, 405);
+  } finally {
+    process.env = saved;
+  }
 });

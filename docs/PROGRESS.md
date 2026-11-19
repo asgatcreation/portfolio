@@ -1,6 +1,6 @@
 # Progress
 
-Where the portfolio stands, newest milestone first. Updated 17 November 2026.
+Where the portfolio stands, newest first. Updated 19 November 2026.
 
 | Milestone | What it covers                                                                   | Status                  |
 | --------- | -------------------------------------------------------------------------------- | ----------------------- |
@@ -17,6 +17,40 @@ Where the portfolio stands, newest milestone first. Updated 17 November 2026.
 | 11        | Checks in CI: Lighthouse budgets, browser tests, spelling                        | Not started             |
 | 12        | Accessibility and performance pass on real devices                               | Not started             |
 | 13        | Domain, deploy and launch                                                        | Not started             |
+
+---
+
+## Hosting changed to Vercel (19 November 2026)
+
+The first deploy went out on Cloudflare as a **Worker** rather than a **Pages** project, because that is
+what the current Cloudflare dashboard steers you to. Two things went wrong:
+
+- the address came out as `asgatcreation.asgatcreation.workers.dev` (Workers name a site
+  `<project>.<account>.workers.dev`, which doubles up when both are `asgatcreation`);
+- a Worker does not read the `functions/` folder, so `/api/contact` answered **404** on the live site and
+  the contact form quietly fell back to opening the visitor's mail app.
+
+Asked where he would rather be, the owner chose **Vercel**. So:
+
+- the contact logic moved to `lib/contact.mjs` — plain JavaScript, no dependencies, and no host-specific
+  types in its signature;
+- `api/contact.js` (Vercel) and `functions/api/contact.js` (Cloudflare Pages) are now thin wrappers of
+  about thirty lines each. Cloudflare's was kept, not deleted, so moving back costs nothing;
+- the tests grew from 15 to 17: the shared logic is checked once, then each wrapper end to end;
+- `docs/DEPLOY.md` was rewritten for Vercel. It is shorter — Vercel detects Astro and needs no build
+  settings at all;
+- written up in [ADR 0008](adr/0008-host-on-vercel.md), which supersedes [ADR 0002](adr/0002-cloudflare-pages-hosting.md).
+
+**Checked:** `npm run verify` clean — 17 tests passing, 23 pages built, no placeholders.
+**Not yet proved:** the live deploy on Vercel. That is part 1 of [DEPLOY.md](DEPLOY.md), and it is yours
+to click.
+
+## The visual design is being redone (19 November 2026)
+
+Seeing the site live, the owner rejected the current look — the colours, the amount of motion, the
+typography, and the direction as a whole. Milestone 2's approved direction (E Portfolio) is therefore no
+longer approved, and new directions are being built for him to choose from. The content, the data, the
+build and the contact form are all unaffected: this is the look, not the substance.
 
 ---
 
@@ -52,16 +86,25 @@ Deployment and the keys, written out click by click in [DEPLOY.md](DEPLOY.md): a
 project (15 minutes), then Brevo and Turnstile accounts and five variables (20 minutes). All of it is
 free, and every key stays in your own accounts.
 
------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `/about/` | The long version: portrait, the two working lives, full experience, education, certificates, CV downloads |
-| `/services/` | The eight kinds of work, with what each one actually includes; ways to work together; how a project runs; six common questions |
-| `/now/` | What is in progress this month, what is simply running, and that I am open to work. Dated, and kept by hand |
-| `/writing/` | AsgatArticles: the six articles being written, by topic. Honest that none is published yet |
-| `/cv/` | The CV as a web page — profile, key skills, experience, education, selected projects — plus the five PDFs |
-| `/research/` | The economic findings with charts, the naija-data datasets, the national surveys, and the two dissertations |
-| `/lab/` | Three small tools that run in the page: a NUBAN account checker, a float-versus-kobo demonstration, and a Brownian-motion canvas |
-| `/uses/` | 43 tools in eight groups, each with the project that uses it, and how they are chosen |
-| `/privacy/` | A plain account: no cookies, no analytics, what the three outside requests are, and what the forms do |
+---
+
+## Milestone 4 — the nine standing pages (done, 17 November 2026)
+
+Everything the home page summarises now has a full page behind it.
+
+**What was built**
+
+| Page         | What is on it                                                                                                                    |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| `/about/`    | The long version: portrait, the two working lives, full experience, education, certificates, CV downloads                        |
+| `/services/` | The eight kinds of work, with what each one actually includes; ways to work together; how a project runs; six common questions   |
+| `/now/`      | What is in progress this month, what is simply running, and that I am open to work. Dated, and kept by hand                      |
+| `/writing/`  | AsgatArticles: the six articles being written, by topic. Honest that none is published yet                                       |
+| `/cv/`       | The CV as a web page — profile, key skills, experience, education, selected projects — plus the five PDFs                        |
+| `/research/` | The economic findings with charts, the naija-data datasets, the national surveys, and the two dissertations                      |
+| `/lab/`      | Three small tools that run in the page: a NUBAN account checker, a float-versus-kobo demonstration, and a Brownian-motion canvas |
+| `/uses/`     | 43 tools in eight groups, each with the project that uses it, and how they are chosen                                            |
+| `/privacy/`  | A plain account: no cookies, no analytics, what the three outside requests are, and what the forms do                            |
 
 **Also in this milestone**
 
