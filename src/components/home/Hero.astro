@@ -1,21 +1,30 @@
+---
+// The hero of a portfolio, not of a product. The work is visible before the visitor scrolls:
+// the right-hand side is a real screenshot of a real, live project, in a real browser frame.
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects', (p) => !p.data.draft);
+const lead = projects.find((p) => p.id === 'carhub');
+if (!lead) throw new Error('Hero needs the CarHub project; it is missing from src/content/projects.');
+const cover = lead.data.cover;
+if (!cover) throw new Error('Hero needs CarHub to have a cover image.');
+// shots are [src, alt] pairs
+const coverAlt = lead.data.shots.find(([src]) => src === cover)?.[1] ?? `A screen from ${lead.data.title}`;
+---
+
 <!-- HERO -->
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="blob a" aria-hidden="true"></div>
   <div class="blob b" aria-hidden="true"></div>
   <div class="wrap">
-    <div>
-      <span class="pill">
-        <span class="dot" aria-hidden="true"></span>Available for freelance, contract &amp; full-time work
-      </span>
-      <p class="hello">
-        Hi, I’m <b>Akanji Oluwaseun Gabriel</b>, software engineer, data scientist &amp; statistician.
+    <div class="hero-text">
+      <p class="eyebrow-name">
+        Akanji Oluwaseun Gabriel <span aria-hidden="true">—</span>
+        <span class="sr">,</span> Software engineer, data scientist &amp; statistician
       </p>
       <h1 id="hero-title">
         <span class="line">
-          <span>I code.</span>
-        </span>
-        <span class="line">
-          <span>I build.</span>
+          <span>I code. I build.</span>
         </span>
         <span class="line">
           <span>
@@ -24,21 +33,12 @@
         </span>
       </h1>
       <p class="typed">
-        I design and build <b>web platforms, mobile apps and data systems</b> for every industry, from the first idea to
-        launch day.
+        I build products that ship and analysis that holds up — across fintech, edtech, agritech, health, commerce and
+        public data.
       </p>
-      <ul class="industries" aria-label="Industries I build for">
-        <li>Fintech</li>
-        <li>EdTech</li>
-        <li>AgriTech</li>
-        <li>HealthTech</li>
-        <li>E-commerce</li>
-        <li>GovTech &amp; data</li>
-        <li>Logistics</li>
-      </ul>
       <div class="ctas">
         <a class="btn gold magnetic" href="#work">
-          See my work{' '}
+          See the work{' '}
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -55,6 +55,9 @@
           Book a call
         </a>
       </div>
+      <p class="avail-line">
+        <span class="dot" aria-hidden="true"></span>Available for freelance, contract &amp; full-time
+      </p>
       <div class="socials">
         <span>Find me</span>
         <a
@@ -85,31 +88,21 @@
       </div>
     </div>
 
-    <div class="orbit" data-parallax aria-hidden="true">
-      <div class="ring"></div>
-      <div class="ring r2"></div>
-      <div class="core">
-        <img src="/img/logo-avatar.jpg" alt="" width="460" height="460" />
+    <a class="hero-shot" href="#work" aria-label={`Featured project: ${lead.data.title}`}>
+      <div class="chrome">
+        <span class="dots" aria-hidden="true">
+          <i></i>
+          <i></i>
+          <i></i>
+        </span>
+        <span class="url">{lead.data.demo?.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>
       </div>
-      <div class="chipfloat c1">
-        <i></i>Fintech
-      </div>
-      <div class="chipfloat c2">
-        <i></i>EdTech
-      </div>
-      <div class="chipfloat c3">
-        <i></i>AgriTech
-      </div>
-      <div class="chipfloat c4">
-        <i></i>HealthTech
-      </div>
-      <div class="chipfloat c5">
-        <i></i>E-commerce
-      </div>
-      <div class="chipfloat c6">
-        <i></i>Data &amp; AI
-      </div>
-    </div>
+      <img src={cover} alt={coverAlt} width="1280" height="800" loading="eager" />
+      <span class="shot-tag">
+        <b>{lead.data.title}</b>
+        <em>{lead.data.tagline}</em>
+      </span>
+    </a>
   </div>
   <a class="scroll-hint" href="#about" aria-label="Scroll to About">
     <i></i>Scroll
