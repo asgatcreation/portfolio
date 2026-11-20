@@ -40,7 +40,7 @@
     ["financeflow/14-mobile-dashboard.jpg", "Dashboard on a phone"]
   ],
   "industry": "Personal finance",
-  "why": "Managing money across several currencies usually means converting everything by hand. I built FinanceFlow so naira, dollars and euros each stay in their own currency, with budgets, charts and reports that never blend them.",
+  "why": "Most budgeting apps convert everything into one currency and call it done. I built FinanceFlow so naira, dollars and euros each stay in their own currency end to end — budgets, charts and reports included — because a converted total hides what was really spent.",
   "hard": [
     [
       "Never mixing currencies",

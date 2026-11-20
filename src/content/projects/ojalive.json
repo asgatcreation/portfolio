@@ -23,7 +23,7 @@
   ],
   "shots": [],
   "industry": "E-commerce · Real-time",
-  "why": "When two bids land in the same millisecond, a live auction must still pick the same winner at the same price every time. Ojà Live is built to prove that under load, races and failures.",
+  "why": "Auctions are where correctness gets expensive: get it wrong and somebody loses money in public. I am building Ojà Live to hold up under load, races and failures — the same sequence of bids must always produce the same winner at the same price.",
   "hard": [
     ["Order-independent bidding", "Bid logic runs in Redis Lua scripts and is checked with property-based tests."],
     ["Proof, not promises", "Load, race and chaos test results are planned for milestones 10 and 11."]

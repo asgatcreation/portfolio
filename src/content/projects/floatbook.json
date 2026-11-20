@@ -46,7 +46,7 @@
     ["floatbook/03-float.jpg", "Cash and wallet float at every outlet"]
   ],
   "industry": "Fintech · Agent banking",
-  "why": "POS owners run their shops from a notebook and a WhatsApp group: cash goes missing, failed transactions are forgotten, and the owner can’t see today’s profit without being there. FloatBook gives them a proper back office that works on a cheap phone, even offline.",
+  "why": "I wanted to build the unglamorous back office a cash business actually depends on, for the devices its owners actually use. FloatBook had to hold up on a cheap phone with patchy signal — offline included — rather than assume a laptop and good broadband.",
   "hard": [
     [
       "A ledger that always balances",

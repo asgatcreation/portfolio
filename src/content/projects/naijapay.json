@@ -25,7 +25,7 @@
   ],
   "shots": [],
   "industry": "Fintech · Developer tools",
-  "why": "Every Nigerian payment provider has a different API, and floating-point money quietly loses kobo. naija-pay gives one typed interface for collections, virtual accounts, split payments, payouts and webhooks.",
+  "why": "One typed interface across collections, virtual accounts, split payments, payouts and webhooks, with money held in kobo as whole numbers so rounding can never quietly lose it. The point is to write the integration once and reuse it, instead of rebuilding the same glue for every provider.",
   "hard": [
     ["Whole kobo only", "naira(5_000) is 500000 kobo: integers everywhere, never floats."],
     ["Webhook signature checks", "Every provider’s webhook is verified before it is trusted."],

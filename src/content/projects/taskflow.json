@@ -12,7 +12,7 @@
   "facts": [],
   "demo": "https://django-todo-app-8dio.onrender.com",
   "code": "https://github.com/asgatcreation/taskflow-app",
-  "problem": "A simple product done properly: user isolation, deadlines, priorities and a real production deployment.",
+  "problem": "Most to-do demos stop at the happy path: no real accounts, no deadline handling, and nothing that survives a deployment.",
   "note": "Free hosting: the first load can take about 30 seconds.",
   "cover": "/img/taskflow/dashboard.jpg",
   "features": [

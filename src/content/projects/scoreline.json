@@ -13,7 +13,7 @@
   "facts": [],
   "code": "https://github.com/asgatcreation/scoreline",
   "problem": "Fans want the goal on their screen the second it happens, not after a refresh.",
-  "why": "To build a live, push-first product where many viewers watch the same changing data at once.",
+  "why": "Live scores are a hard problem dressed as an easy one: many people watching the same data at once, all expecting it to change under them without a refresh. I am building Scoreline to get that push path right, with timelines, line-ups and tables all updating in place.",
   "note": "In development; the demo is coming.",
   "art": ["2 – 1", "LIVE SCORES"],
   "features": ["Live match timelines", "Line-ups and tables", "Updates pushed over WebSockets"],

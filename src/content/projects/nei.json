@@ -16,7 +16,7 @@
     ["35", "years covered"]
   ],
   "code": "https://github.com/asgatcreation/nigeria-economic-intelligence",
-  "problem": "Economic figures for Nigeria are scattered across sources. This brings them together in one reproducible place.",
+  "problem": "Economic figures for Nigeria are scattered across sources.",
   "note": "",
   "art": ["1991 → 2025", "898 OBSERVATIONS · 25 INDICATORS"],
   "features": [
@@ -26,7 +26,7 @@
   ],
   "shots": [],
   "industry": "Economics · Public policy",
-  "why": "Economic figures for Nigeria are scattered across sources. I brought them together through validated, tracked imports with a full revision history, so the evidence for policy can be checked and rerun.",
+  "why": "I wanted the evidence behind a policy claim to be checkable by someone who has no reason to trust me. Every figure arrives through a validated, tracked import with a full revision history, so the analysis can be rerun and each number traced back to its source.",
   "hard": [
     ["Validated, tracked imports", "Every load is checked and recorded with a revision history."],
     ["National and state level", "All 36 states plus the FCT, side by side."],
