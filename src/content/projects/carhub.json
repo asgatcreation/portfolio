@@ -13,8 +13,7 @@
   "facts": [
     ["146", "automated tests"],
     ["3", "products in one"],
-    ["5", "demo roles"],
-    ["2", "Python versions in CI"]
+    ["5", "demo roles"]
   ],
   "demo": "https://carhub-es73.onrender.com/",
   "code": "https://github.com/asgatcreation/carhub",

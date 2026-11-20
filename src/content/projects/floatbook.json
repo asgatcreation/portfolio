@@ -24,8 +24,7 @@
   "facts": [
     ["4", "demo roles"],
     ["72h", "target per reversal case"],
-    ["L7", "Larastan level"],
-    ["1", "Docker container"]
+    ["L7", "Larastan level"]
   ],
   "demo": "https://floatbook.onrender.com",
   "problem": "POS owners run their business from a notebook and WhatsApp messages. Cash goes missing, failed transactions are forgotten, and the owner can’t see today’s profit without being there.",

@@ -12,9 +12,7 @@
   "stack": ["Django 5", "Python 3.12", "PostgreSQL (Supabase)", "Google OAuth", "Chart.js", "Render"],
   "facts": [
     ["20", "currencies seeded"],
-    ["5", "currencies per user"],
-    ["4", "interactive charts"],
-    ["15", "starter categories"]
+    ["4", "interactive charts"]
   ],
   "demo": "https://financeflow-app-uuu8.onrender.com",
   "code": "https://github.com/asgatcreation/financeflow",
