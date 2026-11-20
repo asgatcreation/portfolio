@@ -45,12 +45,43 @@ Asked where he would rather be, the owner chose **Vercel**. So:
 **Not yet proved:** the live deploy on Vercel. That is part 1 of [DEPLOY.md](DEPLOY.md), and it is yours
 to click.
 
-## The visual design is being redone (19 November 2026)
+## The look was rebuilt from the logo (19 November 2026)
 
-Seeing the site live, the owner rejected the current look — the colours, the amount of motion, the
-typography, and the direction as a whole. Milestone 2's approved direction (E Portfolio) is therefore no
-longer approved, and new directions are being built for him to choose from. The content, the data, the
-build and the contact form are all unaffected: this is the look, not the substance.
+Seeing the site live, the owner rejected the look — the colours, the motion, the typography and the
+direction as a whole. Three replacement directions were built (F Studio, G Swiss, H Desk) and rejected
+too. Four misses meant the brief was wrong, not the execution, so he was asked directly. His answer:
+**his logo's colour.**
+
+Two things came out of that:
+
+- **The site was already black and gold — in dark mode.** What he had been looking at was the **light**
+  theme, `#faf7f1`, a cream paper colour. The gold was never the problem; the cream under it was. Dropping
+  gold from F, G and H had been a correction in the wrong direction.
+- **Nothing had been built from the actual logo.** Sampling `public/img/logo-avatar.jpg` gives true black
+  `#000000`, a metallic gold running `#7c4c03 → #c78212 → #f2c24f`, and silver `#d5d5d5`.
+
+**What changed**
+
+- One theme only. The light tokens, the toggle, the stored `theme` choice and the palette's theme action
+  are gone, and any choice stored by the old site is deleted on first visit.
+- The palette now comes from the logo, with silver body text in place of the old warm cream.
+- Typefaces: Syne and Manrope → **Outfit** and **Inter**. JetBrains Mono stays for code.
+- Removed, all of them named in the rejection: the hollow outlined "I build.", the particle constellation
+  behind the hero, the typing effect that cycled eight phrases, the preloader with its fake percentage,
+  and the custom gold cursor. The footer's giant outlined word became a dim solid watermark.
+- The privacy page was corrected: it said a theme choice is stored, which is no longer true.
+- Turnstile is set to its dark widget so it matches the page.
+- Written up in [ADR 0009](adr/0009-one-theme-from-the-logo.md). The full direction is at
+  `design/mockups/i-obsidian/`; F, G and H stay as the record of how this was reached.
+
+**Checked**
+
+- `npm run verify` clean: 0 errors, 0 warnings, Prettier passing, 17 tests, 23 pages, no placeholders.
+- 13 pages × 3 widths (375, 768, 1280) driven in a real browser: no sideways scroll anywhere, and every
+  page renders on true black. No console errors.
+
+**Not yet decided:** whether the owner is happy with it. He has not seen the rebuilt site itself yet,
+only the Obsidian mockup it came from.
 
 ---
 

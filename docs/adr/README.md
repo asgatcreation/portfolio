@@ -13,3 +13,4 @@ A decision is never edited away: if it changes later, a new ADR supersedes the o
 | [0006](0006-placeholder-build-gate.md)           | Fail the build on any `[[ADD: ...]]` placeholder                      | Accepted           |
 | [0007](0007-contact-function-brevo-turnstile.md) | Send the contact form with a Cloudflare function, Brevo and Turnstile | Accepted           |
 | [0008](0008-host-on-vercel.md)                   | Host on Vercel, with the contact logic kept host-independent          | Accepted           |
+| [0009](0009-one-theme-from-the-logo.md)          | One theme, taken from the logo: black, gold and silver                | Accepted           |
