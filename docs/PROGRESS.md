@@ -1,6 +1,6 @@
 # Progress
 
-Where the portfolio stands, newest first. Updated 19 November 2026.
+Where the portfolio stands, newest first. Updated 20 November 2026.
 
 | Milestone | What it covers                                                                   | Status                  |
 | --------- | -------------------------------------------------------------------------------- | ----------------------- |
@@ -44,6 +44,43 @@ Asked where he would rather be, the owner chose **Vercel**. So:
 **Checked:** `npm run verify` clean — 17 tests passing, 23 pages built, no placeholders.
 **Not yet proved:** the live deploy on Vercel. That is part 1 of [DEPLOY.md](DEPLOY.md), and it is yours
 to click.
+
+## Case studies, and a stats policy (20 November 2026)
+
+**Case studies open on the work.** Each one used to begin with paragraphs; the reader scrolled a long way
+before seeing anything built. Now:
+
+- the four projects with screenshots (CarHub, FloatBook, FinanceFlow, TaskFlow) open with a real screen in
+  a browser frame showing the real address — the same frame the home page uses, so the site has one device
+  for showing work rather than three;
+- the six with no screenshots open with their architecture diagram instead. It was already drawn and
+  already theirs; it was just buried five sections down. Where it is promoted, the later Architecture
+  section is suppressed so nothing is drawn twice;
+- every case study gained a Year / Sector / Status / Built-with strip under the opener.
+
+Only Auth Wiki still opens on text: it has no screenshots and no diagram.
+
+**Stats: only real ones, even if that means none.** Seven headline figures were configuration trivia
+rather than achievements, and were removed — not reworded, not replaced:
+
+| Project     | Removed                                                   |
+| ----------- | --------------------------------------------------------- |
+| CarHub      | `2 Python versions in CI`                                 |
+| FinanceFlow | `5 currencies per user`, `15 starter categories`          |
+| FloatBook   | `1 Docker container`                                      |
+| TaskFlow    | `3 priority levels`, `4 search filters`, `1 click deploy` |
+
+Kept because they are real signals: CarHub's 146 automated tests; FloatBook's L7 Larastan level and 72h
+reversal target; naija-data's 13,392 shared test cases, 8,809 wards and 532 npm downloads — outside
+validation, and the strongest number on the site; NEI's 898 observations across 37 states and 35 years.
+
+**TaskFlow, Scoreline and Auth Wiki now show no stat bar at all.** The owner was asked for real numbers and
+chose to leave them blank. That is the standing decision: a portfolio that shows figures only where it has
+them reads as more trustworthy than one that pads every project. The spec strip carries those pages
+instead, so they do not look unfinished.
+
+**Still outstanding:** the owner's role on Auth Wiki, unanswered since milestone 3. Nothing is written
+about his contribution until he says.
 
 ## The look was rebuilt from the logo (19 November 2026)
 
