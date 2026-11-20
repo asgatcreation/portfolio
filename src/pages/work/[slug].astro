@@ -33,6 +33,11 @@ const statusColor: Record<string, string> = {
   team: '#c9a7ff',
 };
 const pct = p.progress ? Math.round((p.progress[0] / p.progress[1]) * 100) : 0;
+// The case study opens on the product itself, not on paragraphs. shots are [src, alt] pairs.
+const cover = p.cover;
+const coverAlt = cover ? (p.shots.find(([src]) => src === cover)?.[1] ?? `A screen from ${p.title}`) : '';
+// No screenshots? Lead with the architecture diagram instead, and don't repeat it later.
+const openWithArch = !cover && !!p.arch;
 const charts = [p.chart, p.chart2].filter((c) => c !== undefined);
 ---
 
@@ -80,6 +85,69 @@ const charts = [p.chart, p.chart2].filter((c) => c !== undefined);
             )}
           </div>
         </header>
+
+        {cover &&
+          (p.demo ? (
+            <a class="shotframe case-shot" href={p.demo} target="_blank" rel="noopener">
+              <div class="chrome">
+                <span class="dots" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span class="url">{p.demo.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>
+              </div>
+              <img src={cover} alt={coverAlt} width="1280" height="800" />
+            </a>
+          ) : (
+            <figure class="shotframe case-shot static">
+              <div class="chrome">
+                <span class="dots" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span class="url">{p.title}</span>
+              </div>
+              <img src={cover} alt={coverAlt} width="1280" height="800" />
+            </figure>
+          ))}
+
+        {openWithArch && p.arch && (
+          <figure class="shotframe case-shot static case-arch">
+            <div class="chrome">
+              <span class="dots" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
+              <span class="url">{p.title} · architecture</span>
+            </div>
+            <div class="arch-in">
+              <Arch arch={p.arch} />
+            </div>
+            <figcaption>How the parts connect, from the people using it to the services behind it.</figcaption>
+          </figure>
+        )}
+
+        <dl class="case-spec">
+          <div>
+            <dt>Year</dt>
+            <dd>{p.year}</dd>
+          </div>
+          <div>
+            <dt>Sector</dt>
+            <dd>{p.industry}</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>{p.statusLabel}</dd>
+          </div>
+          <div>
+            <dt>Built with</dt>
+            <dd>{p.stack.slice(0, 3).join(' · ')}</dd>
+          </div>
+        </dl>
 
         {p.facts.length > 0 && (
           <div class="v-facts">
@@ -175,7 +243,7 @@ const charts = [p.chart, p.chart2].filter((c) => c !== undefined);
           </section>
         )}
 
-        {p.arch && (
+        {p.arch && !openWithArch && (
           <section class="v-sec">
             <h2 class="v-h">
               <span>Architecture</span>

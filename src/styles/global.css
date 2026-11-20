@@ -1083,19 +1083,34 @@ body.locked { overflow: hidden; }
 .avail-line { display: flex; align-items: center; gap: .55rem; margin: 1.8rem 0 0; font-size: .88rem; color: var(--muted); }
 .avail-line .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--live); box-shadow: 0 0 10px var(--live); flex: none; }
 
-/* The featured project, in a real browser frame showing its real address. */
-.hero-shot { position: relative; display: block; border-radius: 10px; overflow: hidden; background: var(--bg-2); border: 1px solid var(--line-2); box-shadow: 0 40px 90px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(242,194,79,.07); transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s, border-color .3s; }
-.hero-shot:hover { transform: translateY(-5px); border-color: var(--gold-3); box-shadow: 0 50px 110px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(242,194,79,.18); }
-.hero-shot .chrome { display: flex; align-items: center; gap: .8rem; padding: .62rem .85rem; border-bottom: 1px solid var(--line); background: #0d0c0a; }
-.hero-shot .dots { display: flex; gap: .35rem; flex: none; }
-.hero-shot .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-2); }
-.hero-shot .url { font: 400 .72rem var(--mono); color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hero-shot img { width: 100%; height: auto; display: block; }
-.hero-shot .shot-tag { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.4rem 1.1rem .95rem; background: linear-gradient(transparent, rgba(0,0,0,.92) 62%); display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
-.hero-shot .shot-tag b { font: 600 1.02rem var(--display); color: #fff; }
-.hero-shot .shot-tag em { font-style: normal; font-size: .85rem; color: var(--muted); }
+/* A real screenshot in a real browser frame, showing the project's real address.
+   Used by the hero and by every case study. */
+.shotframe { position: relative; display: block; border-radius: 10px; overflow: hidden; background: var(--bg-2); border: 1px solid var(--line-2); box-shadow: 0 40px 90px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(242,194,79,.07); transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s, border-color .3s; }
+.shotframe.static:hover { transform: none; }
+a.shotframe:hover { transform: translateY(-5px); border-color: var(--gold-3); box-shadow: 0 50px 110px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(242,194,79,.18); }
+.shotframe .chrome { display: flex; align-items: center; gap: .8rem; padding: .62rem .85rem; border-bottom: 1px solid var(--line); background: #0d0c0a; }
+.shotframe .dots { display: flex; gap: .35rem; flex: none; }
+.shotframe .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-2); }
+.shotframe .url { font: 400 .72rem var(--mono); color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.shotframe img { width: 100%; height: auto; display: block; }
+.shotframe .shot-tag { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.4rem 1.1rem .95rem; background: linear-gradient(transparent, rgba(0,0,0,.92) 62%); display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+.shotframe .shot-tag b { font: 600 1.02rem var(--display); color: #fff; }
+.shotframe .shot-tag em { font-style: normal; font-size: .85rem; color: var(--muted); }
 
 @media (max-width: 980px) {
   .hero .wrap { grid-template-columns: 1fr; }
-  .hero-shot { order: 2; }
+  .shotframe { order: 2; }
 }
+
+/* ---------- Case study: the product first, then the facts about it ---------- */
+.case-shot { margin: 2.2rem 0 0; }
+.case-spec { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 1px 0 0; padding: 0; background: var(--line); border: 1px solid var(--line); border-radius: 0 0 10px 10px; border-top: 0; overflow: hidden; }
+.case-spec > div { background: var(--bg); padding: 1rem 1.1rem; }
+.case-spec dt { font: 500 .68rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin: 0 0 .35rem; }
+.case-spec dd { margin: 0; font-size: .92rem; font-weight: 500; color: var(--text); }
+@media (max-width: 760px) {
+  .case-spec { grid-template-columns: 1fr 1fr; }
+}
+.case-arch .arch-in { padding: 1.6rem 1.2rem; background: var(--bg-2); }
+.case-arch .arch-in svg { width: 100%; height: auto; display: block; }
+.case-arch figcaption { padding: .85rem 1.1rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--muted); }
