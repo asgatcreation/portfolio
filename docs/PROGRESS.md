@@ -1,6 +1,6 @@
 # Progress
 
-Where the portfolio stands, newest first. Updated 20 November 2026.
+Where the portfolio stands, newest first. Updated 23 November 2026.
 
 | Milestone | What it covers                                                                   | Status                  |
 | --------- | -------------------------------------------------------------------------------- | ----------------------- |
@@ -17,6 +17,54 @@ Where the portfolio stands, newest first. Updated 20 November 2026.
 | 11        | Checks in CI: Lighthouse budgets, browser tests, spelling                        | Not started             |
 | 12        | Accessibility and performance pass on real devices                               | Not started             |
 | 13        | Domain, deploy and launch                                                        | Not started             |
+
+---
+
+## The writing on the case studies (23 November 2026)
+
+**Every case study was printing its problem twice.** The page shows "Why I built it" and then "The
+problem:" directly beneath it, and every `why` paragraph opened by restating the problem. FloatBook's two
+paragraphs were 76% identical, measured with `difflib`. The fix was to give the two fields different jobs:
+`problem` is what is wrong in the world, `why` is the motivation and what the project set out to prove.
+Eight fields were rewritten on that basis.
+
+| Project     | Overlap before | After |
+| ----------- | -------------- | ----- |
+| FloatBook   | 76%            | 32%   |
+| naija-pay   | 64%            | 26%   |
+| FinanceFlow | 62%            | 35%   |
+| NEI         | 58%            | 19%   |
+| Oja Live    | 57%            | 28%   |
+| CarHub      | 46%            | 8%    |
+| TaskFlow    | 46%            | 15%   |
+
+No new facts were added. Every fact in the new text already appeared in that project's own copy. Two
+changes were purely subtractive: NEI's problem had a solution sentence tacked onto it, and TaskFlow's
+"problem" read "A simple product done properly", which is an intention rather than a problem.
+
+**The hardest part was moved to the top.** The strongest writing on each case study is its first
+technical-complexity entry — CarHub's "Two buyers, one car", FloatBook's "A ledger that always balances",
+naija-pay's "Whole kobo only". It sat in section 06, where few readers reach. It now appears as a callout
+directly under the Year / Sector / Status strip, and the Technical complexity section shows the remaining
+entries, numbered from 02 so nothing is repeated and the count still adds up. Auth Wiki has no entries, so
+it gets no callout.
+
+**Two taglines were replaced** because they would have fitted any product in their category:
+
+| Project   | Was                                  | Now                                              |
+| --------- | ------------------------------------ | ------------------------------------------------ |
+| TaskFlow  | Manage your day, one task at a time. | A to-do app that doesn't stop at the happy path. |
+| Scoreline | Real-time football live scores.      | One goal event, every viewer, no refresh.        |
+
+Both are drawn from text already on those pages — TaskFlow's own stated problem, and Scoreline's fan-out
+entry.
+
+**Checked:** `npm run verify` clean — 0 errors, 17 tests, 23 pages, no placeholders. All 11 published case
+studies read back in a browser at 360, 768 and 1440px: no horizontal overflow, no console errors, section
+numbering continuous on every page.
+
+**Still weak:** EduNexus has 59% overlap, but it is `draft: true` and full of `[[ADD]]` placeholders, so it
+is not published and needs your content before it is worth editing.
 
 ---
 

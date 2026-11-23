@@ -39,6 +39,10 @@ const coverAlt = cover ? (p.shots.find(([src]) => src === cover)?.[1] ?? `A scre
 // No screenshots? Lead with the architecture diagram instead, and don't repeat it later.
 const openWithArch = !cover && !!p.arch;
 const charts = [p.chart, p.chart2].filter((c) => c !== undefined);
+// The strongest writing on a case study is its first technical-complexity entry, and it used to sit
+// in section 06 where most readers never reach. Lift it to the top; show the rest in their section.
+const lead = p.hard && p.hard.length > 0 ? p.hard[0] : undefined;
+const restHard = p.hard ? p.hard.slice(1) : [];
 ---
 
 <Base title={`${p.title} · case study`} description={p.summary}>
@@ -149,6 +153,14 @@ const charts = [p.chart, p.chart2].filter((c) => c !== undefined);
           </div>
         </dl>
 
+        {lead && (
+          <aside class="case-hard">
+            <p class="ch-k">The hardest part</p>
+            <h2 class="ch-t">{lead[0]}</h2>
+            <p class="ch-d">{lead[1]}</p>
+          </aside>
+        )}
+
         {p.facts.length > 0 && (
           <div class="v-facts">
             {p.facts.map(([v, l]) => (
@@ -254,18 +266,18 @@ const charts = [p.chart, p.chart2].filter((c) => c !== undefined);
           </section>
         )}
 
-        {((p.hard && p.hard.length > 0) || p.radar) && (
+        {(restHard.length > 0 || p.radar) && (
           <section class="v-sec">
             <h2 class="v-h">
               <span>Technical complexity</span>
               <small>{num()}</small>
             </h2>
             <div class="cx">
-              {p.hard && p.hard.length > 0 && (
+              {restHard.length > 0 && (
                 <div class="hard">
-                  {p.hard.map(([t, d], k) => (
+                  {restHard.map(([t, d], k) => (
                     <article>
-                      <span>{String(k + 1).padStart(2, '0')}</span>
+                      <span>{String(k + 2).padStart(2, '0')}</span>
                       <h3 class="h4">{t}</h3>
                       <p>{d}</p>
                     </article>

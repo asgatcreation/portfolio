@@ -4,7 +4,7 @@
   "status": "live",
   "statusLabel": "Live",
   "year": "2026",
-  "tagline": "Manage your day, one task at a time.",
+  "tagline": "A to-do app that doesn’t stop at the happy path.",
   "summary": "A task manager with per-user accounts, priorities, deadlines with times, overdue detection and a clean dark interface, deployed with PostgreSQL.",
   "categories": ["Productivity"],
   "languages": ["Python"],

@@ -5,7 +5,7 @@
   "statusLabel": "In development",
   "year": "2026",
   "industry": "Sports · Real-time",
-  "tagline": "Real-time football live scores.",
+  "tagline": "One goal event, every viewer, no refresh.",
   "summary": "Match timelines, line-ups and league tables pushed to fans the moment they change, over WebSockets.",
   "categories": ["Real-time", "Sports"],
   "languages": ["TypeScript"],
