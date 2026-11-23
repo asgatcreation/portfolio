@@ -10,13 +10,56 @@ Where the portfolio stands, newest first. Updated 23 November 2026.
 | 4         | Remaining pages: about, services, now, writing, cv, lab, research, uses, privacy | Done — 17 November 2026 |
 | 5         | Contact form that really sends (host function, spam check)                       | Done — 17 November 2026 |
 | 6         | Search over projects and AsgatArticles                                           | Not started             |
-| 7         | Social preview images, metadata and structured data                              | Not started             |
+| 7         | Social preview images, metadata and structured data                              | Done — 23 November 2026 |
 | 8         | First AsgatArticles posts                                                        | Not started             |
 | 9         | Online booking                                                                   | Not started             |
 | 10        | Privacy-friendly analytics                                                       | Not started             |
 | 11        | Checks in CI: Lighthouse budgets, browser tests, spelling                        | Not started             |
 | 12        | Accessibility and performance pass on real devices                               | Not started             |
 | 13        | Domain, deploy and launch                                                        | Not started             |
+
+---
+
+## Milestone 7 — how the site looks when it is shared (done, 23 November 2026)
+
+**Every link to this site previewed as a blank grey box.** There was no `og:image` anywhere, and no
+Twitter card tag, so a link pasted into WhatsApp, LinkedIn or X showed a bare URL. For a portfolio, which
+exists to be sent to people, that is the worst place to be plain.
+
+**Twelve social cards were built** — one for the site and one for each published case study — at
+`public/og/`, 1200x630, in the same black and gold as the site, each carrying your logo, the project's own
+title, its own tagline, its real status and the first two items of its real stack. Nothing on a card is
+written by hand: every word is read out of that project's JSON file or out of `src/data/site.ts`, so a
+card can never claim something the case study does not.
+
+They are **generated once and committed**, by `npm run og`. Building them during the deploy would make
+every deploy depend on the image library and on which fonts the build machine happens to have installed.
+A committed PNG looks the same everywhere, forever. Re-run `npm run og` after changing a project's title,
+tagline, status or stack.
+
+**The tags that make the card appear** were added to the shared page layout: `og:image` with its width,
+height and alt text, `og:url`, `og:site_name`, `og:locale`, `twitter:card`, `twitter:title`,
+`twitter:description`, `twitter:image` and `twitter:creator`.
+
+**Structured data** was added too: a `Person` record on every page (your name, the brand, what you do,
+Oyo in Nigeria, and your GitHub, LinkedIn and X profiles) and a `CreativeWork` record on every case study
+(title, tagline, summary, year, categories, languages, and the live demo and repository where they exist).
+This is what lets Google show you as a person rather than as a string of words. Your email address is
+deliberately not in it.
+
+**A guard was added** so this cannot quietly rot: the build now fails if a page points at a social card
+that does not exist, and tells you to run `npm run og`. CI now builds with `SITE_URL` set so that check,
+the canonical URLs and the sitemap are all exercised on every push.
+
+**Checked:** `npm run verify` clean. The built HTML was read back: all 23 pages carry the card and the
+`Person` record, all 11 case studies carry their own card and `CreativeWork` record, every JSON-LD block
+parses, all 12 cards resolve, none is unused, and the guard was proved by deleting a card and watching
+the build fail. Pages re-checked in a browser at 360, 768 and 1440px with no overflow and no console
+errors.
+
+**One thing to know:** the cards only appear once `SITE_URL` is set, because social networks need the
+full `https://...` address of the image. That variable is part 1 of [DEPLOY.md](DEPLOY.md). Until the site
+is deployed, there is nothing for WhatsApp to fetch.
 
 ---
 

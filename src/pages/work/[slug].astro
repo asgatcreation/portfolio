@@ -43,9 +43,28 @@ const charts = [p.chart, p.chart2].filter((c) => c !== undefined);
 // in section 06 where most readers never reach. Lift it to the top; show the rest in their section.
 const lead = p.hard && p.hard.length > 0 ? p.hard[0] : undefined;
 const restHard = p.hard ? p.hard.slice(1) : [];
+// Each case study has its own social card, built by `npm run og` from this project's own JSON.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: p.title,
+  headline: p.tagline,
+  abstract: p.summary,
+  dateCreated: p.year,
+  creator: { '@type': 'Person', name: 'Akanji Oluwaseun Gabriel' },
+  keywords: [...p.categories, ...p.languages].join(', '),
+  ...(p.demo ? { url: p.demo } : {}),
+  ...(p.code ? { codeRepository: p.code } : {}),
+};
 ---
 
-<Base title={`${p.title} · case study`} description={p.summary}>
+<Base
+  title={`${p.title} · case study`}
+  description={p.summary}
+  image={`/og/${p.id}.png`}
+  imageAlt={`${p.title} — ${p.tagline}`}
+  jsonLd={jsonLd}
+>
   <main id="main" class="page">
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb">

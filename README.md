@@ -13,6 +13,7 @@ npm run dev       # local site with hot reload
 npm test          # tests for the contact function
 npm run verify    # type check, lint, format check, tests and build: the same as CI
 npm run preview   # serve the built site from dist/
+npm run og        # rebuild the social preview cards in public/og/ (commit the result)
 ```
 
 ## Where things live

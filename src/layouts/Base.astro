@@ -10,10 +10,38 @@ interface Props {
   /** Show the loading screen (home page only). */
   loader?: boolean;
   home?: boolean;
+  /** Social preview card, from public/og/. Built by `npm run og`. */
+  image?: string;
+  /** What the card shows, for anyone using a screen reader on the post that links here. */
+  imageAlt?: string;
+  /** Extra schema.org data for this page, alongside the site-wide Person. */
+  jsonLd?: Record<string, unknown>;
 }
-const { title, description = site.description, loader = false } = Astro.props;
+const {
+  title,
+  description = site.description,
+  loader = false,
+  image = '/og/default.png',
+  imageAlt,
+  jsonLd,
+} = Astro.props;
 const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.headline}`;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+// Social networks only accept absolute image URLs, so the card is emitted once SITE_URL is set.
+const cardUrl = Astro.site ? new URL(image, Astro.site).href : undefined;
+const cardAlt = imageAlt ?? `${fullTitle} — asgatcreation`;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  alternateName: site.brand,
+  jobTitle: 'Software engineer, data scientist and statistician',
+  description: site.description,
+  address: { '@type': 'PostalAddress', addressLocality: 'Oyo', addressCountry: 'NG' },
+  sameAs: [site.github, site.linkedin, site.x],
+  ...(Astro.site ? { url: Astro.site.href, image: new URL('/img/logo-avatar.jpg', Astro.site).href } : {}),
+};
 ---
 
 <!doctype html>
@@ -27,7 +55,26 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_GB" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {cardUrl && (
+      <>
+        <meta property="og:image" content={cardUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={cardAlt} />
+      </>
+    )}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {cardUrl && <meta name="twitter:image" content={cardUrl} />}
+    {cardUrl && <meta name="twitter:image:alt" content={cardAlt} />}
+    <meta name="twitter:creator" content="@Iam_Asgat" />
     <meta name="theme-color" content="#000000" />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(person)} />
+    {jsonLd && <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />}
     <link rel="icon" href="/img/logo-avatar.jpg" />
     <script is:inline>
       /* One theme only: black and gold, taken from the logo. Clear any choice an

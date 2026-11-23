@@ -26,5 +26,9 @@ jobs:
         run: npm run format:check
       - name: Test the contact function
         run: npm test
-      - name: Build (fails on any [[ADD]] placeholder)
+      - name: Build (fails on any [[ADD]] placeholder or missing social card)
+        # SITE_URL makes the build emit absolute canonical, og:image and sitemap URLs, so the
+        # checks can see them. The real value lives in Vercel; this one only has to be a URL.
+        env:
+          SITE_URL: https://asgatcreation.vercel.app
         run: npm run build
