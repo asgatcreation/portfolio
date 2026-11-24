@@ -14,8 +14,8 @@ const cols = Object.entries(Astro.props.arch).filter(([, v]) => v.length > 0);
           <i />
         </div>
       )}
-      <div class="arch-col">
-        <h5>{name}</h5>
+      <div class="arch-col" role="group" aria-label={name}>
+        <p class="arch-h">{name}</p>
         {nodes.map((n) => (
           <div class="node">{n}</div>
         ))}

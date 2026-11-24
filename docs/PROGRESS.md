@@ -2,21 +2,62 @@
 
 Where the portfolio stands, newest first. Updated 24 November 2026.
 
-| Milestone | What it covers                                                                   | Status                  |
-| --------- | -------------------------------------------------------------------------------- | ----------------------- |
-| 1         | Research: every repo read, every demo link checked                               | Done — 11 November 2026 |
-| 2         | Visual direction: mockups, chosen and refined                                    | Done — 16 November 2026 |
-| 3         | The real site: Astro build of the approved direction                             | Done — 17 November 2026 |
-| 4         | Remaining pages: about, services, now, writing, cv, lab, research, uses, privacy | Done — 17 November 2026 |
-| 5         | Contact form that really sends (host function, spam check)                       | Done — 17 November 2026 |
-| 6         | Search over projects and AsgatArticles                                           | Done — 24 November 2026 |
-| 7         | Social preview images, metadata and structured data                              | Done — 23 November 2026 |
-| 8         | First AsgatArticles posts                                                        | Not started             |
-| 9         | Online booking                                                                   | Not started             |
-| 10        | Privacy-friendly analytics                                                       | Not started             |
-| 11        | Checks in CI: Lighthouse budgets, browser tests, spelling                        | Not started             |
-| 12        | Accessibility and performance pass on real devices                               | Not started             |
-| 13        | Domain, deploy and launch                                                        | Not started             |
+| Milestone | What it covers                                                                   | Status                                                         |
+| --------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| 1         | Research: every repo read, every demo link checked                               | Done — 11 November 2026                                        |
+| 2         | Visual direction: mockups, chosen and refined                                    | Done — 16 November 2026                                        |
+| 3         | The real site: Astro build of the approved direction                             | Done — 17 November 2026                                        |
+| 4         | Remaining pages: about, services, now, writing, cv, lab, research, uses, privacy | Done — 17 November 2026                                        |
+| 5         | Contact form that really sends (host function, spam check)                       | Done — 17 November 2026                                        |
+| 6         | Search over projects and AsgatArticles                                           | Done — 24 November 2026                                        |
+| 7         | Social preview images, metadata and structured data                              | Done — 23 November 2026                                        |
+| 8         | First AsgatArticles posts                                                        | Not started                                                    |
+| 9         | Online booking                                                                   | Not started                                                    |
+| 10        | Privacy-friendly analytics                                                       | Not started                                                    |
+| 11        | Checks in CI: Lighthouse budgets, browser tests, spelling                        | Not started                                                    |
+| 12        | Accessibility and performance pass on real devices                               | Accessibility done — 24 November 2026; performance still to do |
+| 13        | Domain, deploy and launch                                                        | Not started                                                    |
+
+---
+
+## Accessibility pass (done, 24 November 2026)
+
+This was measured, not eyeballed. `axe-core` now runs over all 23 built pages as `npm run a11y`, part of
+`npm run verify` and of CI, and colour contrast was measured in a real browser across 2,688 pieces of text
+on 15 pages.
+
+**Six real defects were found and fixed.**
+
+| What was wrong                                    | Why it mattered                                                                                                                                                                                             |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Diagram column labels were `<h5>` under an `<h2>` | Jumping h2 → h5 broke the heading outline on all 11 case studies, which is how many screen-reader users navigate. They are now labelled groups, not headings.                                               |
+| `<aside>` used inside `<main>` in three places    | An `aside` announces itself as a separate region of the page. The callout, the contact panel and the GitHub block are part of their sections, so they are now plain containers.                             |
+| `<form role="tabpanel">` on the contact form      | A `form` is not allowed to be a tab panel, so the tab and its panel were not connected. The panel is now the element around the form; the form is unchanged.                                                |
+| Eight skill tabs controlled nothing               | `role="tab"` with no `aria-controls` and a panel with no `id`: the relationship a screen reader relies on did not exist. The panel now has an id and every tab points at it.                                |
+| The skills panel was also a live region           | Every arrow-key press announced all 57 tiles. With the tab relationship in place that is unnecessary, so `aria-live` was removed.                                                                           |
+| `--dim` text was 3.74:1                           | Below the 4.5:1 that normal text needs, and it is used in 54 rules: labels, counts, captions, the footer, form notes. Raised to `#817c74`, which measures 5.1:1 on black and 4.7:1 on the off-black panels. |
+
+**One finding was mine, from the turn before.** Dark text (`#15110a`) sits on the gold gradient in 13
+places — buttons, selected tabs, chips, badges. The gradient's darkest stop is `#7c4c03`, and dark text on
+that is **2.6:1**. A second token, `--grad-on`, drops that stop: it runs `#c78212 → #f2c24f → #c78212`, so
+the worst case is now **5.9:1**. The original `--grad` is unchanged and still used for the eight decorative
+places where no text sits on it — progress bars, meters, the portrait shape.
+
+**One reported failure was not real.** My first contrast check read gold buttons as 1.1:1, because it only
+looked at `background-color` and a gradient sets `background-image`. The checker was corrected to read the
+gradient's stops and take the worst one, which is what turned up the genuine 2.6:1 above.
+
+**Checked and found already correct:** one `<h1>` per page, no heading-level jumps, a working skip link,
+`lang="en-GB"`, no positive `tabindex`, no image without `alt`, and all 46 image-only links and buttons
+carry a real `aria-label`. The search box, lightbox and screenshot viewer are proper modal dialogs; the
+mobile menu and CV list report `aria-expanded`; arrow keys move between tabs with a single roving
+`tabindex`; Escape closes every overlay and returns focus where it came from.
+
+**Result:** 23 of 23 pages pass axe-core at WCAG 2.1 A and AA, and 0 of 2,688 measured pieces of text fail
+contrast. Both checks now run on every push, so this cannot quietly come undone.
+
+**Not done:** the performance half of milestone 12, and testing on a real phone rather than an emulated
+one.
 
 ---
 

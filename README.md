@@ -14,6 +14,7 @@ npm test          # tests for the contact function
 npm run verify    # type check, lint, format check, tests and build: the same as CI
 npm run preview   # serve the built site from dist/
 npm run og        # rebuild the social preview cards in public/og/ (commit the result)
+npm run a11y      # axe-core over every built page (WCAG 2.1 A and AA); needs a build first
 ```
 
 ## Where things live

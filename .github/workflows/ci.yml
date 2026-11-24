@@ -32,3 +32,5 @@ jobs:
         env:
           SITE_URL: https://asgatcreation.vercel.app
         run: npm run build
+      - name: Accessibility (axe-core, WCAG 2.1 A and AA)
+        run: npm run a11y

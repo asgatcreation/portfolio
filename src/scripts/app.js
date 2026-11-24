@@ -383,7 +383,7 @@ import { prepare, rank } from './search-core.js';
     });
   }
   skGroups.forEach(function (g, i) {
-    skTabs.appendChild(h('button', { type: 'button', role: 'tab', id: 'skt-' + i, 'aria-selected': String(i === 0), tabindex: i === 0 ? '0' : '-1', onclick: function () { selSk(i); }, onkeydown: function (e) {
+    skTabs.appendChild(h('button', { type: 'button', role: 'tab', id: 'skt-' + i, 'aria-controls': 'sk-panel', 'aria-selected': String(i === 0), tabindex: i === 0 ? '0' : '-1', onclick: function () { selSk(i); }, onkeydown: function (e) {
       var k = e.key, j = k === 'ArrowRight' ? i + 1 : k === 'ArrowLeft' ? i - 1 : k === 'Home' ? 0 : k === 'End' ? skGroups.length - 1 : null;
       if (j === null) return; e.preventDefault(); j = (j + skGroups.length) % skGroups.length; selSk(j); $('#skt-' + j).focus();
     } }, [g[0], h('small', { text: String(g[1].length) })]));

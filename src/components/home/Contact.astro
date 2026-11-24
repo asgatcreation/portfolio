@@ -5,7 +5,7 @@ const turnstileKey = import.meta.env['PUBLIC_TURNSTILE_SITE_KEY'] ?? '';
 <!-- CONTACT -->
 <section class="block" id="contact" aria-labelledby="contact-title">
   <div class="contact3 rv">
-    <aside class="c3-side">
+    <div class="c3-side">
       <span class="eyebrow">Contact</span>
       <h2 id="contact-title">
         Let’s build something <span class="grad-text">great.</span>
@@ -100,7 +100,7 @@ const turnstileKey = import.meta.env['PUBLIC_TURNSTILE_SITE_KEY'] ?? '';
         </li>
       </ul>
       <p class="c3-foot">Open to freelance, contract and full-time work, remote or in Nigeria.</p>
-    </aside>
+    </div>
 
     <div class="c3-main">
       <div class="c3-tabs" role="tablist" aria-label="How would you like to reach me?">
@@ -158,212 +158,223 @@ const turnstileKey = import.meta.env['PUBLIC_TURNSTILE_SITE_KEY'] ?? '';
       </div>
 
       <!-- 1. Message -->
-      <form class="c3-panel" role="tabpanel" id="cp-msg" aria-labelledby="ct-msg" novalidate data-msg-form>
-        <div class="row2">
-          <div class="fld">
-            <label for="m-name">
-              Full name <i>*</i>
-            </label>
-            <input id="m-name" name="name" type="text" autocomplete="name" required placeholder="e.g. Ada Obi" />
-            <span class="err">Please enter your name.</span>
+      <div role="tabpanel" id="cp-msg" aria-labelledby="ct-msg">
+        <form class="c3-panel" novalidate data-msg-form>
+          <div class="row2">
+            <div class="fld">
+              <label for="m-name">
+                Full name <i>*</i>
+              </label>
+              <input id="m-name" name="name" type="text" autocomplete="name" required placeholder="e.g. Ada Obi" />
+              <span class="err">Please enter your name.</span>
+            </div>
+            <div class="fld">
+              <label for="m-email">
+                Email <i>*</i>
+              </label>
+              <input
+                id="m-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="you@company.com"
+              />
+              <span class="err">Please enter a valid email.</span>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="fld">
+              <label for="m-phone">Phone or WhatsApp</label>
+              <input id="m-phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional" />
+            </div>
+            <div class="fld">
+              <label for="m-org">Company or organisation</label>
+              <input id="m-org" name="org" type="text" autocomplete="organization" placeholder="Optional" />
+            </div>
           </div>
           <div class="fld">
-            <label for="m-email">
-              Email <i>*</i>
-            </label>
-            <input id="m-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" />
-            <span class="err">Please enter a valid email.</span>
-          </div>
-        </div>
-        <div class="row2">
-          <div class="fld">
-            <label for="m-phone">Phone or WhatsApp</label>
-            <input id="m-phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional" />
-          </div>
-          <div class="fld">
-            <label for="m-org">Company or organisation</label>
-            <input id="m-org" name="org" type="text" autocomplete="organization" placeholder="Optional" />
-          </div>
-        </div>
-        <div class="fld">
-          <span class="lbl" id="m-topic-l">
-            I’m reaching out about
-          </span>
-          <div class="pills" role="radiogroup" aria-labelledby="m-topic-l">
-            <label>
-              <input type="radio" name="topic" value="A new project" checked />
-              <span>A new project</span>
-            </label>
-            <label>
-              <input type="radio" name="topic" value="A full-time role" />
-              <span>A full-time role</span>
-            </label>
-            <label>
-              <input type="radio" name="topic" value="Contract work" />
-              <span>Contract work</span>
-            </label>
-            <label>
-              <input type="radio" name="topic" value="Data or statistics work" />
-              <span>Data / statistics</span>
-            </label>
-            <label>
-              <input type="radio" name="topic" value="Consulting or training" />
-              <span>Consulting / training</span>
-            </label>
-            <label>
-              <input type="radio" name="topic" value="Something else" />
-              <span>Something else</span>
-            </label>
-          </div>
-        </div>
-        <div class="row2">
-          <div class="fld">
-            <label for="m-budget">Budget</label>
-            <select id="m-budget" name="budget">
-              <option>Not sure yet</option>
-              <option>Under ₦500,000</option>
-              <option>₦500,000 – ₦2,000,000</option>
-              <option>₦2,000,000 – ₦5,000,000</option>
-              <option>Above ₦5,000,000</option>
-              <option>Salaried role</option>
-            </select>
-          </div>
-          <div class="fld">
-            <label for="m-when">Timeline</label>
-            <select id="m-when" name="when">
-              <option>As soon as possible</option>
-              <option>In 1–3 months</option>
-              <option>Later this year</option>
-              <option>Just exploring</option>
-            </select>
-          </div>
-        </div>
-        <div class="fld">
-          <label for="m-msg">
-            Message <i>*</i>{' '}
-            <span class="chars" data-chars>
-              0 / 2000
+            <span class="lbl" id="m-topic-l">
+              I’m reaching out about
             </span>
-          </label>
-          <textarea
-            id="m-msg"
-            name="message"
-            required
-            minlength="10"
-            maxlength="2000"
-            placeholder="What are you building, who is it for, and what must not go wrong?"
-          ></textarea>
-          <span class="err">A few more words, please (at least 10 characters).</span>
-        </div>
-        <div class="hp" aria-hidden="true">
-          <label for="m-company">Company (leave this empty)</label>
-          <input id="m-company" name="company" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-        {turnstileKey && (
-          <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="dark" data-size="flexible" />
-        )}
-        <div class="c3-actions">
-          <button class="btn gold" type="submit" data-send="email">
-            Send message{' '}
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M22 2 11 13M22 2l-7 20-4-9-9-4z" />
-            </svg>
-          </button>
-          <button class="btn wa-btn" type="button" data-send="wa">
-            Send on WhatsApp
-          </button>
-        </div>
-        <div class="sent" role="status" data-msg-status></div>
-      </form>
+            <div class="pills" role="radiogroup" aria-labelledby="m-topic-l">
+              <label>
+                <input type="radio" name="topic" value="A new project" checked />
+                <span>A new project</span>
+              </label>
+              <label>
+                <input type="radio" name="topic" value="A full-time role" />
+                <span>A full-time role</span>
+              </label>
+              <label>
+                <input type="radio" name="topic" value="Contract work" />
+                <span>Contract work</span>
+              </label>
+              <label>
+                <input type="radio" name="topic" value="Data or statistics work" />
+                <span>Data / statistics</span>
+              </label>
+              <label>
+                <input type="radio" name="topic" value="Consulting or training" />
+                <span>Consulting / training</span>
+              </label>
+              <label>
+                <input type="radio" name="topic" value="Something else" />
+                <span>Something else</span>
+              </label>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="fld">
+              <label for="m-budget">Budget</label>
+              <select id="m-budget" name="budget">
+                <option>Not sure yet</option>
+                <option>Under ₦500,000</option>
+                <option>₦500,000 – ₦2,000,000</option>
+                <option>₦2,000,000 – ₦5,000,000</option>
+                <option>Above ₦5,000,000</option>
+                <option>Salaried role</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label for="m-when">Timeline</label>
+              <select id="m-when" name="when">
+                <option>As soon as possible</option>
+                <option>In 1–3 months</option>
+                <option>Later this year</option>
+                <option>Just exploring</option>
+              </select>
+            </div>
+          </div>
+          <div class="fld">
+            <label for="m-msg">
+              Message <i>*</i>{' '}
+              <span class="chars" data-chars>
+                0 / 2000
+              </span>
+            </label>
+            <textarea
+              id="m-msg"
+              name="message"
+              required
+              minlength="10"
+              maxlength="2000"
+              placeholder="What are you building, who is it for, and what must not go wrong?"
+            ></textarea>
+            <span class="err">A few more words, please (at least 10 characters).</span>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="m-company">Company (leave this empty)</label>
+            <input id="m-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          {turnstileKey && (
+            <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="dark" data-size="flexible" />
+          )}
+          <div class="c3-actions">
+            <button class="btn gold" type="submit" data-send="email">
+              Send message{' '}
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M22 2 11 13M22 2l-7 20-4-9-9-4z" />
+              </svg>
+            </button>
+            <button class="btn wa-btn" type="button" data-send="wa">
+              Send on WhatsApp
+            </button>
+          </div>
+          <div class="sent" role="status" data-msg-status></div>
+        </form>
+      </div>
 
       <!-- 2. Booking -->
-      <form class="c3-panel" role="tabpanel" id="cp-book" aria-labelledby="ct-book" hidden novalidate data-book-form>
-        <div class="fld">
-          <span class="lbl" id="b-day-l">
-            1. Pick a day
-          </span>
-          <div class="days" role="radiogroup" aria-labelledby="b-day-l" data-days></div>
-        </div>
-        <div class="fld">
-          <span class="lbl" id="b-time-l">
-            2. Pick a time <small>(West Africa Time)</small>
-          </span>
-          <div class="pills" role="radiogroup" aria-labelledby="b-time-l" data-slots></div>
-        </div>
-        <div class="fld">
-          <span class="lbl" id="b-type-l">
-            3. How should we talk?
-          </span>
-          <div class="pills" role="radiogroup" aria-labelledby="b-type-l">
-            <label>
-              <input type="radio" name="via" value="Google Meet" checked />
-              <span>Google Meet</span>
-            </label>
-            <label>
-              <input type="radio" name="via" value="Zoom" />
-              <span>Zoom</span>
-            </label>
-            <label>
-              <input type="radio" name="via" value="Phone call" />
-              <span>Phone call</span>
-            </label>
-            <label>
-              <input type="radio" name="via" value="WhatsApp call" />
-              <span>WhatsApp call</span>
-            </label>
-          </div>
-        </div>
-        <div class="row2">
+      <div role="tabpanel" id="cp-book" aria-labelledby="ct-book" hidden>
+        <form class="c3-panel" novalidate data-book-form>
           <div class="fld">
-            <label for="b-name">
-              Full name <i>*</i>
-            </label>
-            <input id="b-name" name="name" type="text" autocomplete="name" required />
-            <span class="err">Please enter your name.</span>
+            <span class="lbl" id="b-day-l">
+              1. Pick a day
+            </span>
+            <div class="days" role="radiogroup" aria-labelledby="b-day-l" data-days></div>
           </div>
           <div class="fld">
-            <label for="b-email">
-              Email <i>*</i>
-            </label>
-            <input id="b-email" name="email" type="email" autocomplete="email" required />
-            <span class="err">Please enter a valid email.</span>
+            <span class="lbl" id="b-time-l">
+              2. Pick a time <small>(West Africa Time)</small>
+            </span>
+            <div class="pills" role="radiogroup" aria-labelledby="b-time-l" data-slots></div>
           </div>
-        </div>
-        <div class="fld">
-          <label for="b-about">What would you like to talk about?</label>
-          <input
-            id="b-about"
-            name="about"
-            type="text"
-            placeholder="e.g. a school management app, a survey dashboard…"
-          />
-        </div>
-        <div class="summary" data-book-summary aria-live="polite"></div>
-        <div class="hp" aria-hidden="true">
-          <label for="b-company">Company (leave this empty)</label>
-          <input id="b-company" name="company" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-        {turnstileKey && (
-          <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="dark" data-size="flexible" />
-        )}
-        <div class="c3-actions">
-          <button class="btn gold" type="submit" data-book="email">
-            Request this call
-          </button>
-          <button class="btn wa-btn" type="button" data-book="wa">
-            Request on WhatsApp
-          </button>
-        </div>
-        <div class="sent" role="status" data-book-status></div>
-      </form>
+          <div class="fld">
+            <span class="lbl" id="b-type-l">
+              3. How should we talk?
+            </span>
+            <div class="pills" role="radiogroup" aria-labelledby="b-type-l">
+              <label>
+                <input type="radio" name="via" value="Google Meet" checked />
+                <span>Google Meet</span>
+              </label>
+              <label>
+                <input type="radio" name="via" value="Zoom" />
+                <span>Zoom</span>
+              </label>
+              <label>
+                <input type="radio" name="via" value="Phone call" />
+                <span>Phone call</span>
+              </label>
+              <label>
+                <input type="radio" name="via" value="WhatsApp call" />
+                <span>WhatsApp call</span>
+              </label>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="fld">
+              <label for="b-name">
+                Full name <i>*</i>
+              </label>
+              <input id="b-name" name="name" type="text" autocomplete="name" required />
+              <span class="err">Please enter your name.</span>
+            </div>
+            <div class="fld">
+              <label for="b-email">
+                Email <i>*</i>
+              </label>
+              <input id="b-email" name="email" type="email" autocomplete="email" required />
+              <span class="err">Please enter a valid email.</span>
+            </div>
+          </div>
+          <div class="fld">
+            <label for="b-about">What would you like to talk about?</label>
+            <input
+              id="b-about"
+              name="about"
+              type="text"
+              placeholder="e.g. a school management app, a survey dashboard…"
+            />
+          </div>
+          <div class="summary" data-book-summary aria-live="polite"></div>
+          <div class="hp" aria-hidden="true">
+            <label for="b-company">Company (leave this empty)</label>
+            <input id="b-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          {turnstileKey && (
+            <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="dark" data-size="flexible" />
+          )}
+          <div class="c3-actions">
+            <button class="btn gold" type="submit" data-book="email">
+              Request this call
+            </button>
+            <button class="btn wa-btn" type="button" data-book="wa">
+              Request on WhatsApp
+            </button>
+          </div>
+          <div class="sent" role="status" data-book-status></div>
+        </form>
+      </div>
 
       <!-- 3. WhatsApp -->
       <div class="c3-panel wa-panel" role="tabpanel" id="cp-wa" aria-labelledby="ct-wa" hidden>
