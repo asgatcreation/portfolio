@@ -1,5 +1,7 @@
 // Home page: motion and interaction. No libraries. Respects "reduce motion".
 // Data comes from the content collections, embedded by src/pages/index.astro as JSON.
+import { prepare, rank } from './search-core.js';
+
 (function () {
   'use strict';
   var root = document.documentElement;
@@ -718,29 +720,52 @@
   var pal = $('[data-palette]'), palIn = $('[data-palette-input]'), palList = $('[data-palette-list]'), palSel = 0, palItems = [], palReturn = null;
   var SECTIONS = [['About me', '#about', '👋'], ['Featured work', '#work', '★'], ['All projects', '#projects', '▦'], ['Now building', '#now', '⚙'], ['Skills & tools', '#skills', '◆'], ['Journey', '#journey', '↗'], ['Articles', '#writing', '✎'], ['FAQ', '#faq', '?'], ['Contact', '#contact', '✉']];
   var PAGES = [['About', '/about/', '◉'], ['All projects', '/work/', '▦'], ['Services', '/services/', '❖'], ['Research & data', '/research/', '⌗'], ['Lab', '/lab/', '⚙'], ['AsgatArticles', '/writing/', '✎'], ['CV', '/cv/', '☰'], ['Now', '/now/', '◑'], ['Uses', '/uses/', '⚒'], ['Privacy', '/privacy/', '⛉']];
-  var ITEMS = [].concat(
-    P.map(function (p) { return { g: 'Projects', t: p.title, s: p.statusLabel + ' · ' + p.categories.join(', '), i: p.title[0], run: function () { location.hash = '#project/' + p.id; } }; }),
-    SECTIONS.map(function (s) { return { g: 'Go to', t: s[0], s: 'Section', i: s[2], run: function () { $(s[1]).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); } }; }),
-    PAGES.map(function (pg) { return { g: 'Pages', t: pg[0], s: pg[1], i: pg[2], run: function () { location.href = pg[1]; } }; }),
-    [{ g: 'Actions', t: 'Copy my email address', s: 'asgatcreation@gmail.com', i: '@', run: function () { copy('asgatcreation@gmail.com', 'Email copied'); } },
-     { g: 'Actions', t: 'Download my CV', s: 'General · Software engineer · Data scientist · Statistician', i: '⇩', run: function () { $('#about').scrollIntoView(); setTimeout(function () { cvOpen(true); }, 400); } },
-     { g: 'Actions', t: 'Open GitHub profile', s: 'github.com/asgatcreation', i: '↗', run: function () { open('https://github.com/asgatcreation', '_blank', 'noopener'); } }]
+  // What only the home page can do: scroll to a section, open a project in place, run an action.
+  var LOCAL = [].concat(
+    P.map(function (p) { return { g: 'Projects', t: p.title, s: p.statusLabel + ' · ' + p.categories.join(', '), i: p.title[0], body: p.tagline + ' ' + p.summary, run: function () { location.hash = '#project/' + p.id; } }; }),
+    SECTIONS.map(function (s) { return { g: 'Go to', t: s[0], s: 'Section', i: s[2], body: 'section of the home page', run: function () { $(s[1]).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); } }; }),
+    PAGES.map(function (pg) { return { g: 'Pages', t: pg[0], s: pg[1], i: pg[2], body: '', run: function () { location.href = pg[1]; } }; }),
+    [{ g: 'Actions', t: 'Copy my email address', s: 'asgatcreation@gmail.com', i: '@', body: 'email contact address get in touch', run: function () { copy('asgatcreation@gmail.com', 'Email copied'); } },
+     { g: 'Actions', t: 'Download my CV', s: 'General · Software engineer · Data scientist · Statistician', i: '⇩', body: 'cv resume curriculum vitae pdf download', run: function () { $('#about').scrollIntoView(); setTimeout(function () { cvOpen(true); }, 400); } },
+     { g: 'Actions', t: 'Open GitHub profile', s: 'github.com/asgatcreation', i: '↗', body: 'github code repositories open source', run: function () { open('https://github.com/asgatcreation', '_blank', 'noopener'); } }]
   );
+  var ITEMS = prepare(LOCAL), palLoaded = false;
+  // Everything the case-study and article pages say is fetched the first time the box is opened,
+  // then merged in. Anything the home page can do in place keeps its own behaviour.
+  function palLoad() {
+    if (palLoaded) return; palLoaded = true;
+    fetch('/search.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (data) {
+      if (!data || !data.length) return;
+      var here = {}, bodies = {};
+      LOCAL.forEach(function (it) { here[it.g + '|' + it.t] = true; });
+      data.forEach(function (d) { bodies[d.g + '|' + d.t] = d.body; });
+      var extra = data.filter(function (d) { return !here[d.g + '|' + d.t]; })
+        .map(function (d) { return { g: d.g, t: d.t, s: d.s, i: d.i, body: d.body, run: function () { location.href = d.u; } }; });
+      ITEMS = prepare(LOCAL.map(function (it) {
+        var body = bodies[it.g + '|' + it.t];
+        return body ? Object.assign({}, it, { body: it.body + ' ' + body }) : it;
+      }).concat(extra));
+      if (!pal.hidden) renderPal();
+    }).catch(function () { /* offline or blocked: the list above still works */ });
+  }
   function renderPal() {
-    var q = palIn.value.trim().toLowerCase(); palList.textContent = '';
-    palItems = ITEMS.filter(function (it) { return !q || (it.t + ' ' + it.s + ' ' + it.g).toLowerCase().indexOf(q) > -1; });
+    palList.textContent = '';
+    palItems = rank(ITEMS, palIn.value, 40);
     if (palSel >= palItems.length) palSel = 0;
     if (!palItems.length) { palList.appendChild(h('div', { class: 'none', text: 'Nothing found for “' + palIn.value + '”' })); palIn.removeAttribute('aria-activedescendant'); return; }
     var last = '';
-    palItems.forEach(function (it, i) {
+    palItems.forEach(function (hit, i) {
+      var it = hit.item;
       if (it.g !== last) { palList.appendChild(h('div', { class: 'grp', role: 'presentation', text: it.g })); last = it.g; }
-      palList.appendChild(h('div', { role: 'option', id: 'pal-' + i, 'aria-selected': String(i === palSel), onclick: function () { runPal(i); }, onmousemove: function () { if (palSel !== i) { palSel = i; mark(); } } }, [h('span', { class: 'pi', 'aria-hidden': 'true', text: it.i }), h('span', null, [h('b', { text: it.t }), h('small', { text: it.s })])]));
+      var box = [h('b', { text: it.t }), h('small', { text: it.s })];
+      if (hit.where) box.push(h('em', { class: 'pwhy', text: hit.where }));
+      palList.appendChild(h('div', { role: 'option', id: 'pal-' + i, 'aria-selected': String(i === palSel), onclick: function () { runPal(i); }, onmousemove: function () { if (palSel !== i) { palSel = i; mark(); } } }, [h('span', { class: 'pi', 'aria-hidden': 'true', text: it.i }), h('span', null, box)]));
     });
     mark();
   }
   function mark() { $$('[role="option"]', palList).forEach(function (o, i) { o.setAttribute('aria-selected', String(i === palSel)); if (i === palSel) { palIn.setAttribute('aria-activedescendant', o.id); o.scrollIntoView({ block: 'nearest' }); } }); }
-  function runPal(i) { var it = palItems[i]; closePal(); if (it) setTimeout(it.run, 30); }
-  function openPal() { palReturn = document.activeElement; pal.hidden = false; palIn.value = ''; palSel = 0; renderPal(); lock(); palIn.focus(); }
+  function runPal(i) { var hit = palItems[i]; closePal(); if (hit) setTimeout(hit.item.run, 30); }
+  function openPal() { palLoad(); palReturn = document.activeElement; pal.hidden = false; palIn.value = ''; palSel = 0; renderPal(); lock(); palIn.focus(); }
   function closePal() { if (pal.hidden) return; pal.hidden = true; lock(); if (palReturn) palReturn.focus({ preventScroll: true }); }
   palIn.addEventListener('input', function () { palSel = 0; renderPal(); });
   palIn.addEventListener('keydown', function (e) {

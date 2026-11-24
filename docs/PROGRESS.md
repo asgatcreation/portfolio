@@ -1,6 +1,6 @@
 # Progress
 
-Where the portfolio stands, newest first. Updated 23 November 2026.
+Where the portfolio stands, newest first. Updated 24 November 2026.
 
 | Milestone | What it covers                                                                   | Status                  |
 | --------- | -------------------------------------------------------------------------------- | ----------------------- |
@@ -9,7 +9,7 @@ Where the portfolio stands, newest first. Updated 23 November 2026.
 | 3         | The real site: Astro build of the approved direction                             | Done — 17 November 2026 |
 | 4         | Remaining pages: about, services, now, writing, cv, lab, research, uses, privacy | Done — 17 November 2026 |
 | 5         | Contact form that really sends (host function, spam check)                       | Done — 17 November 2026 |
-| 6         | Search over projects and AsgatArticles                                           | Not started             |
+| 6         | Search over projects and AsgatArticles                                           | Done — 24 November 2026 |
 | 7         | Social preview images, metadata and structured data                              | Done — 23 November 2026 |
 | 8         | First AsgatArticles posts                                                        | Not started             |
 | 9         | Online booking                                                                   | Not started             |
@@ -17,6 +17,50 @@ Where the portfolio stands, newest first. Updated 23 November 2026.
 | 11        | Checks in CI: Lighthouse budgets, browser tests, spelling                        | Not started             |
 | 12        | Accessibility and performance pass on real devices                               | Not started             |
 | 13        | Domain, deploy and launch                                                        | Not started             |
+
+---
+
+## Milestone 6 — search that reads the pages (done, 24 November 2026)
+
+**The search box could only find things by their title.** Ctrl+K already existed, but it matched on a
+project's name and its one-line subtitle and nothing else. Searching for `kobo`, `row locking`,
+`Playwright` or `tenant isolation` — the words someone actually remembers — found nothing at all, even
+though every one of them is written on a page of this site. There were also **two separate copies** of the
+box, one for the home page and one for every other page, which could drift apart.
+
+**There is now one index, built from the pages themselves.** `src/data/search.ts` reads the project files,
+the articles and the standing-page content and produces one entry per project, article and page. The
+searched text is each project's tagline, summary, problem, reason for building, features, how-it-works
+steps, technical-complexity entries, the parts of CarHub, its stack, languages, sector and year — and for
+the standing pages, the tools listed on /uses/, the findings on /research/ and the items on /now/. Nothing
+is typed in twice, so search can never find a claim the page itself does not make.
+
+**It is not downloaded unless someone searches.** The index is served as `/search.json` (24 KB) and
+fetched the first time the box is opened, once per visit. A visitor who never searches never downloads it.
+Until it arrives — or if it fails, on a bad connection — the short list of pages and projects already in
+the page keeps working.
+
+**Ranking, in one place, used by both copies of the box.** `src/scripts/search-core.js` is now the single
+definition of a good match, imported by both scripts and shipped as one shared file:
+
+- a hit in the title beats a hit in the subtitle, which beats a hit in the page text;
+- **every** word must match, so `django live` finds only the live Django projects;
+- words typed together are treated as a phrase, so `in person` finds CarHub, which says exactly that,
+  rather than a project that happens to use both words apart;
+- the project that does the thing beats the page that mentions it: `tenant isolation` reaches Curavia
+  before /now/, which only mentions it in a sentence about Curavia;
+- accents need not be typed: `oja` finds Ojà Live.
+
+**Results now say why they matched.** When the words were found in the page rather than in its title, the
+result shows the sentence they were found in, cut from the real text. On a phone that line wraps to two
+lines instead of being cut off before it reaches the words you typed.
+
+**Checked:** `npm run verify` clean, with **11 new tests** covering ranking, phrases, accents, the
+all-words rule, the empty query, the snippet and the limit — 28 tests in total. In a browser, on the home
+page and on inner pages, at 360, 768 and 1440px: results on every page, no overflow, no console errors,
+arrow keys move the selection with `aria-activedescendant` following it, Enter opens the result, Escape
+closes and returns focus to the search button, and the network log confirms `/search.json` is fetched
+**zero** times before the box is opened and exactly **once** after.
 
 ---
 

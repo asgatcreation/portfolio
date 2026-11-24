@@ -1,4 +1,6 @@
 // Inner pages: header, menu, reading progress, back to top, reveal, copy and the screenshot lightbox.
+import { prepare, rank } from './search-core.js';
+
 (function () {
   'use strict';
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -139,11 +141,35 @@
     palSel = 0,
     palItems = [],
     palReturn = null,
-    NAV = [];
+    NAV = [],
+    loaded = false;
+  // The page already carries a short list of pages and projects, so the box works the instant it
+  // opens. The full index, which also searches the words inside each case study, is fetched the
+  // first time it is opened and never downloaded by anyone who does not search.
   try {
-    NAV = JSON.parse($('#site-nav-data').textContent);
+    NAV = prepare(
+      JSON.parse($('#site-nav-data').textContent).map(function (it) {
+        return { g: it.g, t: it.t, s: it.s, u: it.href, i: it.t.charAt(0), body: '' };
+      }),
+    );
   } catch {
     NAV = []; // no data block on this page: the palette simply stays empty
+  }
+  function loadIndex() {
+    if (loaded) return;
+    loaded = true;
+    fetch('/search.json')
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
+      .then(function (data) {
+        if (!data || !data.length) return;
+        NAV = prepare(data);
+        if (pal && !pal.hidden) palRender();
+      })
+      .catch(function () {
+        /* offline or blocked: the short list above still works */
+      });
   }
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -161,11 +187,8 @@
     });
   }
   function palRender() {
-    var q = palIn.value.trim().toLowerCase();
     palList.textContent = '';
-    palItems = NAV.filter(function (it) {
-      return !q || (it.t + ' ' + it.s + ' ' + it.g).toLowerCase().indexOf(q) > -1;
-    });
+    palItems = rank(NAV, palIn.value, 40);
     if (palSel >= palItems.length) palSel = 0;
     if (!palItems.length) {
       palList.appendChild(el('div', 'none', 'Nothing found for “' + palIn.value + '”'));
@@ -173,7 +196,8 @@
       return;
     }
     var last = '';
-    palItems.forEach(function (it, i) {
+    palItems.forEach(function (hit, i) {
+      var it = hit.item;
       if (it.g !== last) {
         var grp = el('div', 'grp', it.g);
         grp.setAttribute('role', 'presentation');
@@ -184,11 +208,12 @@
       row.setAttribute('role', 'option');
       row.id = 'pal-' + i;
       row.setAttribute('aria-selected', String(i === palSel));
-      var ic = el('span', 'pi', it.t.charAt(0));
+      var ic = el('span', 'pi', it.i || it.t.charAt(0));
       ic.setAttribute('aria-hidden', 'true');
       var box = el('span', null);
       box.appendChild(el('b', null, it.t));
       box.appendChild(el('small', null, it.s));
+      if (hit.where) box.appendChild(el('em', 'pwhy', hit.where));
       row.appendChild(ic);
       row.appendChild(box);
       row.addEventListener('click', function () {
@@ -205,11 +230,12 @@
     palMark();
   }
   function palRun(i) {
-    var it = palItems[i];
+    var hit = palItems[i];
     palClose();
-    if (it) location.href = it.href;
+    if (hit) location.href = hit.item.u;
   }
   function palOpen() {
+    loadIndex();
     palReturn = document.activeElement;
     pal.hidden = false;
     palIn.value = '';
